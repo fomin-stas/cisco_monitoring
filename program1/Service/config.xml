@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<WaterGate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JDSUIP IP="172.16.17.102" Com="snmp" />
+  <n>48</n>
+  <Ports>
+    <JDSUCisco n="0">
+      <JDSUPort>test-link</JDSUPort>
+      <CiscoIPCom IP="192.168.0.207" Com="snmpcom" />
+      <CiscoPort PortName="ethernet_6" PortID=".11" />
+    </JDSUCisco>
+    <JDSUCisco n="1">
+      <JDSUPort>апрапр</JDSUPort>
+      <CiscoIPCom IP="10.10.10.10" Com="cisco_rw" />
+      <CiscoPort PortName="not set" PortID="" />
+    </JDSUCisco>
+    <JDSUCisco n="2">
+      <JDSUPort>222</JDSUPort>
+      <CiscoIPCom IP="192.168.0.207" Com="snmpcom" />
+      <CiscoPort PortName="not set" PortID="" />
+    </JDSUCisco>
+    <JDSUCisco n="3">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="4">
+      <JDSUPort>111</JDSUPort>
+      <CiscoIPCom IP="not set" Com="not set" />
+      <CiscoPort PortName="not set" PortID="" />
+    </JDSUCisco>
+    <JDSUCisco n="5">
+      <JDSUPort>ddddddd</JDSUPort>
+      <CiscoIPCom IP="not set" Com="not set" />
+      <CiscoPort PortName="not set" PortID="" />
+    </JDSUCisco>
+    <JDSUCisco n="6">
+      <JDSUPort>fh</JDSUPort>
+      <CiscoIPCom IP="172.16.18.34" Com="cisco_rw" />
+      <CiscoPort PortName="Ethernet1/3" PortID=".436215808" />
+    </JDSUCisco>
+    <JDSUCisco n="7">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="8">
+      <JDSUPort>dfdf</JDSUPort>
+      <CiscoIPCom IP="172.16.18.34" Com="cisco_rw" />
+      <CiscoPort PortName="port-channel21" PortID=".369098772" />
+    </JDSUCisco>
+    <JDSUCisco n="9">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="10">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="11">
+      <JDSUPort>aasas</JDSUPort>
+      <CiscoIPCom IP="10.10.10.10" Com="cisco_rw" />
+      <CiscoPort PortName="not set" PortID="" />
+    </JDSUCisco>
+    <JDSUCisco n="12">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="13">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="14">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="15">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="16">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="17">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="18">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="19">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="20">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="21">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="22">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="23">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="24">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="25">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="26">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="27">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="28">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="29">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="30">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="31">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="32">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="33">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="34">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="35">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="36">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="37">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="38">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="39">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="40">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="41">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="42">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="43">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="44">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="45">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="46">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+    <JDSUCisco n="47">
+      <JDSUPort>not set</JDSUPort>
+      <CiscoIPCom IP="not set" Com="CiscoCom" />
+      <CiscoPort PortName="not set" PortID="PortID" />
+    </JDSUCisco>
+  </Ports>
+  <Cisco>
+    <IPCom Com="cisco_rw" IP="172.16.18.34" />
+    <IPCom Com="cisco_rw" IP="10.10.10.10" />
+    <IPCom Com="snmpcom" IP="192.168.0.207" />
+  </Cisco>
+</WaterGate>
