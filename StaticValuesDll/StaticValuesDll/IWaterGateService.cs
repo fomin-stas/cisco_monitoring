@@ -28,5 +28,14 @@ namespace Service.Services
         [OperationContract]
         void UpdateJDSUIP(IPCom jdsuIP);
 
+        [OperationContract]
+        bool AddUser(User user);
+
+        [OperationContract]
+        bool RemoveUser(string login);
+
+        [OperationContract]
+        User[] GetUsers();
+
     }
 }
