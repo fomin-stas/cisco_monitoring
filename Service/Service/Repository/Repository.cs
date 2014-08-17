@@ -16,6 +16,7 @@ namespace Service.Repository
         private static string _connectionString;
 
         private static readonly ReaderWriterLockSlim LockSlim = new ReaderWriterLockSlim();
+        private static readonly ReaderWriterLockSlim UsersLockSlim = new ReaderWriterLockSlim();
 
         public static void Initialize(string path)
         {
@@ -210,6 +211,166 @@ namespace Service.Repository
             }
         }
 
+        public bool AddUser(User user)
+        {
+            UsersLockSlim.EnterWriteLock();
+
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    Int64 id;
+                    try
+                    {
+                        using (var command =new SQLiteCommand("INSERT INTO Users (Login,Password) values(@login,@password)", connection))
+                        {
+                            command.Parameters.Add("@login", DbType.String).Value = user.Login;
+                            command.Parameters.Add("@password", DbType.String).Value = user.Password.ToMD5();
+
+                            command.ExecuteNonQuery();
+                        }
+
+                        id = GetUserId(connection, user.Login);
+                        if (id == 0)
+                            return false;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+
+                    using (var command = new SQLiteCommand("INSERT INTO Permissions (Value,UserId) values(@value,@userId)", connection))
+                    {
+                        command.Parameters.Add("@value", DbType.Int32).Value = (int) user.Permissions;
+                        command.Parameters.Add("@userId", DbType.String).Value = id;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    return true;
+                }
+            }
+            finally { UsersLockSlim.ExitWriteLock();}
+        }
+
+        public bool RemoveUser(string login)
+        {
+            UsersLockSlim.EnterWriteLock();
+
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    var userId = GetUserId(connection, login);
+                    if (userId == 0)
+                        return true;
+
+                    var canRemoveAdministrator = true;
+                    using (var command =new SQLiteCommand("SELECT count(Users.Id) FROM Users INNER JOIN Permissions ON Users.Id=Permissions.UserId WHERE Permissions.Value=1", connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                canRemoveAdministrator = Convert.ToInt32(reader.GetValue(0)) > 1;
+                            }
+                        }
+                    }
+
+                    using (var command = new SQLiteCommand("SELECT Value FROM Permissions WHERE UserId=@id", connection))
+                    {
+                        command.Parameters.Add("@id", DbType.Int64).Value = userId;
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (!reader.Read())
+                            {
+                                return true;
+                            }
+
+                            var permissions = reader.GetInt32(0);
+                            if (permissions == 1 && !canRemoveAdministrator)
+                                return false;
+                        }
+                    }
+
+                    using (var command = new SQLiteCommand("DELETE FROM Permissions WHERE UserId=@id", connection))
+                    {
+                        command.Parameters.Add("@id", DbType.Int64).Value = userId;
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (var command = new SQLiteCommand("DELETE FROM Users WHERE Id=@id", connection))
+                    {
+                        command.Parameters.Add("@id", DbType.Int64).Value = userId;
+                        command.ExecuteNonQuery();
+                    }
+
+                    return true;
+                }
+            }
+            finally
+            {
+                UsersLockSlim.ExitWriteLock();
+            }
+        }
+
+        public User[] GetUsers()
+        {
+            UsersLockSlim.EnterReadLock();
+
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand("SELECT Users.Id,Users.Login,Permissions.Value FROM Users INNER JOIN Permissions ON Users.Id=Permissions.UserId", connection))
+                    {
+                        using (var adapter = new SQLiteDataAdapter(command))
+                        {
+                            using (var table = new DataTable())
+                            {
+                                adapter.Fill(table);
+
+                                return table.Rows.Cast<DataRow>().Select(item => new User()
+                                {
+                                    Id = (Int64) item[0],
+                                    Login = item[1] as string,
+                                    Permissions = (Permissions) (int) item[2]
+                                }).ToArray();
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                UsersLockSlim.ExitReadLock();
+            }
+        }
+
+        private Int64 GetUserId(SQLiteConnection connection, string login)
+        {
+            using (var command = new SQLiteCommand("SELECT Id FROM Users WHERE Login=@login", connection))
+            {
+                command.Parameters.Add("@login", DbType.String).Value = login;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (!reader.Read())
+                    {
+                        return 0;
+                    }
+
+                    return reader.GetInt64(0);
+                }
+            }
+        }
 
         private IPCom GetJDSUIp(SQLiteConnection connection)
         {

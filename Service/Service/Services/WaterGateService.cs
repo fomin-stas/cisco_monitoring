@@ -47,5 +47,20 @@ namespace Service.Services
         {
             _repository.UpdateJDSUIP(jdsuIP);
         }
+
+        public bool AddUser(User user)
+        {
+            return _repository.AddUser(user);
+        }
+
+        public bool RemoveUser(string login)
+        {
+           return _repository.RemoveUser(login);
+        }
+
+        public User[] GetUsers()
+        {
+            return _repository.GetUsers();
+        }
     }
 }
