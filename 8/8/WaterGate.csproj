@@ -60,7 +60,7 @@
     </Reference>
     <Reference Include="StaticValuesDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Service\StaticValuesDll.dll</HintPath>
+      <HintPath>..\..\StaticValuesDll\StaticValuesDll\bin\Debug\StaticValuesDll.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -70,6 +70,8 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -108,17 +110,17 @@
     <Compile Include="JDSUForm.Designer.cs">
       <DependentUpon>JDSUForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogPass.cs">
+    <Compile Include="AuthorizationDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogPass.Designer.cs">
-      <DependentUpon>LogPass.cs</DependentUpon>
+    <Compile Include="AuthorizationDialog.Designer.cs">
+      <DependentUpon>AuthorizationDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="main.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main.Designer.cs">
-      <DependentUpon>main.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CiscoForm.cs">
       <SubType>Form</SubType>
@@ -126,6 +128,8 @@
     <Compile Include="CiscoForm.Designer.cs">
       <DependentUpon>CiscoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\WaterGateServiceContext.cs" />
     <Compile Include="User.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,11 +162,11 @@
     <EmbeddedResource Include="JDSUform.resx">
       <DependentUpon>JDSUForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogPass.resx">
-      <DependentUpon>LogPass.cs</DependentUpon>
+    <EmbeddedResource Include="AuthorizationDialog.resx">
+      <DependentUpon>AuthorizationDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main.resx">
-      <DependentUpon>main.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CiscoForm.resx">
       <DependentUpon>CiscoForm.cs</DependentUpon>

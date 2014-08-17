@@ -1,6 +1,6 @@
 ﻿namespace WaterGate
 {
-    partial class main
+    partial class MainForm
     {
         /// <summary>
         /// Требуется переменная конструктора.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.topMenuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьКонфигурациюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКонфигурациюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,15 +52,15 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.jdsuIsActiveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.topMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // topMenuStrip
             // 
-            this.menuStrip1.AllowItemReorder = true;
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.topMenuStrip.AllowItemReorder = true;
+            this.topMenuStrip.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.topMenuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.topMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.настройкаToolStripMenuItem,
             this.справкаToolStripMenuItem,
@@ -75,12 +75,12 @@
             this.toolStripMenuItem8,
             this.toolStripMenuItem9,
             this.jdsuIsActiveToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(1025, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.topMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.topMenuStrip.Name = "topMenuStrip";
+            this.topMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.topMenuStrip.Size = new System.Drawing.Size(1025, 24);
+            this.topMenuStrip.TabIndex = 0;
+            this.topMenuStrip.Text = "menuStrip1";
             // 
             // файлToolStripMenuItem
             // 
@@ -238,21 +238,21 @@
             this.jdsuIsActiveToolStripMenuItem1.Size = new System.Drawing.Size(87, 20);
             this.jdsuIsActiveToolStripMenuItem1.Text = "Jdsu is active";
             // 
-            // main
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1025, 610);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.topMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "main";
+            this.MainMenuStrip = this.topMenuStrip;
+            this.Name = "MainForm";
             this.Text = "Здесь может быть Ваша реклама";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.topMenuStrip.ResumeLayout(false);
+            this.topMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,7 +278,7 @@
 
 
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip topMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загрузитьКонфигурациюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьКонфигурациюToolStripMenuItem;

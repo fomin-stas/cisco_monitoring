@@ -15,35 +15,37 @@ namespace WaterGate
 {
     public class Functions
     {
-        public static void renew()
-        {
-            StaticValues.n = 48;
-            StaticValues.JDSUIP = new IPCom("not set", "not set");
-            Array.Resize(ref StaticValues.JDSUCiscoArray, StaticValues.n);
-            for (int i = 0; i < StaticValues.n; i++)
-            {
-                StaticValues.JDSUCiscoArray[i] = new JDSUCiscoClass();
-                StaticValues.JDSUCiscoArray[i].AddJDSUCisco(i, "not set", new IPCom("not set", "CiscoCom"), new CiscoPort("not set", "PortID")); 
-            }
+        ///Resets StaticValues and saves config.
+
+        //public static void renew()
+        //{
+        //    StaticValues.n = 48;
+        //    StaticValues.JDSUIP = new IPCom("not set", "not set");
+        //    Array.Resize(ref StaticValues.JDSUCiscoArray, StaticValues.n);
+        //    for (int i = 0; i < StaticValues.n; i++)
+        //    {
+        //        StaticValues.JDSUCiscoArray[i] = new JDSUCiscoClass();
+        //        StaticValues.JDSUCiscoArray[i].AddJDSUCisco(i, "not set", new IPCom("not set", "CiscoCom"), new CiscoPort("not set", "PortID")); 
+        //    }
 
             
-            StaticValues.CiscoList.Add(new IPCom("not set","ciscoCom"));
+        //    StaticValues.CiscoList.Add(new IPCom("not set","ciscoCom"));
             
            
-            forSerialize ser = new forSerialize();
+        //    forSerialize ser = new forSerialize();
 
-            ser.n = StaticValues.n;
-            ser.JDSUIP = StaticValues.JDSUIP;
-            ser.JDSUCiscoArray = StaticValues.JDSUCiscoArray;
-            ser.CiscoList = StaticValues.CiscoList.ToArray();
+        //    ser.n = StaticValues.n;
+        //    ser.JDSUIP = StaticValues.JDSUIP;
+        //    ser.JDSUCiscoArray = StaticValues.JDSUCiscoArray;
+        //    ser.CiscoList = StaticValues.CiscoList.ToArray();
 
-            FileStream myFileStream = new FileStream(pathConfig, FileMode.Create);  
-            XmlSerializer serializer = new XmlSerializer(typeof(forSerialize));
+        //    FileStream myFileStream = new FileStream(pathConfig, FileMode.Create);  
+        //    XmlSerializer serializer = new XmlSerializer(typeof(forSerialize));
             
-            serializer.Serialize(myFileStream,ser);
-            return;
+        //    serializer.Serialize(myFileStream,ser);
+        //    return;
         
-        }
+        //}
 
         public static void AddTempLog(string st, string st2 = "")
         {
@@ -68,24 +70,21 @@ namespace WaterGate
             {
 
                 FileStream file = new FileStream(path, FileMode.Open);
-          
-                forSerialize ser = new forSerialize();
+
+                ConfigContainer ser = new ConfigContainer();
                 ser = null;
-                XmlSerializer serializer = new XmlSerializer(typeof(forSerialize));
-                ser = (forSerialize)serializer.Deserialize(file);
+                XmlSerializer serializer = new XmlSerializer(typeof(ConfigContainer));
+                ser = (ConfigContainer)serializer.Deserialize(file);
                 file.Close();
 
                 // ser.n == ser.JDSUCiscoArray.Count()
-                if (ser.JDSUIP == null | ser.n != ser.JDSUCiscoArray.Count())
+                if (ser.JDSUIP == null)
                 {
                     MessageBox.Show("Загружена некорректная конфигурация");
-                    Functions.renew();
                 }
                 else
                 {
-                    StaticValues.n = ser.n;
                     StaticValues.JDSUIP = ser.JDSUIP;
-                    StaticValues.JDSUCiscoArray = new JDSUCiscoClass[StaticValues.n];
                     StaticValues.JDSUCiscoArray = ser.JDSUCiscoArray;
                     StaticValues.CiscoList = new List<IPCom>(ser.CiscoList);
                 }

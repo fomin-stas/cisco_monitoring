@@ -16,16 +16,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO.Compression;
 using StaticValuesDll;
 using System.Threading;
+using WaterGate.Models;
 
 namespace WaterGate
 {
-    public partial class main : Form
+    public partial class MainForm : Form
     {
         static object locker = new object();
       
-        public main()
+        public MainForm()
         {
             InitializeComponent();
+           
             this.form = new System.Windows.Forms.DataGridView();
             this.JDSUport = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CiscoIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -149,7 +151,7 @@ namespace WaterGate
             this.switchON_1.Name = "buttonON";
      
 
-            FillForm();
+            
             this.Controls.Add(this.form);
             this.Controls.Add(this.form_1);
 
@@ -162,56 +164,39 @@ namespace WaterGate
 
             this.ResumeLayout(false);
             this.PerformLayout();
-
-            
+    
         }
 
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            var authorizationToken = (new AuthorizationDialog()).ShowAuthorizationDialog();
+            if (authorizationToken.Permissions == Permissions.None)
+            {
+                this.Close();
+                return;
+            }
+            else if (authorizationToken.Permissions != Permissions.Administrator)
+            {
+                topMenuStrip.Visible = false;
+            }
 
+            StaticValues.CiscoList = authorizationToken.ConfigContainer.CiscoList;
+            StaticValues.JDSUCiscoArray = authorizationToken.ConfigContainer.JDSUCiscoArray;
+            StaticValues.JDSUIP = authorizationToken.ConfigContainer.JDSUIP;
+
+            FillForm();
+
+
+           
 
             Thread AlarmsThread = new Thread(TCPlistener);
             AlarmsThread.IsBackground = true;
-            AlarmsThread.SetApartmentState(ApartmentState.STA);
             AlarmsThread.Start();
 
             Thread CheckCiscoThread = new System.Threading.Thread(new System.Threading.ThreadStart(CheckCisco));
-            CheckCiscoThread.SetApartmentState(ApartmentState.STA);
             CheckCiscoThread.IsBackground = true;
             CheckCiscoThread.Start();
-
-        /*    for (int i = 0; i < 5; i++)
-                {
-                    LogPass _LogPass = new LogPass();
-                    DialogResult dialogResult = _LogPass.ShowDialog();
-
-                    if (dialogResult == DialogResult.OK )
-                        {
-                             if (_LogPass.Log == "admin" && _LogPass.Pas == "password")
-                               {
-                                   return;
-                               }
-                               else
-                             {
-                                 MessageBox.Show("Логин/Пароль неверны. Попробуйте еще раз.");
-                                 if (i == 4)
-                                 {
-                                     Application.Exit();
-                                     return;
-                                 }
-                                
-                             }
-                        }
-                            if (dialogResult == DialogResult.Cancel)
-                            {
-                                      Application.Exit();
-                                      return;
-                            }
-                  }*/
-          
- 
-        
         }
 
       
@@ -390,7 +375,7 @@ namespace WaterGate
         private void FillForm()
         {
 
-            for (int i = 0; i < StaticValues.n; i++)
+            for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
             {
                 form.Rows.Insert(i, StaticValues.JDSUCiscoArray[i].JDSUPort, StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP, StaticValues.JDSUCiscoArray[i].CiscoPort.PortName);
               
@@ -417,7 +402,7 @@ namespace WaterGate
                 
                    Functions.SerializeConfig(openFileDialog1.FileName);
                    File.Copy(openFileDialog1.FileName, Functions.pathConfig, true);
-                   for (int i = 0; i < StaticValues.n; i++)
+                   for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
                    {
                        FillForm();
                    }
@@ -594,6 +579,7 @@ namespace WaterGate
     
       
         
+
         
     }
 }

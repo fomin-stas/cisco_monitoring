@@ -22,11 +22,6 @@ namespace WaterGate
         [STAThread]
         static void Main()
         {
-
-
-         
-
-            Functions.SerializeConfig(Functions.pathConfig);
         
            
             
@@ -37,7 +32,7 @@ namespace WaterGate
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main());
+            Application.Run(new MainForm());
             Application.Exit();
          
 

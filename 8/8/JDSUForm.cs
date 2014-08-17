@@ -28,7 +28,7 @@ namespace WaterGate
         {
             lIP.Text = StaticValues.JDSUIP.IP;
             lCommunity.Text = StaticValues.JDSUIP.Com;
-            ln.Text = Convert.ToString(StaticValues.n);
+            ln.Text = Convert.ToString(StaticValues.JDSUCiscoArray.Count);
         }
      
         private void buttonIP_Click(object sender, EventArgs e)
@@ -111,8 +111,6 @@ namespace WaterGate
                    
 
 
-
-                    StaticValues.n = Convert.ToInt32(_InputBox.InputBoxText);
                     ln.Text = _InputBox.InputBoxText;
                     
                 }

@@ -103,8 +103,8 @@ namespace WaterGate
 
            // FillForm();
             this.Controls.Add(this.formJDSUPort);
-           
-            for (int i = 0; i < StaticValues.n - 1; i++)
+
+            for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
             {
                 formJDSUPort.Rows.Insert(i, StaticValues.JDSUCiscoArray[i].JDSUPort);
 
@@ -166,7 +166,7 @@ namespace WaterGate
                         });
                     }
            
-                main main = this.Owner as main;
+                MainForm main = this.Owner as MainForm;
                     if (main != null)
                         {
 
@@ -369,7 +369,7 @@ namespace WaterGate
 
         private void Ports_Load(object sender, EventArgs e)
         {
-            main main = this.Owner as main;
+            MainForm main = this.Owner as MainForm;
             if (main != null)
             {
                
