@@ -109,7 +109,11 @@ namespace WaterGate
             {
                 formJDSUPort.Rows.Insert(i, StaticValues.JDSUCiscoArray[i].JDSUPort);
 
+               
                 formJDSUPort.Rows[i].Cells[1].Value = (formJDSUPort[1, i] as DataGridViewComboBoxCell).Items[(formJDSUPort[1, i] as DataGridViewComboBoxCell).Items.IndexOf(Convert.ToString(StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP))]/*Contains(Convert.ToString(StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP))*/;
+               
+                
+                
                 (formJDSUPort[2, i] as DataGridViewComboBoxCell).Items.Add(Convert.ToString(StaticValues.JDSUCiscoArray[i].CiscoPort.PortName));
                 formJDSUPort.Rows[i].Cells[2].Value = (formJDSUPort[2, i] as DataGridViewComboBoxCell).Items[0];
 

@@ -78,7 +78,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(620, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1025, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -242,8 +242,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(620, 600);
+            this.ClientSize = new System.Drawing.Size(1025, 610);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -266,7 +267,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CiscoIP;
         private System.Windows.Forms.DataGridViewTextBoxColumn CiscoPort;
         private System.Windows.Forms.DataGridViewButtonColumn switchON;
-        private System.Windows.Forms.DataGridViewButtonColumn verify;
+ 
+
+        public System.Windows.Forms.DataGridView form_1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JDSUport_1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoIP_1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoPort_1;
+        private System.Windows.Forms.DataGridViewButtonColumn switchON_1;
+
+
+
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;

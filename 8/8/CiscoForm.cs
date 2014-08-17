@@ -164,45 +164,52 @@ namespace WaterGate
 
         private void Delete_Click(object sender, EventArgs e)
         {
-           
-            //добавляем изменения в xmlку
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Functions.pathConfig);
-            XmlNode Cisco = doc.DocumentElement.SelectSingleNode("Cisco");
-
-           List<XmlNode> nodes = doc.DocumentElement.SelectSingleNode("Cisco")
-                .Cast<XmlNode>().Where(a => a.Attributes["IP"].Value.ToString() == ComboBoxIpAddressCisco.Text).ToList();
-
-            foreach (var el in nodes)
+            if (StaticValues.JDSUCiscoArray.Any(exampl => exampl.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text))
             {
-               // if (el.GetAttribute("IP") == ComboBoxIpAddressCisco.Text)
-              //  {
+                // MessageBox.Show(StaticValues.JDSUCiscoArray.First(exampl => exampl.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text).JDSUPort.ToString());
+                MessageBox.Show("элемент коммутационного оборудования используется в конфигурации. Привязан к порту:", StaticValues.JDSUCiscoArray.First(exampl => exampl.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text).JDSUPort.ToString());
+                return;
+            }
+            else
+            {
+                //добавляем изменения в xmlку
+                XmlDocument doc = new XmlDocument();
+                doc.Load(Functions.pathConfig);
+                XmlNode Cisco = doc.DocumentElement.SelectSingleNode("Cisco");
+
+                List<XmlNode> nodes = doc.DocumentElement.SelectSingleNode("Cisco")
+                     .Cast<XmlNode>().Where(a => a.Attributes["IP"].Value.ToString() == ComboBoxIpAddressCisco.Text).ToList();
+
+                foreach (var el in nodes)
+                {
+                    // if (el.GetAttribute("IP") == ComboBoxIpAddressCisco.Text)
+                    //  {
                     Cisco.RemoveChild(el);
-              //  }
+                    //  }
+                }
+
+                doc.Save(Functions.pathConfig);
+
+
+
+
+                //удаляем старый ip и community из combobox'а 
+                StaticValues.CiscoList.Remove(StaticValues.CiscoList.Find(delegate(IPCom x)
+                {
+                    return x.IP.Contains(ComboBoxIpAddressCisco.Text);
+                }
+                ));
+
+                //удаляем из Combobox
+                this.ComboBoxIpAddressCisco.Items.Remove(ComboBoxIpAddressCisco.Text);
+
+
+                TextBoxCommunity.Clear();
+                ComboBoxIpAddressCisco.SelectedIndex = -1;
+                this.ComboBoxIpAddressCisco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+
+                MessageBox.Show("Запись удалена");
             }
-
-            doc.Save(Functions.pathConfig);
-
-
-
-
-            //удаляем старый ip и community из combobox'а 
-            StaticValues.CiscoList.Remove(StaticValues.CiscoList.Find(delegate(IPCom x)
-            {
-                return x.IP.Contains(ComboBoxIpAddressCisco.Text);
-            }
-            ));
-            
-            //удаляем из Combobox
-            this.ComboBoxIpAddressCisco.Items.Remove(ComboBoxIpAddressCisco.Text);
-
-            
-            TextBoxCommunity.Clear();
-            ComboBoxIpAddressCisco.SelectedIndex = -1;
-            this.ComboBoxIpAddressCisco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-
-            MessageBox.Show("Запись удалена");
-
         }
 
         private void Change_Click(object sender, EventArgs e)
