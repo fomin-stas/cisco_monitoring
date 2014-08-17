@@ -35,5 +35,10 @@ namespace StaticValuesDll
             this.PortName = portname;
             this.PortID = portid;
         }
+
+        public override string ToString()
+        {
+            return PortName;
+        }
     }
 }

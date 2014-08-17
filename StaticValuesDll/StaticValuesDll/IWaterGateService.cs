@@ -20,7 +20,13 @@ namespace Service.Services
         AuthorizationToken SignIn(string login, string password);
 
         [OperationContract]
-        void UpdateConfig(ConfigContainer configContainer);
+        void UpdateCiscoRouters(List<IPCom> routers);
+
+        [OperationContract]
+        void UpdatePorts(List<JDSUCiscoClass> ports);
+
+        [OperationContract]
+        void UpdateJDSUIP(IPCom jdsuIP);
 
     }
 }

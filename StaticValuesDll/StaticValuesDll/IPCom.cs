@@ -33,5 +33,16 @@ namespace StaticValuesDll
             this.IP = ip;
             this.Com = com;
         }
+
+        public override int GetHashCode()
+        {
+            return IP.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as IPCom;
+            return item != null && IP.Equals(item.IP) && Com.Equals(item.Com);
+        }
     }
 }
