@@ -9,7 +9,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.ServiceProcess;
 using System.Text;
-using System.Threading.Tasks;
 using SnmpSharpNet;
 using System.Threading;
 using System.Xml.Serialization;
