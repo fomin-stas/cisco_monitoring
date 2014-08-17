@@ -92,30 +92,44 @@ namespace Service.Repository
             finally { LockSlim.ExitReadLock(); }
         }
 
-        public void UpdateConfig(ConfigContainer container)
+        public void UpdateJDSUIP(IPCom jdsuIP)
         {
             LockSlim.EnterWriteLock();
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var command = new SQLiteCommand("UPDATE JDSUIPAddresses SET IP=@ip,Com=@com", connection))
+                    {
+                        command.Parameters.Add("@ip", DbType.String).Value = jdsuIP.IP;
+                        command.Parameters.Add("@com", DbType.String).Value = jdsuIP.Com;
 
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            finally
+            {
+                LockSlim.ExitWriteLock();
+            }
+        }
+
+        public void UpdatePorts(List<JDSUCiscoClass> ports)
+        {
+            LockSlim.EnterWriteLock();
             try
             {
                 using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
 
-                    using (var command = new SQLiteCommand("UPDATE JDSUIPAddresses SET IP=@ip,Com=@com", connection))
-                    {
-                        command.Parameters.Add("@ip", DbType.String).Value = container.JDSUIP.IP;
-                        command.Parameters.Add("@com", DbType.String).Value = container.JDSUIP.Com;
-
-                        command.ExecuteNonQuery();
-                    }
-
                     using (var command = new SQLiteCommand("DELETE FROM Ports", connection))
                     {
                         command.ExecuteNonQuery();
                     }
 
-                    using (var command = new SQLiteCommand("INSERT INTO Ports (JDSUPort,IP,Com,PortName,PortId) values(@port,@ip,@com,@portName,@portId)", connection))
+                    using (var command = new SQLiteCommand( "INSERT INTO Ports (JDSUPort,IP,Com,PortName,PortId) values(@port,@ip,@com,@portName,@portId)", connection))
                     {
                         command.Parameters.Add("@port", DbType.String);
                         command.Parameters.Add("@ip", DbType.String);
@@ -123,7 +137,7 @@ namespace Service.Repository
                         command.Parameters.Add("@portName", DbType.String);
                         command.Parameters.Add("@portId", DbType.String);
 
-                        foreach (var item in container.JDSUCiscoArray)
+                        foreach (var item in ports)
                         {
                             command.Parameters["@port"].Value = item.JDSUPort;
                             command.Parameters["@ip"].Value = item.CiscoIPCom.IP;
@@ -134,13 +148,29 @@ namespace Service.Repository
                             command.ExecuteNonQuery();
                         }
                     }
+                }
+            }
+            finally
+            {
+                LockSlim.ExitWriteLock();
+            }
+        }
 
+        public void UpdateCiscoRouters(List<IPCom> routers)
+        {
+            LockSlim.EnterWriteLock();
+
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
                     using (var command = new SQLiteCommand("INSERT INTO CiscoRouters (IP,Com) values(@ip,@com)", connection))
                     {
                         command.Parameters.Add("@ip", DbType.String);
                         command.Parameters.Add("@com", DbType.String);
 
-                        foreach (var item in container.CiscoList)
+                        foreach (var item in routers)
                         {       
                             command.Parameters["@ip"].Value = item.IP;
                             command.Parameters["@com"].Value = item.Com;

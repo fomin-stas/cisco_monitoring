@@ -33,9 +33,19 @@ namespace Service.Services
             return new AuthorizationToken(permissions, _repository.GetConfigContainer());
         }
 
-        public void UpdateConfig(ConfigContainer configContainer)
+        public void UpdateCiscoRouters(List<IPCom> routers)
         {
-            _repository.UpdateConfig(configContainer);
+            _repository.UpdateCiscoRouters(routers);
+        }
+
+        public void UpdatePorts(List<JDSUCiscoClass> ports)
+        {
+            _repository.UpdatePorts(ports);
+        }
+
+        public void UpdateJDSUIP(IPCom jdsuIP)
+        {
+            _repository.UpdateJDSUIP(jdsuIP);
         }
     }
 }
