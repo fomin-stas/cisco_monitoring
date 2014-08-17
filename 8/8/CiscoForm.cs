@@ -14,6 +14,7 @@ using SnmpSharpNet;
 using System.Xml.Linq;
 using System.Xml;
 using StaticValuesDll;
+using WaterGate.Models;
 
 namespace WaterGate
 {
@@ -137,29 +138,54 @@ namespace WaterGate
                 return;
             }
 
-            //добавляем изменения в xmlку
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Functions.pathConfig);
-            XmlNode Cisco = doc.DocumentElement.SelectSingleNode("Cisco");
+
+            var value = new IPCom(ComboBoxIpAddressCisco.Text, TextBoxCommunity.Text);
+
+            var serviceContext = new WaterGateServiceContext();
+            var list = StaticValues.CiscoList.ToList();
+            list.Add(value);
+
+            Save.Enabled = false;
+            Delete.Enabled = false;
+            Change.Enabled = false;
+            Cursor = Cursors.AppStarting;
+            serviceContext.UpdateCiscoRouters(list, (error) =>
+            {
+                if (error != null)
+                {
+                    MessageBox.Show( "Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Invoke(new Action(() =>
+                    {
+                        MessageBox.Show("Запись успешно добавлена.",
+                            "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //добавляем в наш массив
+                        StaticValues.CiscoList.Add(value);
+
+                        //добавляем в Combobox
+                        this.ComboBoxIpAddressCisco.Items.Add(ComboBoxIpAddressCisco.Text);
+
+                        TextBoxCommunity.Clear();
+                        ComboBoxIpAddressCisco.ResetText();
+                    }));
+                }
+
+
+                Invoke(new Action(() =>
+                {
+                    
+
+                    Save.Enabled = true;
+                    Delete.Enabled = true;
+                    Change.Enabled = true;
+                    Cursor = Cursors.Arrow;
+                }));
+
+            });
            
-            XmlElement elem = doc.CreateElement("IPCom");
-
-            elem.SetAttribute("Com", TextBoxCommunity.Text);
-            elem.SetAttribute("IP", ComboBoxIpAddressCisco.Text);
-            Cisco.AppendChild(elem);
-            doc.Save(Functions.pathConfig);
-     
-
-            //добавляем в наш массив
-            StaticValues.CiscoList.Add(new IPCom(ComboBoxIpAddressCisco.Text, TextBoxCommunity.Text));
-                
-            //добавляем в Combobox
-            this.ComboBoxIpAddressCisco.Items.Add(ComboBoxIpAddressCisco.Text);
-
-            TextBoxCommunity.Clear();
-            ComboBoxIpAddressCisco.ResetText();
-
-            MessageBox.Show("Запись добавлена");
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -167,48 +193,60 @@ namespace WaterGate
             if (StaticValues.JDSUCiscoArray.Any(exampl => exampl.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text))
             {
                 // MessageBox.Show(StaticValues.JDSUCiscoArray.First(exampl => exampl.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text).JDSUPort.ToString());
-                MessageBox.Show("элемент коммутационного оборудования используется в конфигурации. Привязан к порту:", StaticValues.JDSUCiscoArray.First(exampl => exampl.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text).JDSUPort.ToString());
+                MessageBox.Show("элемент коммутационного оборудования используется в конфигурации. Привязан к порту:",
+                    StaticValues.JDSUCiscoArray.First(exampl => exampl.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text)
+                        .JDSUPort.ToString());
                 return;
             }
             else
             {
-                //добавляем изменения в xmlку
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Functions.pathConfig);
-                XmlNode Cisco = doc.DocumentElement.SelectSingleNode("Cisco");
+                var value = StaticValues.CiscoList.FirstOrDefault(item => item.IP.Contains(ComboBoxIpAddressCisco.Text));
+                if (value == null)
+                    return;
 
-                List<XmlNode> nodes = doc.DocumentElement.SelectSingleNode("Cisco")
-                     .Cast<XmlNode>().Where(a => a.Attributes["IP"].Value.ToString() == ComboBoxIpAddressCisco.Text).ToList();
+                var serviceContext = new WaterGateServiceContext();
+                var list = StaticValues.CiscoList.ToList();
 
-                foreach (var el in nodes)
+                list.Remove(value);
+
+                Save.Enabled = false;
+                Delete.Enabled = false;
+                Change.Enabled = false;
+                Cursor = Cursors.AppStarting;
+                serviceContext.UpdateCiscoRouters(list, (error) =>
                 {
-                    // if (el.GetAttribute("IP") == ComboBoxIpAddressCisco.Text)
-                    //  {
-                    Cisco.RemoveChild(el);
-                    //  }
-                }
+                    if (error != null)
+                    {
+                        MessageBox.Show("Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
+                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    Invoke(new Action(() =>
+                    {
+                        MessageBox.Show("Запись успешно удалена.",
+                            "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                doc.Save(Functions.pathConfig);
+                        //удаляем старый ip и community из combobox'а 
+                        StaticValues.CiscoList.Remove(value);
 
-
-
-
-                //удаляем старый ip и community из combobox'а 
-                StaticValues.CiscoList.Remove(StaticValues.CiscoList.Find(delegate(IPCom x)
-                {
-                    return x.IP.Contains(ComboBoxIpAddressCisco.Text);
-                }
-                ));
-
-                //удаляем из Combobox
-                this.ComboBoxIpAddressCisco.Items.Remove(ComboBoxIpAddressCisco.Text);
+                        //удаляем из Combobox
+                        this.ComboBoxIpAddressCisco.Items.Remove(ComboBoxIpAddressCisco.Text);
 
 
-                TextBoxCommunity.Clear();
-                ComboBoxIpAddressCisco.SelectedIndex = -1;
-                this.ComboBoxIpAddressCisco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+                        TextBoxCommunity.Clear();
+                        ComboBoxIpAddressCisco.SelectedIndex = -1;
+                        this.ComboBoxIpAddressCisco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+                    }));
 
-                MessageBox.Show("Запись удалена");
+
+                    Invoke(new Action(() =>
+                    {
+                        Save.Enabled = true;
+                        Delete.Enabled = true;
+                        Change.Enabled = true;
+                        Cursor = Cursors.Arrow;
+                    }));
+                });
+
             }
         }
 
@@ -234,49 +272,59 @@ namespace WaterGate
                 this.ComboBoxIpAddressCisco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
                 return;
             }
-          
-            
-            //добавляем изменения в xmlку
-            XmlDocument doc = new XmlDocument();
-            doc.Load(Functions.pathConfig);
-            XmlNode Cisco = doc.DocumentElement.SelectSingleNode("Cisco");
 
-            List<XmlNode> nodes = doc.DocumentElement.SelectSingleNode("Cisco")
-                 .Cast<XmlNode>().Where(a => a.Attributes["IP"].Value.ToString() == ComboBoxIpAddressCisco.Text).ToList();
 
-            foreach (var el in nodes)
+
+            var oldValue = StaticValues.CiscoList.FirstOrDefault(item => item.IP.Contains(ComboBoxIpAddressCisco.Text));
+            if (oldValue == null)
+                return;
+
+            var newValue = new IPCom(ComboBoxIpAddressCisco.Text, TextBoxCommunity.Text);
+
+
+            var serviceContext = new WaterGateServiceContext();
+            var list = StaticValues.CiscoList.ToList();
+
+            list.Remove(oldValue);
+            list.Add(newValue);
+
+            Save.Enabled = false;
+            Delete.Enabled = false;
+            Change.Enabled = false;
+            Cursor = Cursors.AppStarting;
+            serviceContext.UpdateCiscoRouters(list, (error) =>
             {
-                // if (el.GetAttribute("IP") == ComboBoxIpAddressCisco.Text)
-                //  {
-                el.Attributes["Com"].Value = TextBoxCommunity.Text;
-                //  }
-            }
+                if (error != null)
+                {
+                    MessageBox.Show("Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Invoke(new Action(() =>
+                {
+                    MessageBox.Show("Запись успешно изменена.",
+                        "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            doc.Save(Functions.pathConfig);
+                    //удаляем старый ip и community     
+                    StaticValues.CiscoList.Remove(oldValue);
 
-
-
-
-            //удаляем старый ip и community     
-            StaticValues.CiscoList.Remove(StaticValues.CiscoList.Find(delegate(IPCom x)
-            {
-                return x.IP.Contains(ComboBoxIpAddressCisco.Text);
-            
-            }
-            ));
-           
-            //и добавляем в наш массив новые данные и все должно работать =)
-            StaticValues.CiscoList.Add(new IPCom(ComboBoxIpAddressCisco.Text, TextBoxCommunity.Text));
+                    //и добавляем в наш массив новые данные и все должно работать =)
+                    StaticValues.CiscoList.Add(newValue);
 
 
-            
+                    ComboBoxIpAddressCisco.SelectedIndex = -1;
+                    this.ComboBoxIpAddressCisco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+                    TextBoxCommunity.Clear();
+                }));
 
-            MessageBox.Show("Community изменена");
 
-          
-            ComboBoxIpAddressCisco.SelectedIndex = -1;
-            this.ComboBoxIpAddressCisco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            TextBoxCommunity.Clear();
+                Invoke(new Action(() =>
+                {
+                    Save.Enabled = true;
+                    Delete.Enabled = true;
+                    Change.Enabled = true;
+                    Cursor = Cursors.Arrow;
+                }));
+            });
         }
 
         

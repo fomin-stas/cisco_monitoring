@@ -26,145 +26,7 @@ namespace WaterGate
       
         public MainForm()
         {
-            InitializeComponent();
-           
-            this.form = new System.Windows.Forms.DataGridView();
-            this.JDSUport = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CiscoIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CiscoPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.switchON = new System.Windows.Forms.DataGridViewButtonColumn();
-           
-
-            this.form_1 = new System.Windows.Forms.DataGridView();
-            this.JDSUport_1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CiscoIP_1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CiscoPort_1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.switchON_1 = new System.Windows.Forms.DataGridViewButtonColumn();
-
-
-            ((System.ComponentModel.ISupportInitialize)(this.form)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.form_1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // dataGridView1
-
-
-            this.form.AllowUserToOrderColumns = true;
-            this.form.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.form.AllowUserToResizeColumns = true;
-            this.form.AllowUserToResizeRows = true;
-            this.form.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.form.ReadOnly = true;
-            this.form.AllowUserToAddRows = false;
-         //   this.form.ScrollBars = System.Windows.Forms.ScrollBars.None;
-
-
-            this.form.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.JDSUport,
-            this.CiscoIP,
-            this.CiscoPort,
-            this.switchON});
-
-            this.form.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top);
-            this.form.CellClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
-            this.form.Size = new Size(500, 560);
-            this.form.Name = "dataGridView1";
-            this.form.Location = new System.Drawing.Point(0, 25);
-            this.form.TabIndex = 0;
-
-            // 
-            // JDSUport
-            // 
-            this.JDSUport.HeaderText = "JDSU порт";
-            this.JDSUport.Name = "JDSUport";
-            this.JDSUport.Width = 120;
-            // 
-            // CiscoIP
-            // 
-            this.CiscoIP.HeaderText = "Cisco IP";
-            this.CiscoIP.Name = "CiscoIP";
-            this.CiscoIP.Width = 120;
-            // 
-            // CiscoPort
-            // 
-            this.CiscoPort.HeaderText = "Cisco порт";
-            this.CiscoPort.Name = "CiscoPort";
-            this.CiscoPort.Width = 120;
-            // 
-            // buttonON
-            // 
-            this.switchON.HeaderText = "Принудительно включить порт";
-            this.switchON.Name = "buttonON";
-
-
-          
-
-            //
-            //datagridview2
-
-
-
-            this.form_1.AllowUserToOrderColumns = true;
-            this.form_1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.form_1.AllowUserToResizeColumns = true;
-            this.form_1.AllowUserToResizeRows = true;
-            this.form_1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.form_1.ReadOnly = true;
-            this.form_1.AllowUserToAddRows = false;
-          //  this.form_1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-
-            this.form_1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.JDSUport_1,
-            this.CiscoIP_1,
-            this.CiscoPort_1,
-            this.switchON_1});
-
-            this.form_1.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right| AnchorStyles.Top);
-            this.form_1.CellClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
-            this.form_1.Size = new Size(500, 560);
-            this.form_1.Name = "dataGridView1";
-            this.form_1.Location = new System.Drawing.Point(520, 25);
-            this.form_1.TabIndex = 1;
-
-            // 
-            // JDSUport
-            // 
-            this.JDSUport_1.HeaderText = "JDSU порт";
-            this.JDSUport_1.Name = "JDSUport";
-            this.JDSUport_1.Width = 120;
-            // 
-            // CiscoIP
-            // 
-            this.CiscoIP_1.HeaderText = "Cisco IP";
-            this.CiscoIP_1.Name = "CiscoIP";
-            this.CiscoIP_1.Width = 120;
-            // 
-            // CiscoPort
-            // 
-            this.CiscoPort_1.HeaderText = "Cisco порт";
-            this.CiscoPort_1.Name = "CiscoPort";
-            this.CiscoPort_1.Width = 120;
-            // 
-            // buttonON
-            // 
-            this.switchON_1.HeaderText = "Принудительно включить порт";
-            this.switchON_1.Name = "buttonON";
-     
-
-            
-            this.Controls.Add(this.form);
-            this.Controls.Add(this.form_1);
-
-            ((System.ComponentModel.ISupportInitialize)(this.form)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.form_1)).EndInit();
-
-            // 
-            // Form1
-            // 
-
-            this.ResumeLayout(false);
-            this.PerformLayout();
-    
+            InitializeComponent();       
         }
 
         
@@ -281,7 +143,7 @@ namespace WaterGate
                         response = target.Request(pdu, aparam) as SnmpV2Packet;
                         target.Close();
              
-                        foreach (DataGridViewRow label in this.form.Rows)
+                        foreach (DataGridViewRow label in this.mainDataGridView.Rows)
                         {
                             if (label.Cells[1].Value.ToString() == cisco.IP)
                             {
@@ -338,7 +200,7 @@ namespace WaterGate
                     {
 
 
-                        foreach (DataGridViewRow label in this.form.Rows)
+                        foreach (DataGridViewRow label in this.mainDataGridView.Rows)
                         {
                             if (label.Cells[1].Value.ToString() == cisco.IP)
                             {
@@ -377,7 +239,7 @@ namespace WaterGate
 
             for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
             {
-                form.Rows.Insert(i, StaticValues.JDSUCiscoArray[i].JDSUPort, StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP, StaticValues.JDSUCiscoArray[i].CiscoPort.PortName);
+                mainDataGridView.Rows.Insert(i, StaticValues.JDSUCiscoArray[i].JDSUPort, StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP, StaticValues.JDSUCiscoArray[i].CiscoPort.PortName);
               
             }
 
@@ -517,11 +379,11 @@ namespace WaterGate
                    if (kvp.Value.ToString() == "1")
                    {
 
-                       MessageBox.Show("Порт " + this.form.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.form.Rows[u].Cells[2].Value + " активен");
+                       MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[2].Value + " активен");
                    }
                    else
                    {
-                       MessageBox.Show("Порт " + this.form.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.form.Rows[u].Cells[2].Value + " не активен");
+                       MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[2].Value + " не активен");
                    }
 
                }
@@ -563,11 +425,11 @@ namespace WaterGate
                    if (kvp.Value.ToString() == "1")
                    {
 
-                       MessageBox.Show("Порт " + this.form.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.form.Rows[u].Cells[2].Value + " активен");
+                       MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[2].Value + " активен");
                    }
                    else
                    {
-                       MessageBox.Show("Порт " + this.form.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.form.Rows[u].Cells[2].Value + " не активен");
+                       MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[2].Value + " не активен");
                    }
 
                }
@@ -576,10 +438,21 @@ namespace WaterGate
            }
 
        }
-    
-      
-        
 
-        
+
+        public void UpdateCell(int row, int column, object value)
+        {
+            mainDataGridView.Rows[row].Cells[column].Value = value;
+        }
+
+        public void AddRow(JDSUCiscoClass jdsuCisco)
+        {
+            mainDataGridView.Rows.Add(jdsuCisco.JDSUPort, jdsuCisco.CiscoIPCom.IP, jdsuCisco.CiscoPort.PortName);
+        }
+
+        public void RemoveRowAt(int index)
+        {
+            mainDataGridView.Rows.RemoveAt(index);
+        }
     }
 }

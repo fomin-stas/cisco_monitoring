@@ -33,8 +33,6 @@
             this.lIP = new System.Windows.Forms.Label();
             this.lCommunity = new System.Windows.Forms.Label();
             this.buttonCom = new System.Windows.Forms.Button();
-            this.buttonn = new System.Windows.Forms.Button();
-            this.ln = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonIP
@@ -79,34 +77,11 @@
             this.buttonCom.UseVisualStyleBackColor = true;
             this.buttonCom.Click += new System.EventHandler(this.buttonCom_Click);
             // 
-            // buttonn
-            // 
-            this.buttonn.Location = new System.Drawing.Point(188, 92);
-            this.buttonn.Name = "buttonn";
-            this.buttonn.Size = new System.Drawing.Size(173, 23);
-            this.buttonn.TabIndex = 5;
-            this.buttonn.Text = "Изменить Community JDSU";
-            this.buttonn.UseVisualStyleBackColor = true;
-            this.buttonn.Click += new System.EventHandler(this.buttonn_Click);
-            // 
-            // ln
-            // 
-            this.ln.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ln.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ln.Location = new System.Drawing.Point(35, 92);
-            this.ln.Name = "ln";
-            this.ln.Size = new System.Drawing.Size(118, 23);
-            this.ln.TabIndex = 6;
-            this.ln.Text = "label2";
-            this.ln.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // JDSUForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 145);
-            this.Controls.Add(this.ln);
-            this.Controls.Add(this.buttonn);
+            this.ClientSize = new System.Drawing.Size(387, 121);
             this.Controls.Add(this.buttonCom);
             this.Controls.Add(this.lCommunity);
             this.Controls.Add(this.lIP);
@@ -126,8 +101,6 @@
         private System.Windows.Forms.Label lIP;
         private System.Windows.Forms.Label lCommunity;
         private System.Windows.Forms.Button buttonCom;
-        private System.Windows.Forms.Button buttonn;
-        private System.Windows.Forms.Label ln;
 
     }
 }

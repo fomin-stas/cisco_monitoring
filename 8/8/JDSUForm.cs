@@ -11,6 +11,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using StaticValuesDll;
+using WaterGate.Models;
 
 
 namespace WaterGate
@@ -28,7 +29,6 @@ namespace WaterGate
         {
             lIP.Text = StaticValues.JDSUIP.IP;
             lCommunity.Text = StaticValues.JDSUIP.Com;
-            ln.Text = Convert.ToString(StaticValues.JDSUCiscoArray.Count);
         }
      
         private void buttonIP_Click(object sender, EventArgs e)
@@ -39,32 +39,13 @@ namespace WaterGate
         
             if (dialogResult == DialogResult.OK)
             {
-               
-
-                lIP.Text = _InputBox.InputBoxText;
-
-                StaticValues.JDSUIP.IP =_InputBox.InputBoxText;
-
-
-                //добавляем изменения в xmlку
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Functions.pathConfig);
-
-
-                XmlNode node = doc.DocumentElement.SelectSingleNode("JDSUIP");
-
-                node.Attributes["IP"].Value = _InputBox.InputBoxText;
-
-
-                doc.Save(Functions.pathConfig);
-
-
-
+                UpdateJDSUIP(new IPCom(_InputBox.InputBoxText.Trim(), lCommunity.Text.Trim()), () =>
+                {
+                    lIP.Text = _InputBox.InputBoxText.Trim();
+                    StaticValues.JDSUIP.IP = lIP.Text;
+                });  
             
-            }
-
-        
-        
+            }    
         }
 
         private void buttonCom_Click(object sender, EventArgs e)
@@ -75,53 +56,48 @@ namespace WaterGate
 
             if (dialogResult == DialogResult.OK)
             {
-                lCommunity.Text = _InputBox.InputBoxText;
-                StaticValues.JDSUIP.Com = _InputBox.InputBoxText;
-                //добавляем изменения в xmlку
-                XmlDocument doc = new XmlDocument();
-                doc.Load(Functions.pathConfig);
-
-
-                XmlNode node = doc.DocumentElement.SelectSingleNode("JDSUIP");
-
-                node.Attributes["Com"].Value = _InputBox.InputBoxText;
-
-
-                doc.Save(Functions.pathConfig);
-
-
-            
-            
-            
+                UpdateJDSUIP(new IPCom(lIP.Text.Trim(), _InputBox.InputBoxText.Trim()), () =>
+                {
+                    lCommunity.Text = _InputBox.InputBoxText.Trim();
+                    StaticValues.JDSUIP.Com = lCommunity.Text;
+                });  
             }   
         }
 
-        private void buttonn_Click(object sender, EventArgs e)
+        private void UpdateJDSUIP(IPCom jdsuIP, Action continueWith)
         {
-            InputBox _InputBox = new InputBox();
-            //Interaction.InputBox("Введите новый IP адрес");
-            DialogResult dialogResult = _InputBox.ShowDialog(this);
+            buttonIP.Enabled = false;
+            buttonIP.Enabled = false;
 
-            if (dialogResult == DialogResult.OK)
+            Cursor = Cursors.AppStarting;
+
+            
+            var serviceContext = new WaterGateServiceContext();
+            serviceContext.UpdateJDSUIP(jdsuIP, (error) =>
             {
-                try
+                if (error != null)
                 {
-                    
-
-                   
-
-
-                    ln.Text = _InputBox.InputBoxText;
-                    
+                    MessageBox.Show("Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch
+                Invoke(new Action(() =>
                 {
-                    MessageBox.Show("ВВедены некорректные данные");
-                
-                }
-            }   
+                    MessageBox.Show("Запись успешно изменена.",
+                        "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    continueWith();
+                }));
+
+
+                Invoke(new Action(() =>
+                {
+                    buttonIP.Enabled = true;
+                    buttonIP.Enabled = true;
+                    Cursor = Cursors.Arrow;
+                }));
+            });
         }
-
+       
         
     }
 }

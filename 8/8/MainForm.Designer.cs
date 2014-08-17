@@ -52,7 +52,13 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.jdsuIsActiveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainDataGridView = new System.Windows.Forms.DataGridView();
+            this.JDSUport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CiscoIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CiscoPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.switchON = new System.Windows.Forms.DataGridViewButtonColumn();
             this.topMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // topMenuStrip
@@ -78,7 +84,7 @@
             this.topMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.topMenuStrip.Name = "topMenuStrip";
             this.topMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.topMenuStrip.Size = new System.Drawing.Size(1025, 24);
+            this.topMenuStrip.Size = new System.Drawing.Size(783, 24);
             this.topMenuStrip.TabIndex = 0;
             this.topMenuStrip.Text = "menuStrip1";
             // 
@@ -238,13 +244,53 @@
             this.jdsuIsActiveToolStripMenuItem1.Size = new System.Drawing.Size(87, 20);
             this.jdsuIsActiveToolStripMenuItem1.Text = "Jdsu is active";
             // 
+            // mainDataGridView
+            // 
+            this.mainDataGridView.AllowUserToAddRows = false;
+            this.mainDataGridView.AllowUserToDeleteRows = false;
+            this.mainDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mainDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.JDSUport,
+            this.CiscoIP,
+            this.CiscoPort,
+            this.switchON});
+            this.mainDataGridView.Location = new System.Drawing.Point(0, 27);
+            this.mainDataGridView.Name = "mainDataGridView";
+            this.mainDataGridView.Size = new System.Drawing.Size(783, 504);
+            this.mainDataGridView.TabIndex = 1;
+            // 
+            // JDSUport
+            // 
+            this.JDSUport.HeaderText = "JDSU порт";
+            this.JDSUport.Name = "JDSUport";
+            // 
+            // CiscoIP
+            // 
+            this.CiscoIP.HeaderText = "Cisco IP";
+            this.CiscoIP.Name = "CiscoIP";
+            // 
+            // CiscoPort
+            // 
+            this.CiscoPort.HeaderText = "Cisco порт";
+            this.CiscoPort.Name = "CiscoPort";
+            // 
+            // switchON
+            // 
+            this.switchON.HeaderText = "Принудительно включить порт";
+            this.switchON.Name = "switchON";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1025, 610);
+            this.ClientSize = new System.Drawing.Size(783, 531);
+            this.Controls.Add(this.mainDataGridView);
             this.Controls.Add(this.topMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.topMenuStrip;
@@ -253,6 +299,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.topMenuStrip.ResumeLayout(false);
             this.topMenuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,21 +308,7 @@
         #endregion
        
        
-        
-        public System.Windows.Forms.DataGridView form;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JDSUport;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoIP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoPort;
-        private System.Windows.Forms.DataGridViewButtonColumn switchON;
- 
-
-        public System.Windows.Forms.DataGridView form_1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn JDSUport_1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoIP_1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoPort_1;
-        private System.Windows.Forms.DataGridViewButtonColumn switchON_1;
-
-
+     
 
 
         private System.Windows.Forms.MenuStrip topMenuStrip;
@@ -301,6 +334,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem jdsuIsActiveToolStripMenuItem1;
+        private System.Windows.Forms.DataGridView mainDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JDSUport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoIP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CiscoPort;
+        private System.Windows.Forms.DataGridViewButtonColumn switchON;
      
 
     }
