@@ -418,13 +418,13 @@ namespace WaterGate
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (portsDataGridView.SelectedRows.Count == 0)
+            if (portsDataGridView.SelectedCells.Count == 0)
             {
                 MessageBox.Show("Требуется выбрать строку для удаления.", "Выберите строку", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            var index = portsDataGridView.SelectedRows[0].Index;
+            var index = portsDataGridView.SelectedCells[0].RowIndex;
             StaticValues.JDSUCiscoArray.RemoveAt(index);
             
             portsDataGridView.Rows.Remove(portsDataGridView.SelectedRows[0]);

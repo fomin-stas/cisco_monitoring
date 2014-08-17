@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 9</value>
+    <value>14, 9</value>
   </data>
   <data name="lLogin.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 13</value>
@@ -150,7 +150,7 @@
     <value>True</value>
   </data>
   <data name="lPas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 59</value>
+    <value>14, 54</value>
   </data>
   <data name="lPas.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 13</value>
@@ -195,7 +195,7 @@
     <value>4</value>
   </data>
   <data name="PasswordTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 75</value>
+    <value>12, 70</value>
   </data>
   <data name="PasswordTextBox.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
@@ -219,7 +219,7 @@
     <value>3</value>
   </data>
   <data name="LoginButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 172</value>
+    <value>12, 154</value>
   </data>
   <data name="LoginButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 29</value>
@@ -250,7 +250,7 @@
     <value>NoControl</value>
   </data>
   <data name="ServerAddressLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 108</value>
+    <value>14, 102</value>
   </data>
   <data name="ServerAddressLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -274,7 +274,7 @@
     <value>1</value>
   </data>
   <data name="ServerAddressTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 124</value>
+    <value>12, 118</value>
   </data>
   <data name="ServerAddressTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 20</value>
@@ -301,13 +301,13 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>204, 216</value>
+    <value>201, 196</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Аутентификация</value>
+    <value>Авторизация</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AuthorizationDialog</value>

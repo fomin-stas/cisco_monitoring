@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.topMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.загрузитьКонфигурациюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьКонфигурациюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьCiscoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.назначитьПортыJDSUCiscoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +64,6 @@
             this.topMenuStrip.BackColor = System.Drawing.SystemColors.ControlLight;
             this.topMenuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.topMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
             this.настройкаToolStripMenuItem,
             this.справкаToolStripMenuItem,
             this.jdsuIsActiveToolStripMenuItem,
@@ -87,30 +83,6 @@
             this.topMenuStrip.Size = new System.Drawing.Size(783, 24);
             this.topMenuStrip.TabIndex = 0;
             this.topMenuStrip.Text = "menuStrip1";
-            // 
-            // файлToolStripMenuItem
-            // 
-            this.файлToolStripMenuItem.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.загрузитьКонфигурациюToolStripMenuItem,
-            this.сохранитьКонфигурациюToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
-            // 
-            // загрузитьКонфигурациюToolStripMenuItem
-            // 
-            this.загрузитьКонфигурациюToolStripMenuItem.Name = "загрузитьКонфигурациюToolStripMenuItem";
-            this.загрузитьКонфигурациюToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.загрузитьКонфигурациюToolStripMenuItem.Text = "загрузить конфигурацию";
-            this.загрузитьКонфигурациюToolStripMenuItem.Click += new System.EventHandler(this.загрузитьКонфигурациюToolStripMenuItem_Click);
-            // 
-            // сохранитьКонфигурациюToolStripMenuItem
-            // 
-            this.сохранитьКонфигурациюToolStripMenuItem.Name = "сохранитьКонфигурациюToolStripMenuItem";
-            this.сохранитьКонфигурациюToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.сохранитьКонфигурациюToolStripMenuItem.Text = "сохранить конфигурацию";
-            this.сохранитьКонфигурациюToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКонфигурациюToolStripMenuItem_Click);
             // 
             // настройкаToolStripMenuItem
             // 
@@ -260,28 +232,34 @@
             this.switchON});
             this.mainDataGridView.Location = new System.Drawing.Point(0, 27);
             this.mainDataGridView.Name = "mainDataGridView";
+            this.mainDataGridView.ReadOnly = true;
             this.mainDataGridView.Size = new System.Drawing.Size(783, 504);
             this.mainDataGridView.TabIndex = 1;
+            this.mainDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // JDSUport
             // 
             this.JDSUport.HeaderText = "JDSU порт";
             this.JDSUport.Name = "JDSUport";
+            this.JDSUport.ReadOnly = true;
             // 
             // CiscoIP
             // 
             this.CiscoIP.HeaderText = "Cisco IP";
             this.CiscoIP.Name = "CiscoIP";
+            this.CiscoIP.ReadOnly = true;
             // 
             // CiscoPort
             // 
             this.CiscoPort.HeaderText = "Cisco порт";
             this.CiscoPort.Name = "CiscoPort";
+            this.CiscoPort.ReadOnly = true;
             // 
             // switchON
             // 
             this.switchON.HeaderText = "Принудительно включить порт";
             this.switchON.Name = "switchON";
+            this.switchON.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -295,6 +273,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.topMenuStrip;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Здесь может быть Ваша реклама";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.topMenuStrip.ResumeLayout(false);
@@ -306,15 +285,12 @@
         }
 
         #endregion
-       
-       
-     
+
+
+
 
 
         private System.Windows.Forms.MenuStrip topMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem загрузитьКонфигурациюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьКонфигурациюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem добавитьCiscoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem назначитьПортыJDSUCiscoToolStripMenuItem;

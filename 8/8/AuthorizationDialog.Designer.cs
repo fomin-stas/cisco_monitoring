@@ -52,11 +52,13 @@
             // 
             resources.ApplyResources(this.LoginTextBox, "LoginTextBox");
             this.LoginTextBox.Name = "LoginTextBox";
+            this.LoginTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuthorizationDialog_KeyUp);
             // 
             // PasswordTextBox
             // 
             resources.ApplyResources(this.PasswordTextBox, "PasswordTextBox");
             this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuthorizationDialog_KeyUp);
             // 
             // LoginButton
             // 
@@ -74,6 +76,7 @@
             // 
             resources.ApplyResources(this.ServerAddressTextBox, "ServerAddressTextBox");
             this.ServerAddressTextBox.Name = "ServerAddressTextBox";
+            this.ServerAddressTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuthorizationDialog_KeyUp);
             // 
             // AuthorizationDialog
             // 

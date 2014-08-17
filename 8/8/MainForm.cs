@@ -246,7 +246,7 @@ namespace WaterGate
         }
 
 
-
+        [Obsolete]
        private void загрузитьКонфигурациюToolStripMenuItem_Click(object sender, EventArgs e)
        {
          
@@ -305,6 +305,7 @@ namespace WaterGate
            f.ShowDialog();
        }
 
+        [Obsolete]
        private void сохранитьКонфигурациюToolStripMenuItem_Click(object sender, EventArgs e)
        {
            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
