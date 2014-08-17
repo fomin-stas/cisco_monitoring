@@ -10,10 +10,9 @@ namespace StaticValuesDll
 {
   public static class StaticValues
   {
-    public static JDSUCiscoClass[] JDSUCiscoArray = new JDSUCiscoClass[StaticValues.n];
-    public static List<IPCom> CiscoList = new List<IPCom>();
-    public static List<CiscoPort> PortList = new List<CiscoPort>();
-    public static int n;
-    public static IPCom JDSUIP;
+      public static List<JDSUCiscoClass> JDSUCiscoArray { get; set; }
+      public static List<IPCom> CiscoList { get; set; }
+      public static List<CiscoPort> PortList { get; set; }
+      public static IPCom JDSUIP { get; set; }
   }
 }

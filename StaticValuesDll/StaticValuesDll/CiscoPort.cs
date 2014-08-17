@@ -5,26 +5,35 @@
 // Assembly location: C:\Users\Vladimir\Desktop\cisco_monitoring-master\8\8\bin\Debug\StaticValuesDll.dll
 
 using System;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 namespace StaticValuesDll
 {
-  [Serializable]
-  public class CiscoPort
-  {
-    [XmlAttribute]
-    public string PortName;
-    [XmlAttribute]
-    public string PortID;
-
-    public CiscoPort()
+    [Serializable]
+    [DataContract]
+    public class CiscoPort
     {
-    }
+        [XmlAttribute]
+        [DataMember]
+        public Int64 Id { get; set; }
 
-    public CiscoPort(string portname, string portid)
-    {
-      this.PortName = portname;
-      this.PortID = portid;
+        [XmlAttribute]
+        [DataMember]
+        public string PortName { get; set; }
+
+        [XmlAttribute]
+        [DataMember]
+        public string PortID { get; set; }
+
+        public CiscoPort()
+        {
+        }
+
+        public CiscoPort(string portname, string portid)
+        {
+            this.PortName = portname;
+            this.PortID = portid;
+        }
     }
-  }
 }

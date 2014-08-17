@@ -5,28 +5,36 @@
 // Assembly location: C:\Users\Vladimir\Desktop\cisco_monitoring-master\8\8\bin\Debug\StaticValuesDll.dll
 
 using System;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 namespace StaticValuesDll
 {
-  [Serializable]
-  public class JDSUCiscoClass
-  {
-    [XmlAttribute]
-    public int n;
-    [XmlElement]
-    public string JDSUPort;
-    [XmlElement]
-    public IPCom CiscoIPCom;
-    [XmlElement]
-    public CiscoPort CiscoPort;
-
-    public void AddJDSUCisco(int N, string jdsuPort, IPCom ciscoIP, CiscoPort ciscoPort)
+    [Serializable]
+    [DataContract]
+    public class JDSUCiscoClass
     {
-      this.n = N;
-      this.JDSUPort = jdsuPort;
-      this.CiscoIPCom = ciscoIP;
-      this.CiscoPort = ciscoPort;
+        [XmlAttribute]
+        [DataMember]
+        public Int64 Id { get; set; }
+
+        [XmlElement]
+        [DataMember]
+        public string JDSUPort { get; set; }
+
+        [XmlElement]
+        [DataMember]
+        public IPCom CiscoIPCom { get; set; }
+
+        [XmlElement]
+        [DataMember]
+        public CiscoPort CiscoPort { get; set; }
+
+        public void AddJDSUCisco(string jdsuPort, IPCom ciscoIP, CiscoPort ciscoPort)
+        {
+            this.JDSUPort = jdsuPort;
+            this.CiscoIPCom = ciscoIP;
+            this.CiscoPort = ciscoPort;
+        }
     }
-  }
 }

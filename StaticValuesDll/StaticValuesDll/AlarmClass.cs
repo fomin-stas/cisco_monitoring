@@ -9,22 +9,22 @@ using System.Xml.Serialization;
 
 namespace StaticValuesDll
 {
-  [Serializable]
-  public class AlarmClass
-  {
-    [XmlElement]
-    public int ClearStatus;
-    [XmlElement]
-    public int InternalKeyAlarm;
-    [XmlElement]
-    public IPCom inep;
-    [XmlElement]
-    public DateTime DateTime;
-    [XmlElement]
-    public string link;
-    [XmlElement]
-    public string SpecificProblem;
-    [XmlElement]
-    public string AdditionalText;
-  }
+    [Serializable]
+    public class AlarmClass
+    {
+        [XmlElement]
+        public int ClearStatus;
+        [XmlElement]
+        public int InternalKeyAlarm;
+        [XmlElement]
+        public IPCom inep;
+        [XmlElement]
+        public DateTime DateTime;
+        [XmlElement]
+        public string link;
+        [XmlElement]
+        public string SpecificProblem;
+        [XmlElement]
+        public string AdditionalText;
+    }
 }
