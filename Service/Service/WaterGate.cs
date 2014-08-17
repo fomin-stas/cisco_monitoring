@@ -7,8 +7,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.ServiceModel;
 using System.ServiceProcess;
 using System.Text;
+using Service.Models;
+using Service.Services;
 using SnmpSharpNet;
 using System.Threading;
 using System.Xml.Serialization;
@@ -28,40 +31,46 @@ namespace Service
         {
             InitializeComponent();
 
+            workerThread = new Thread(DoWork)
+            {
+                IsBackground = true
+            };
 
-
-            workerThread = new Thread(DoWork);
-            workerThread.SetApartmentState(ApartmentState.STA);
-
-
-            TCPlistenerthread = new Thread(TCPlistener);
-            TCPlistenerthread.SetApartmentState(ApartmentState.STA);
-
+            TCPlistenerthread = new Thread(TCPlistener)
+            {
+                IsBackground = true
+            };
         }
 
-      
+
         protected override void OnStart(string[] args)
         {
-            #if DEBUG
-                if(!System.Diagnostics.Debugger.IsAttached)
-                   System.Diagnostics.Debugger.Launch();
-            #endif
+#if DEBUG
+            if (!System.Diagnostics.Debugger.IsAttached)
+                System.Diagnostics.Debugger.Launch();
+#endif
 
 
-            Functions.SerializeConfig(Functions.pathConfig);
+            Repository.Repository.Initialize(CommandLineHelper.GetConfigFilePath(args) ?? Repository.Repository.DefaultDatabaseFilePath);
 
-                AddLog("WaterGate Service started");
-                string fname = @"C:\temp\temp.txt";
-                using (StreamWriter stream = new StreamWriter(fname, true))
-                {
-                    stream.WriteLine("Служба запущена!");
-                    stream.WriteLine(DateTime.Now);
-                }
-            
-                workerThread.Start();
-                TCPlistenerthread.Start();
+            AddLog("WaterGate Service started");
+            string fname = @"C:\temp\temp.txt";
+            using (StreamWriter stream = new StreamWriter(fname, true))
+            {
+                stream.WriteLine("Служба запущена!");
+                stream.WriteLine(DateTime.Now);
+            }
 
+            workerThread.Start();
+            TCPlistenerthread.Start();
+
+            var host = new ServiceHost(typeof(WaterGateRemoteService), new Uri("http://localhost:18285/WaterGateService/soap"));
+            var binding = new BasicHttpBinding(){ MaxReceivedMessageSize = int.MaxValue };
+
+            host.AddServiceEndpoint(typeof(IWaterGateService), binding, string.Empty);
+            host.Open();
         }
+
 
         protected override void OnStop()
         {

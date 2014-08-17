@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Serialization;
+using StaticValuesDll;
 
 namespace Service
 {
@@ -15,33 +16,32 @@ namespace Service
     {
         static object locker = new object();
 
-
+        /// <summary>
+        /// Reads config file and saves it to StaticValues.
+        /// It is obsolete. Use config from database instead.
+        /// </summary>
+        /// <param name="path">Path to config file.</param>
+        [Obsolete]
         public static void SerializeConfig(string path)
         {
             try
             {
 
-                FileStream file = new FileStream(path, FileMode.Open);
+                var file = new FileStream(path, FileMode.Open);
 
-                StaticValuesDll.forSerialize ser = new StaticValuesDll.forSerialize();
-                ser = null;
-                XmlSerializer serializer = new XmlSerializer(typeof(StaticValuesDll.forSerialize));
-                ser = (StaticValuesDll.forSerialize)serializer.Deserialize(file);
+                var serializer = new XmlSerializer(typeof(StaticValuesDll.ConfigContainer));
+                var ser = (StaticValuesDll.ConfigContainer)serializer.Deserialize(file);
                 file.Close();
 
-                // ser.n == ser.JDSUCiscoArray.Count()
-                if (ser.JDSUIP == null | ser.n != ser.JDSUCiscoArray.Count())
+                if (ser.JDSUIP == null)
                 {
                     AddTempLog(new List<string> { "Загружена некорректная конфигурация" });
    
                 }
                 else
                 {
-                    StaticValuesDll.StaticValues.n = ser.n;
                     StaticValuesDll.StaticValues.JDSUIP = ser.JDSUIP;
-                    StaticValuesDll.StaticValues.JDSUCiscoArray = new StaticValuesDll.JDSUCiscoClass[StaticValuesDll.StaticValues.n];
-                    StaticValuesDll.StaticValues.JDSUCiscoArray = ser.JDSUCiscoArray;
-                    
+                    StaticValuesDll.StaticValues.JDSUCiscoArray = ser.JDSUCiscoArray ?? new List<JDSUCiscoClass>();       
                 }
 
 
