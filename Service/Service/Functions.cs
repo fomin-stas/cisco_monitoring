@@ -144,8 +144,7 @@ namespace Service
 
         }
 
-        public static string pathConfig = @"C:\program1\Service\config.xml";
-        public static string pathLog = @"C:\program1\Service\Servicelog.txt";
+        public static string pathLog = @"C:\WaterGateService\Servicelog.txt";
 
     }
 }

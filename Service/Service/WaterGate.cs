@@ -26,6 +26,19 @@ namespace Service
     {
         private readonly Thread workerThread;
         private readonly Thread TCPlistenerthread;
+        private const string LogFilePath = "C:\\WaterGateService\\Temp.txt";
+
+        static WaterGate()
+        {
+            try
+            {
+                if (!Directory.Exists("C:\\WaterGateService"))
+                {
+                    Directory.CreateDirectory("C:\\WaterGateService");
+                }
+            }
+            catch { }
+        }
         
         public WaterGate()
         {
@@ -54,8 +67,7 @@ namespace Service
             Repository.Repository.Initialize(CommandLineHelper.GetConfigFilePath(args) ?? Repository.Repository.DefaultDatabaseFilePath);
 
             AddLog("WaterGate Service started");
-            string fname = @"C:\temp\temp.txt";
-            using (StreamWriter stream = new StreamWriter(fname, true))
+            using (StreamWriter stream = new StreamWriter(LogFilePath, true))
             {
                 stream.WriteLine("Служба запущена!");
                 stream.WriteLine(DateTime.Now);
@@ -75,8 +87,7 @@ namespace Service
         protected override void OnStop()
         {
             AddLog("Service is stopped");
-            string fname = @"C:\temp\temp.txt";
-            using (StreamWriter stream = new StreamWriter(fname, true))
+            using (StreamWriter stream = new StreamWriter(LogFilePath, true))
             {
                 stream.WriteLine("Служба остановлена!");
                 stream.WriteLine(DateTime.Now);
