@@ -15,6 +15,16 @@ namespace WaterGate
 {
     public class Functions
     {
+        static Functions()
+        {
+            try
+            {
+                if (!Directory.Exists("C:\\WaterGateService"))
+                {
+                    Directory.CreateDirectory("C:\\WaterGateService");
+                }
+            }catch{}
+        }
         ///Resets StaticValues and saves config.
 
         //public static void renew()
@@ -102,7 +112,7 @@ namespace WaterGate
       
 
         public static string pathConfig = @"C:\program1\Service\config.xml";
-        public static string pathLog = @"C:\program1\Service\UsersApplog.txt";
+        public static string pathLog = @"C:\WaterGateService\UsersApplog.txt";
        
         
 

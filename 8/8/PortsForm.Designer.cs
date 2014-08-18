@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PortsForm));
             this.portsDataGridView = new System.Windows.Forms.DataGridView();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.AddButton = new System.Windows.Forms.Button();
-            this.RemoveButton = new System.Windows.Forms.Button();
             this.JDSUport = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CiscoIP = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.CiscoPort = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.buttonON = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
+            this.RemoveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,36 +62,6 @@
             this.portsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellContentClick);
             this.portsDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellEndEdit);
             this.portsDataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.formJDSUPort_CurrentCellDirtyStateChanged);
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.Location = new System.Drawing.Point(12, 557);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(119, 31);
-            this.SaveButton.TabIndex = 1;
-            this.SaveButton.Text = "Сохранить";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
-            // AddButton
-            // 
-            this.AddButton.Location = new System.Drawing.Point(395, 557);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(104, 31);
-            this.AddButton.TabIndex = 2;
-            this.AddButton.Text = "Добавить";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
-            // 
-            // RemoveButton
-            // 
-            this.RemoveButton.Location = new System.Drawing.Point(505, 557);
-            this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(103, 31);
-            this.RemoveButton.TabIndex = 3;
-            this.RemoveButton.Text = "Удалить";
-            this.RemoveButton.UseVisualStyleBackColor = true;
-            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // JDSUport
             // 
@@ -119,6 +89,37 @@
             this.buttonON.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.buttonON.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(12, 557);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(119, 31);
+            this.SaveButton.TabIndex = 1;
+            this.SaveButton.Text = "Сохранить";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // AddButton
+            // 
+            this.AddButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.AddButton.Location = new System.Drawing.Point(395, 557);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(104, 31);
+            this.AddButton.TabIndex = 2;
+            this.AddButton.Text = "Добавить";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
+            // RemoveButton
+            // 
+            this.RemoveButton.Location = new System.Drawing.Point(505, 557);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(103, 31);
+            this.RemoveButton.TabIndex = 3;
+            this.RemoveButton.Text = "Удалить";
+            this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
             // PortsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -130,6 +131,7 @@
             this.Controls.Add(this.portsDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PortsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Назначить порты JDSU/Cisco";
             this.Load += new System.EventHandler(this.Ports_Load);
             ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).EndInit();

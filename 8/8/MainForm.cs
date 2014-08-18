@@ -350,47 +350,58 @@ namespace WaterGate
                int u = (int)(e.RowIndex);
                string host = StaticValues.JDSUCiscoArray[u].CiscoIPCom.IP;
                string community = StaticValues.JDSUCiscoArray[u].CiscoIPCom.Com;
+               var port = StaticValues.JDSUCiscoArray[u].CiscoPort;
+               var portCell = this.mainDataGridView.Rows[u].Cells[3];
+               var ipCell = this.mainDataGridView.Rows[u].Cells[2];
 
-
-               SimpleSnmp snmp = new SimpleSnmp(host, community);
-               if (!snmp.Valid)
+               mainDataGridView.Cursor = Cursors.AppStarting;
+               var asyncAction = new Action(() =>
                {
-                   MessageBox.Show("Snmp isn't valid");
-                   return;
-               }
-
-               Pdu pdu = new Pdu(PduType.Set);
-               pdu.VbList.Add(new Oid(".1.3.6.1.2.1.2.2.1.7" + StaticValues.JDSUCiscoArray[u].CiscoPort.PortID), new Integer32(1));
-               snmp.Set(SnmpVersion.Ver2, pdu);
-
-               Dictionary<Oid, AsnType> result = snmp.Get(SnmpVersion.Ver1, new[]
-                {
-                    ".1.3.6.1.2.1.2.2.1.7" + StaticValues.JDSUCiscoArray[u].CiscoPort.PortID 
-                });
-               
-               if (result == null)
-               {
-                   MessageBox.Show("net otveta / возможно указанный IP адрес не является IP адресом коммутационного оборудования Cisco");
-                   return;
-               }
-
-
-               foreach (var kvp in result)
-               {
-                   if (kvp.Value.ToString() == "1")
+                   SimpleSnmp snmp = new SimpleSnmp(host, community);
+                   if (!snmp.Valid)
                    {
-
-                       MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[2].Value + " активен");
-                   }
-                   else
-                   {
-                       MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[3].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[2].Value + " не активен");
+                       Invoke(new Action(() => mainDataGridView.Cursor = Cursors.Arrow));
+                       MessageBox.Show("Snmp isn't valid");
+                       return;
                    }
 
-               }
-          
-           
-           
+                   Pdu pdu = new Pdu(PduType.Set);
+                   pdu.VbList.Add(new Oid(".1.3.6.1.2.1.2.2.1.7" + port.PortID), new Integer32(1));
+                   snmp.Set(SnmpVersion.Ver2, pdu);
+
+                   Dictionary<Oid, AsnType> result = snmp.Get(SnmpVersion.Ver1, new[]
+                   {
+                       ".1.3.6.1.2.1.2.2.1.7" + port.PortID
+                   });
+
+                   if (result == null)
+                   {
+                       Invoke(new Action(() => mainDataGridView.Cursor = Cursors.Arrow));
+                       MessageBox.Show("Нет ответа от " + host + " / возможно указанный IP адрес не является IP адресом коммутационного оборудования Cisco");
+                      
+                       return;
+                   }
+
+                   Invoke(new Action(() =>
+                   {
+                       mainDataGridView.Cursor = Cursors.Arrow;
+                       foreach (var kvp in result)
+                       {
+                           if (kvp.Value.ToString() == "1")
+                           {
+
+                               MessageBox.Show("Порт " + portCell.Value + " на Cisco c IP адресом " + ipCell.Value + " активен");
+                           }
+                           else
+                           {
+                               MessageBox.Show("Порт " + portCell.Value + " на Cisco c IP адресом " + ipCell.Value + " не активен");
+                           }
+                       }
+                   }));
+               });
+
+               asyncAction.BeginInvoke(null, null);
+
            }
 
            if (e.ColumnIndex == 4)

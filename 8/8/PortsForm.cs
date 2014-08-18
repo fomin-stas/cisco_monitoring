@@ -145,53 +145,53 @@ namespace WaterGate
             { 
            
                 //порядковый номер этого всего счастья
-                int u = e.RowIndex;
-
-
-            //send this to our service
-            UdpClient client = new UdpClient();
-            try
-            {
-                client.Connect(Settings.ServiceAddress, 32157); //was 32156
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-     
-                Socket Sock = client.Client;
-                JDSUCiscoClass ser = StaticValues.JDSUCiscoArray[u];
-
-                byte[] content = null;
-                try
+                var ser = StaticValues.JDSUCiscoArray[e.RowIndex];
+                portsDataGridView.Cursor = Cursors.AppStarting;
+                var asyncAction = new Action(() =>
                 {
-                    var formatter = new BinaryFormatter();
-                    using (var ms = new MemoryStream())
+                    //send this to our service
+                    using (UdpClient client = new UdpClient())
                     {
-                        using (var ds = new DeflateStream(ms, CompressionMode.Compress, true))
+                        try
                         {
-                            formatter.Serialize(ds, ser);
+                            client.Connect(Settings.ServiceAddress, 32157); //was 32156
                         }
-                        ms.Position = 0;
-                        content = ms.GetBuffer();
-                  
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            Invoke(new Action(() => portsDataGridView.Cursor = Cursors.Arrow));
+                            return;
+                        }
+
+                        Socket Sock = client.Client;
+
+
+                        byte[] content = null;
+                        try
+                        {
+                            var formatter = new BinaryFormatter();
+                            using (var ms = new MemoryStream())
+                            {
+                                using (var ds = new DeflateStream(ms, CompressionMode.Compress, true))
+                                {
+                                    formatter.Serialize(ds, ser);
+                                }
+                                ms.Position = 0;
+                                content = ms.GetBuffer();
+
+                            }
+                        }
+                        catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+                        Sock.Send(content);
+                        Sock.Close();
+
+                        Invoke(new Action(() => portsDataGridView.Cursor = Cursors.Arrow));
+                        MessageBox.Show("Изменения сохранены");
                     }
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
 
-                Sock.Send(content);
-                Sock.Close();
-     
-         
-                client.Close();
-
-            
-            
-            MessageBox.Show("Изменения сохранены");
-            
-        
-            
+                });
+                asyncAction.BeginInvoke(null, null);
             }
         }
 
@@ -207,36 +207,55 @@ namespace WaterGate
                 case 1:
                 {
                     (portsDataGridView.Rows[e.RowIndex].Cells[2] as DataGridViewComboBoxCell).Items.Clear();
-                    (portsDataGridView.Rows[e.RowIndex].Cells[2] as DataGridViewComboBoxCell).Items.Add("not set");
+                    (portsDataGridView.Rows[e.RowIndex].Cells[2] as DataGridViewComboBoxCell).Items.Add(new CiscoPort("not set", "not set"));
                     portsDataGridView.Rows[e.RowIndex].Cells[2].Value = (portsDataGridView[2, e.RowIndex] as DataGridViewComboBoxCell).Items[0];
 
               
                     UpdateCell(e.RowIndex, e.ColumnIndex);
+                    UpdateCell(e.RowIndex, e.ColumnIndex + 1);
 
                     if (Convert.ToString(portsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].FormattedValue) == "not set")
                     {
                         return;
                     }
 
-                    var value = (IPCom) portsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                    String snmpAgent = value.IP;
-                    String snmpCom = value.Com;
+                    var stringValue = portsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].FormattedValue;
+                    var value = (portsDataGridView[e.ColumnIndex, e.RowIndex] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item=>item.IP.Equals(stringValue));
 
-                    SimpleSnmp snmp = new SimpleSnmp(snmpAgent, snmpCom);
-                    Dictionary<Oid, AsnType> result = snmp.Walk(SnmpVersion.Ver2, ".1.3.6.1.2.1.31.1.1.1.1");
-                    if (result == null)
+                    portsDataGridView.Cursor = Cursors.AppStarting;
+                    var asyncAction = new Action(() =>
                     {
-                        MessageBox.Show("result is null"); 
-                    }
-                    else
-                    {
-                        foreach (KeyValuePair<Oid, AsnType> entry in result)
+                        String snmpAgent = value.IP;
+                        String snmpCom = value.Com;
+
+                        SimpleSnmp snmp = new SimpleSnmp(snmpAgent, snmpCom);
+                        Dictionary<Oid, AsnType> result = snmp.Walk(SnmpVersion.Ver2, ".1.3.6.1.2.1.31.1.1.1.1");
+                        if (result == null)
                         {
-                            
-                            String a = entry.Key.ToString();
-                            (portsDataGridView.Rows[e.RowIndex].Cells[2] as DataGridViewComboBoxCell).Items.Add(new CiscoPort(entry.Value.ToString(), a.Substring(a.LastIndexOf(@"."))));
+                            Invoke(new Action(() =>
+                            {
+                                MessageBox.Show("Result is null on IP " + value.IP);
+                            }));
                         }
-                    }
+                        else
+                        {
+                            Invoke(new Action(() =>
+                            {
+                                foreach (KeyValuePair<Oid, AsnType> entry in result)
+                                {
+
+                                    String a = entry.Key.ToString();
+                                    (portsDataGridView.Rows[e.RowIndex].Cells[2] as DataGridViewComboBoxCell).Items.Add(new CiscoPort(entry.Value.ToString(), a.Substring(a.LastIndexOf(@"."))));
+                                }
+
+                            }));
+                        }
+
+                        Invoke(new Action(() => portsDataGridView.Cursor = Cursors.Arrow));
+                    });
+
+                    asyncAction.BeginInvoke(null, null);
+                   
                     break;
                 }
                 case 2:
@@ -274,7 +293,8 @@ namespace WaterGate
                     }
                     else
                     {
-                        StaticValues.JDSUCiscoArray[row].CiscoIPCom = (IPCom)(this.portsDataGridView[1, row] as DataGridViewComboBoxCell).Value;
+                        var name = Convert.ToString((this.portsDataGridView[1, row] as DataGridViewComboBoxCell).FormattedValue);
+                        StaticValues.JDSUCiscoArray[row].CiscoIPCom = (IPCom)(this.portsDataGridView[1, row] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item => item.IP.Equals(name));
                     }
 
                     if (main != null)
@@ -292,7 +312,7 @@ namespace WaterGate
                     }
                     else
                     {
-                        StaticValues.JDSUCiscoArray[row].CiscoPort = (CiscoPort)(this.portsDataGridView[2, row] as DataGridViewComboBoxCell).Value;
+                        StaticValues.JDSUCiscoArray[row].CiscoPort = (CiscoPort)(this.portsDataGridView[2, row] as DataGridViewComboBoxCell).Items.Cast<CiscoPort>().First(item=>item.PortName.Equals(value));
                     }
 
                     if (main != null)
@@ -426,8 +446,8 @@ namespace WaterGate
 
             var index = portsDataGridView.SelectedCells[0].RowIndex;
             StaticValues.JDSUCiscoArray.RemoveAt(index);
-            
-            portsDataGridView.Rows.Remove(portsDataGridView.SelectedRows[0]);
+
+            portsDataGridView.Rows.RemoveAt(index);
 
             var main = this.Owner as MainForm;
             if (main != null)
