@@ -69,6 +69,7 @@
             // 
             // AddButton
             // 
+            this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddButton.Enabled = false;
             this.AddButton.Location = new System.Drawing.Point(216, 189);
             this.AddButton.Name = "AddButton";
@@ -80,6 +81,7 @@
             // 
             // RemoveButton
             // 
+            this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.RemoveButton.Enabled = false;
             this.RemoveButton.Location = new System.Drawing.Point(338, 189);
             this.RemoveButton.Name = "RemoveButton";

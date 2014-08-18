@@ -25,7 +25,7 @@ namespace Service.Repository
 
         public ConfigContainer GetConfigContainer()
         {
-            LockSlim.EnterReadLock();
+            LockSlim.TryEnterReadLock(-1);
 
             try
             {
@@ -95,7 +95,7 @@ namespace Service.Repository
 
         public void UpdateJDSUIP(IPCom jdsuIP)
         {
-            LockSlim.EnterWriteLock();
+            LockSlim.TryEnterWriteLock(-1);
             try
             {
                 using (var connection = new SQLiteConnection(_connectionString))
@@ -118,7 +118,7 @@ namespace Service.Repository
 
         public void UpdatePorts(List<JDSUCiscoClass> ports)
         {
-            LockSlim.EnterWriteLock();
+            LockSlim.TryEnterWriteLock(-1);
             try
             {
                 using (var connection = new SQLiteConnection(_connectionString))
@@ -159,7 +159,7 @@ namespace Service.Repository
 
         public void UpdateCiscoRouters(List<IPCom> routers)
         {
-            LockSlim.EnterWriteLock();
+            LockSlim.TryEnterWriteLock(-1);
 
             try
             {
@@ -213,7 +213,7 @@ namespace Service.Repository
 
         public bool AddUser(User user)
         {
-            UsersLockSlim.EnterWriteLock();
+            UsersLockSlim.TryEnterWriteLock(-1);
 
             try
             {
@@ -257,7 +257,7 @@ namespace Service.Repository
 
         public bool RemoveUser(string login)
         {
-            UsersLockSlim.EnterWriteLock();
+            UsersLockSlim.TryEnterWriteLock(-1);
 
             try
             {
@@ -321,7 +321,7 @@ namespace Service.Repository
 
         public User[] GetUsers()
         {
-            UsersLockSlim.EnterReadLock();
+            UsersLockSlim.TryEnterReadLock(-1);
 
             try
             {
