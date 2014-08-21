@@ -66,7 +66,7 @@
             // 
             // Delete
             // 
-            this.Delete.Location = new System.Drawing.Point(114, 123);
+            this.Delete.Location = new System.Drawing.Point(123, 123);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(75, 44);
             this.Delete.TabIndex = 5;
@@ -76,7 +76,7 @@
             // 
             // Change
             // 
-            this.Change.Location = new System.Drawing.Point(219, 123);
+            this.Change.Location = new System.Drawing.Point(228, 123);
             this.Change.Name = "Change";
             this.Change.Size = new System.Drawing.Size(75, 44);
             this.Change.TabIndex = 6;
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 179);
+            this.ClientSize = new System.Drawing.Size(322, 179);
             this.Controls.Add(this.Change);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.Save);

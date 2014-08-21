@@ -123,16 +123,16 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 9</value>
+    <value>18, 22</value>
   </data>
   <data name="lLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
+    <value>103, 13</value>
   </data>
   <data name="lLogin.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="lLogin.Text" xml:space="preserve">
-    <value>Логин</value>
+    <value>Имя пользователя</value>
   </data>
   <data name="&gt;&gt;lLogin.Name" xml:space="preserve">
     <value>lLogin</value>
@@ -141,16 +141,16 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lLogin.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lLogin.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="lPas.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lPas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 54</value>
+    <value>18, 60</value>
   </data>
   <data name="lPas.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 13</value>
@@ -168,16 +168,16 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lPas.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lPas.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="LoginTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 25</value>
+    <value>127, 19</value>
   </data>
   <data name="LoginTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+    <value>141, 20</value>
   </data>
   <data name="LoginTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -189,19 +189,19 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LoginTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;LoginTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>0</value>
   </data>
   <data name="PasswordTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 70</value>
+    <value>127, 57</value>
   </data>
   <data name="PasswordTextBox.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
   </data>
   <data name="PasswordTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+    <value>141, 20</value>
   </data>
   <data name="PasswordTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -213,13 +213,13 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PasswordTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;PasswordTextBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="LoginButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 154</value>
+    <value>194, 145</value>
   </data>
   <data name="LoginButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 29</value>
@@ -250,7 +250,7 @@
     <value>NoControl</value>
   </data>
   <data name="ServerAddressLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 102</value>
+    <value>18, 99</value>
   </data>
   <data name="ServerAddressLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -268,16 +268,16 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ServerAddressLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;ServerAddressLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="ServerAddressTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 118</value>
+    <value>127, 92</value>
   </data>
   <data name="ServerAddressTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+    <value>141, 20</value>
   </data>
   <data name="ServerAddressTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -289,9 +289,126 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ServerAddressTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;ServerAddressTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 12</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 127</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="pictureBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 18</value>
+  </data>
+  <data name="pictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 7, 7, 7</value>
+  </data>
+  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 121</value>
+  </data>
+  <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
+    <value>pictureBox2</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -301,7 +418,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>201, 196</value>
+    <value>388, 177</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

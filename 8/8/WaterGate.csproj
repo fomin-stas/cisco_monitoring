@@ -58,9 +58,8 @@
     <Reference Include="SnmpSharpNet">
       <HintPath>..\SnmpSharpNet.dll</HintPath>
     </Reference>
-    <Reference Include="StaticValuesDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\StaticValuesDll\StaticValuesDll\bin\Debug\StaticValuesDll.dll</HintPath>
+    <Reference Include="StaticValuesDll">
+      <HintPath>..\..\StaticValuesDll\StaticValuesDll\bin\Release\StaticValuesDll.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

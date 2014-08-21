@@ -80,7 +80,7 @@
             this.topMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.topMenuStrip.Name = "topMenuStrip";
             this.topMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.topMenuStrip.Size = new System.Drawing.Size(783, 24);
+            this.topMenuStrip.Size = new System.Drawing.Size(525, 24);
             this.topMenuStrip.TabIndex = 0;
             this.topMenuStrip.Text = "menuStrip1";
             // 
@@ -233,7 +233,7 @@
             this.mainDataGridView.Location = new System.Drawing.Point(0, 27);
             this.mainDataGridView.Name = "mainDataGridView";
             this.mainDataGridView.ReadOnly = true;
-            this.mainDataGridView.Size = new System.Drawing.Size(783, 504);
+            this.mainDataGridView.Size = new System.Drawing.Size(525, 504);
             this.mainDataGridView.TabIndex = 1;
             this.mainDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
@@ -267,7 +267,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(783, 531);
+            this.ClientSize = new System.Drawing.Size(525, 531);
             this.Controls.Add(this.mainDataGridView);
             this.Controls.Add(this.topMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

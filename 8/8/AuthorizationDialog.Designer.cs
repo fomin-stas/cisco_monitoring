@@ -36,6 +36,10 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.ServerAddressLabel = new System.Windows.Forms.Label();
             this.ServerAddressTextBox = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // lLogin
@@ -78,23 +82,39 @@
             this.ServerAddressTextBox.Name = "ServerAddressTextBox";
             this.ServerAddressTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuthorizationDialog_KeyUp);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.LoginTextBox);
+            this.groupBox1.Controls.Add(this.ServerAddressLabel);
+            this.groupBox1.Controls.Add(this.ServerAddressTextBox);
+            this.groupBox1.Controls.Add(this.PasswordTextBox);
+            this.groupBox1.Controls.Add(this.lPas);
+            this.groupBox1.Controls.Add(this.lLogin);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
             // AuthorizationDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ServerAddressTextBox);
-            this.Controls.Add(this.ServerAddressLabel);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LoginButton);
-            this.Controls.Add(this.PasswordTextBox);
-            this.Controls.Add(this.LoginTextBox);
-            this.Controls.Add(this.lPas);
-            this.Controls.Add(this.lLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AuthorizationDialog";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -107,5 +127,7 @@
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.Label ServerAddressLabel;
         private System.Windows.Forms.TextBox ServerAddressTextBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
