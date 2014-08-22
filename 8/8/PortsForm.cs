@@ -57,58 +57,7 @@ namespace WaterGate
 
         void formJDSUPort_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
-            { 
            
-                //порядковый номер этого всего счастья
-                var ser = StaticValues.JDSUCiscoArray[e.RowIndex];
-                portsDataGridView.Cursor = Cursors.AppStarting;
-                var asyncAction = new Action(() =>
-                {
-                    //send this to our service
-                    using (UdpClient client = new UdpClient())
-                    {
-                        try
-                        {
-                            client.Connect(Settings.ServiceAddress, 32157); //was 32156
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            Invoke(new Action(() => portsDataGridView.Cursor = Cursors.Arrow));
-                            return;
-                        }
-
-                        Socket Sock = client.Client;
-
-
-                        byte[] content = null;
-                        try
-                        {
-                            var formatter = new BinaryFormatter();
-                            using (var ms = new MemoryStream())
-                            {
-                                using (var ds = new DeflateStream(ms, CompressionMode.Compress, true))
-                                {
-                                    formatter.Serialize(ds, ser);
-                                }
-                                ms.Position = 0;
-                                content = ms.GetBuffer();
-
-                            }
-                        }
-                        catch (Exception ex) { MessageBox.Show(ex.Message); }
-
-                        Sock.Send(content);
-                        Sock.Close();
-
-                        Invoke(new Action(() => portsDataGridView.Cursor = Cursors.Arrow));
-                        MessageBox.Show("Изменения сохранены");
-                    }
-
-                });
-                asyncAction.BeginInvoke(null, null);
-            }
         }
 
         void formJDSUPort_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -128,7 +77,7 @@ namespace WaterGate
 
               
                     UpdateCell(e.RowIndex, e.ColumnIndex);
-                    UpdateCell(e.RowIndex, e.ColumnIndex + 1);
+                   // UpdateCell(e.RowIndex, e.ColumnIndex + 1);
 
                     if (Convert.ToString(portsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].FormattedValue) == "not set")
                     {
@@ -161,11 +110,13 @@ namespace WaterGate
                                 {
 
                                     String a = entry.Key.ToString();
+                                  
                                     (portsDataGridView.Rows[e.RowIndex].Cells[2] as DataGridViewComboBoxCell).Items.Add(new CiscoPort(entry.Value.ToString(), a.Substring(a.LastIndexOf(@"."))));
                                 }
 
                             }));
                         }
+                        UpdateCell(e.RowIndex, e.ColumnIndex + 1);
 
                         Invoke(new Action(() => portsDataGridView.Cursor = Cursors.Arrow));
                     });

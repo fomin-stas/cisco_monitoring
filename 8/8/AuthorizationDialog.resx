@@ -123,16 +123,16 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 64</value>
+    <value>18, 22</value>
   </data>
   <data name="lLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
+    <value>103, 13</value>
   </data>
   <data name="lLogin.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="lLogin.Text" xml:space="preserve">
-    <value>Логин</value>
+    <value>Имя пользователя</value>
   </data>
   <data name="&gt;&gt;lLogin.Name" xml:space="preserve">
     <value>lLogin</value>
@@ -141,16 +141,16 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lLogin.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lLogin.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="lPas.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lPas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 109</value>
+    <value>18, 60</value>
   </data>
   <data name="lPas.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 13</value>
@@ -168,19 +168,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lPas.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lPas.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="LoginTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 80</value>
+    <value>127, 19</value>
   </data>
   <data name="LoginTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+    <value>141, 20</value>
   </data>
   <data name="LoginTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;LoginTextBox.Name" xml:space="preserve">
     <value>LoginTextBox</value>
@@ -189,22 +189,22 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LoginTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;LoginTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="PasswordTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 125</value>
+    <value>127, 57</value>
   </data>
   <data name="PasswordTextBox.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
   </data>
   <data name="PasswordTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+    <value>141, 20</value>
   </data>
   <data name="PasswordTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;PasswordTextBox.Name" xml:space="preserve">
     <value>PasswordTextBox</value>
@@ -213,22 +213,22 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PasswordTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;PasswordTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="LoginButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="LoginButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 209</value>
+    <value>205, 209</value>
   </data>
   <data name="LoginButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 29</value>
   </data>
   <data name="LoginButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="LoginButton.Text" xml:space="preserve">
     <value>Вход</value>
@@ -253,7 +253,7 @@
     <value>NoControl</value>
   </data>
   <data name="ServerAddressLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 157</value>
+    <value>18, 99</value>
   </data>
   <data name="ServerAddressLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -271,19 +271,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ServerAddressLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;ServerAddressLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="ServerAddressTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 173</value>
+    <value>127, 92</value>
   </data>
   <data name="ServerAddressTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+    <value>141, 20</value>
   </data>
   <data name="ServerAddressTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;ServerAddressTextBox.Name" xml:space="preserve">
     <value>ServerAddressTextBox</value>
@@ -292,9 +292,124 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ServerAddressTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;ServerAddressTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 63</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 126</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        /gcghuCfWnpjAwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="pictureBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 67</value>
+  </data>
+  <data name="pictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 7, 7, 7</value>
+  </data>
+  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 121</value>
+  </data>
+  <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
+    <value>pictureBox2</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -304,7 +419,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>230, 257</value>
+    <value>411, 261</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

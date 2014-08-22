@@ -46,7 +46,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.usersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.usersDataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.usersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.usersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.usersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LoginColumn,
             this.PermissionsColumn});

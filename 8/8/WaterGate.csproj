@@ -70,8 +70,7 @@
     <Reference Include="SnmpSharpNet">
       <HintPath>..\SnmpSharpNet.dll</HintPath>
     </Reference>
-    <Reference Include="StaticValuesDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="StaticValuesDll">
       <HintPath>..\..\StaticValuesDll\StaticValuesDll\bin\Debug\StaticValuesDll.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -177,6 +176,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuthorizationDialog.resx">
       <DependentUpon>AuthorizationDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

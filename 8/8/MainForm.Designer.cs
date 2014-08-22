@@ -85,7 +85,7 @@
             this.topMenuStrip.Location = new System.Drawing.Point(0, 60);
             this.topMenuStrip.Name = "topMenuStrip";
             this.topMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.topMenuStrip.Size = new System.Drawing.Size(783, 24);
+            this.topMenuStrip.Size = new System.Drawing.Size(525, 24);
             this.topMenuStrip.TabIndex = 0;
             this.topMenuStrip.Text = "menuStrip1";
             // 
@@ -230,7 +230,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.mainDataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.mainDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.JDSUport,
             this.CiscoIP,
@@ -239,7 +239,7 @@
             this.mainDataGridView.Location = new System.Drawing.Point(0, 99);
             this.mainDataGridView.Name = "mainDataGridView";
             this.mainDataGridView.ReadOnly = true;
-            this.mainDataGridView.Size = new System.Drawing.Size(783, 409);
+            this.mainDataGridView.Size = new System.Drawing.Size(525, 409);
             this.mainDataGridView.TabIndex = 1;
             this.mainDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
@@ -281,7 +281,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(783, 531);
+            this.ClientSize = new System.Drawing.Size(525, 531);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mainDataGridView);
             this.Controls.Add(this.topMenuStrip);
