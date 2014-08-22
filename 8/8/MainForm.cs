@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using MetroFramework.Forms;
 using SnmpSharpNet;
 using System.Net.Sockets;
 using System.Net;
@@ -20,13 +21,13 @@ using WaterGate.Models;
 
 namespace WaterGate
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MetroForm
     {
         static object locker = new object();
       
         public MainForm()
         {
-            InitializeComponent();       
+            InitializeComponent();
         }
 
         
@@ -48,7 +49,7 @@ namespace WaterGate
             StaticValues.JDSUIP = authorizationToken.ConfigContainer.JDSUIP;
 
             FillForm();
-
+            base.Select();
 
            
 
@@ -286,22 +287,22 @@ namespace WaterGate
 
        private void назначитьПортыJDSUCiscoToolStripMenuItem_Click(object sender, EventArgs e)
        {
-           PortsForm f = new PortsForm();
-           f.Owner = this;
+           PortsForm f = new PortsForm(this);
+           //f.Owner = this;  // Removed. Crash on close, when using MetroForm
            f.ShowDialog();
        }
 
        private void сконфигурироватьJDSUToolStripMenuItem_Click(object sender, EventArgs e)
        {
            JDSUForm f = new JDSUForm();
-           f.Owner = this;
+           //f.Owner = this;
            f.ShowDialog();
        }
 
        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
        {
            About f = new About();
-           f.Owner = this;
+           //f.Owner = this;
            f.ShowDialog();
        }
 
@@ -326,7 +327,7 @@ namespace WaterGate
        private void списокАварийToolStripMenuItem_Click(object sender, EventArgs e)
        {
            alarms f = new alarms();
-           f.Owner = this;
+           //f.Owner = this;
            f.ShowDialog();
        }
 
@@ -335,7 +336,7 @@ namespace WaterGate
        private void управлениеУчетнымиЗаписямиToolStripMenuItem_Click(object sender, EventArgs e)
        {
            UsersManage f = new UsersManage();
-           f.Owner = this;
+           //f.Owner = this;
            f.ShowDialog();
        }
 

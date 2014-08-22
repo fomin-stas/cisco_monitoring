@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace WaterGate
 {
-    public partial class alarms : Form
+    public partial class alarms : MetroForm
     {
         public alarms()
         {

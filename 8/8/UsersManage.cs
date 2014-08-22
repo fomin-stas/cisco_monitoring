@@ -6,12 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using StaticValuesDll;
 using WaterGate.Models;
 
 namespace WaterGate
 {
-    public partial class UsersManage : Form
+    public partial class UsersManage : MetroForm
     {
         public UsersManage()
         {

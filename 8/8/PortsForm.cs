@@ -11,106 +11,22 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using MetroFramework.Forms;
 using SnmpSharpNet;
 using StaticValuesDll;
 using WaterGate.Models;
 
 namespace WaterGate
 {
-    public partial class PortsForm : Form
+    public partial class PortsForm : MetroForm
     {
-        public PortsForm()
+        private MainForm _mainForm;
+
+        public PortsForm(MainForm mainForm)
         {
             InitializeComponent();
 
-          //  this.formJDSUPort = new System.Windows.Forms.DataGridView();
-            //  this.JDSUport = new System.Windows.Forms.DataGridViewTextBoxColumn();
-          //  this.CiscoIP = new System.Windows.Forms.DataGridViewComboBoxColumn();
-          //  this.CiscoPort = new System.Windows.Forms.DataGridViewComboBoxColumn();
-          //  this.SaveBut = new System.Windows.Forms.DataGridViewButtonColumn();
-            
-
-          //  ((System.ComponentModel.ISupportInitialize)(this.formJDSUPort)).BeginInit();
-          //  this.SuspendLayout();
-          //  // 
-          //  // dataGridView1
-
-
-          //  this.formJDSUPort.AllowUserToOrderColumns = true;
-          //  this.formJDSUPort.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-          //  this.formJDSUPort.AllowUserToResizeColumns = true;
-          //  this.formJDSUPort.AllowUserToResizeRows = true;
-          //  this.formJDSUPort.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-          //  this.formJDSUPort.EditMode = DataGridViewEditMode.EditOnEnter;
-          //  this.formJDSUPort.CellEndEdit += formJDSUPort_CellEndEdit;
-          //  //this.formJDSUPort.CellValueChanged += new DataGridViewCellEventHandler(formJDSUPort_CellValueChanged);
-          //  this.formJDSUPort.CurrentCellDirtyStateChanged += new EventHandler(formJDSUPort_CurrentCellDirtyStateChanged);
-          //  this.formJDSUPort.CellContentClick += formJDSUPort_CellContentClick;
-          //  this.formJDSUPort.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-          //  this.JDSUport,
-          //  this.CiscoIP,
-          //  this.CiscoPort,
-          //  this.SaveBut});
-
-          //  this.formJDSUPort.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-         
-          //  this.formJDSUPort.Size = new Size(620, 575);
-          //  this.formJDSUPort.Name = "dataGridView1";
-          //  this.formJDSUPort.Location = new System.Drawing.Point(0, 25);
-          //  this.formJDSUPort.TabIndex = 0;
-
-          //  // 
-          //  // JDSUport
-          //  // 
-          //  this.JDSUport.HeaderText = "JDSU порт";
-          //  this.JDSUport.Name = "JDSUport";
-          //  this.JDSUport.Width = 120;
-          //  // 
-          //  // CiscoIP
-          //  // 
-          //  this.CiscoIP.HeaderText = "Cisco IP";
-          //  this.CiscoIP.Name = "CiscoIP";
-          //  this.CiscoIP.Width = 120;
-
-          //  this.CiscoIP.Items.Add("not set");
-
-          //  foreach (IPCom key in StaticValues.CiscoList)
-          //  {
-          //      if (key.IP != "" && key.IP != null)
-          //      {
-          //          this.CiscoIP.Items.Add(key.IP);
-          //      }
-          //  }
-
-
-          ////  this.CiscoIP.DisplayMember = "MyDiscription";
-
-          //  // 
-          //  // CiscoPort
-          //  // 
-          //  this.CiscoPort.HeaderText = "Cisco порт";
-          //  this.CiscoPort.Name = "CiscoPort";
-          //  this.CiscoPort.Width = 120;
-          //  // 
-          //  // Save button
-          //  // 
-          //  this.SaveBut.HeaderText = "Принудительно включить порт";
-          //  this.SaveBut.Name = "buttonON";
-
-          //  // 
-          
-          //  // Form1
-          //  // 
-
-          // // FillForm();
-          //  this.Controls.Add(this.formJDSUPort);
-
-
-
-          //  ((System.ComponentModel.ISupportInitialize)(this.formJDSUPort)).EndInit();
-          //  this.ResumeLayout(false);
-          //  this.PerformLayout();
-
+            _mainForm = mainForm;
             CiscoPort.DisplayMember = "PortName";
             CiscoIP.DisplayMember = "IP";
 
@@ -268,19 +184,16 @@ namespace WaterGate
         }
 
         private void UpdateCell(int row, int column)
-        {
-            var main = this.Owner as MainForm;
-    
-                            
+        {           
             switch (column)
             {
                 case 0:
                 {
                     var value = this.portsDataGridView[0, row].Value.ToString();
                     StaticValues.JDSUCiscoArray[row].JDSUPort = value;
-                    if (main != null)
+                    if (_mainForm != null)
                     {
-                        main.UpdateCell(row, 0, value);
+                        _mainForm.UpdateCell(row, 0, value);
                     }
                     break;
                 }
@@ -297,9 +210,9 @@ namespace WaterGate
                         StaticValues.JDSUCiscoArray[row].CiscoIPCom = (IPCom)(this.portsDataGridView[1, row] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item => item.IP.Equals(name));
                     }
 
-                    if (main != null)
+                    if (_mainForm != null)
                     {
-                        main.UpdateCell(row, 1, value);
+                        _mainForm.UpdateCell(row, 1, value);
                     }
                     break;
                 }
@@ -315,9 +228,9 @@ namespace WaterGate
                         StaticValues.JDSUCiscoArray[row].CiscoPort = (CiscoPort)(this.portsDataGridView[2, row] as DataGridViewComboBoxCell).Items.Cast<CiscoPort>().First(item=>item.PortName.Equals(value));
                     }
 
-                    if (main != null)
+                    if (_mainForm != null)
                     {
-                        main.UpdateCell(row, 2, value);
+                        _mainForm.UpdateCell(row, 2, value);
                     }
                     break;
                 }
@@ -393,13 +306,6 @@ namespace WaterGate
 
         private void Ports_Load(object sender, EventArgs e)
         {
-            MainForm main = this.Owner as MainForm;
-            if (main != null)
-            {
-               
-
-
-            }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -429,10 +335,10 @@ namespace WaterGate
             (portsDataGridView[2, rowNumber] as DataGridViewComboBoxCell).Items.Add(jdsuCisco.CiscoPort);
             portsDataGridView.Rows[rowNumber].Cells[2].Value = (portsDataGridView[2, rowNumber] as DataGridViewComboBoxCell).Items[0];
 
-            var main = this.Owner as MainForm;
-            if (main != null)
+
+            if (_mainForm != null)
             {
-                main.AddRow(jdsuCisco);
+                _mainForm.AddRow(jdsuCisco);
             }
         }
 
@@ -449,10 +355,9 @@ namespace WaterGate
 
             portsDataGridView.Rows.RemoveAt(index);
 
-            var main = this.Owner as MainForm;
-            if (main != null)
+            if (_mainForm != null)
             {
-                main.RemoveRowAt(index);
+                _mainForm.RemoveRowAt(index);
             }
         }
 

@@ -69,5 +69,15 @@ namespace WaterGate.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap voip_gateway_256 {
+            get {
+                object obj = ResourceManager.GetObject("voip-gateway-256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -37,7 +37,7 @@
             // 
             // buttonIP
             // 
-            this.buttonIP.Location = new System.Drawing.Point(188, 34);
+            this.buttonIP.Location = new System.Drawing.Point(176, 75);
             this.buttonIP.Name = "buttonIP";
             this.buttonIP.Size = new System.Drawing.Size(173, 23);
             this.buttonIP.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             this.lIP.BackColor = System.Drawing.Color.LavenderBlush;
             this.lIP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lIP.Location = new System.Drawing.Point(35, 34);
+            this.lIP.Location = new System.Drawing.Point(23, 75);
             this.lIP.Name = "lIP";
             this.lIP.Size = new System.Drawing.Size(118, 23);
             this.lIP.TabIndex = 2;
@@ -60,7 +60,7 @@
             // 
             this.lCommunity.BackColor = System.Drawing.Color.LavenderBlush;
             this.lCommunity.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lCommunity.Location = new System.Drawing.Point(35, 63);
+            this.lCommunity.Location = new System.Drawing.Point(23, 104);
             this.lCommunity.Name = "lCommunity";
             this.lCommunity.Size = new System.Drawing.Size(118, 23);
             this.lCommunity.TabIndex = 3;
@@ -69,7 +69,7 @@
             // 
             // buttonCom
             // 
-            this.buttonCom.Location = new System.Drawing.Point(188, 63);
+            this.buttonCom.Location = new System.Drawing.Point(176, 104);
             this.buttonCom.Name = "buttonCom";
             this.buttonCom.Size = new System.Drawing.Size(173, 23);
             this.buttonCom.TabIndex = 4;
@@ -81,17 +81,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 121);
+            this.ClientSize = new System.Drawing.Size(370, 152);
             this.Controls.Add(this.buttonCom);
             this.Controls.Add(this.lCommunity);
             this.Controls.Add(this.lIP);
             this.Controls.Add(this.buttonIP);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "JDSUForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Resizable = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Сконфигурировать JDSU";
             this.Load += new System.EventHandler(this.JDSUForm_Load);
             this.ResumeLayout(false);

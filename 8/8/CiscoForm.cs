@@ -10,6 +10,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Net.NetworkInformation;
+using MetroFramework.Forms;
 using SnmpSharpNet;
 using System.Xml.Linq;
 using System.Xml;
@@ -18,7 +19,7 @@ using WaterGate.Models;
 
 namespace WaterGate
 {
-    public partial class CiscoForm : Form
+    public partial class CiscoForm : MetroForm
     {
         public CiscoForm()
         {
@@ -33,7 +34,7 @@ namespace WaterGate
             // 
             this.ComboBoxIpAddressCisco = new System.Windows.Forms.ComboBox();
             this.ComboBoxIpAddressCisco.FormattingEnabled = true;
-            this.ComboBoxIpAddressCisco.Location = new System.Drawing.Point(16, 55);
+            this.ComboBoxIpAddressCisco.Location = new System.Drawing.Point(16, 95);
             this.ComboBoxIpAddressCisco.Name = "ComboBoxIpAddressCisco";
             this.ComboBoxIpAddressCisco.Size = new System.Drawing.Size(121, 21);
             this.ComboBoxIpAddressCisco.TabIndex = 7;
@@ -53,7 +54,7 @@ namespace WaterGate
             // Community
             // 
             this.TextBoxCommunity = new System.Windows.Forms.TextBox();
-            this.TextBoxCommunity.Location = new System.Drawing.Point(163, 54);
+            this.TextBoxCommunity.Location = new System.Drawing.Point(163, 95);
             this.TextBoxCommunity.Name = "Community";
             this.TextBoxCommunity.Size = new System.Drawing.Size(121, 21);
             this.TextBoxCommunity.TabIndex = 8;

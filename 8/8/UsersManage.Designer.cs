@@ -45,14 +45,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.usersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.usersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.usersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.usersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LoginColumn,
             this.PermissionsColumn});
-            this.usersDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.usersDataGridView.Location = new System.Drawing.Point(-1, 63);
             this.usersDataGridView.Name = "usersDataGridView";
             this.usersDataGridView.ReadOnly = true;
-            this.usersDataGridView.Size = new System.Drawing.Size(455, 178);
+            this.usersDataGridView.Size = new System.Drawing.Size(459, 227);
             this.usersDataGridView.TabIndex = 0;
             // 
             // LoginColumn
@@ -71,7 +72,7 @@
             // 
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddButton.Enabled = false;
-            this.AddButton.Location = new System.Drawing.Point(216, 189);
+            this.AddButton.Location = new System.Drawing.Point(217, 296);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(105, 30);
             this.AddButton.TabIndex = 1;
@@ -83,7 +84,7 @@
             // 
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.RemoveButton.Enabled = false;
-            this.RemoveButton.Location = new System.Drawing.Point(338, 189);
+            this.RemoveButton.Location = new System.Drawing.Point(338, 296);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(105, 30);
             this.RemoveButton.TabIndex = 2;
@@ -95,13 +96,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 231);
+            this.ClientSize = new System.Drawing.Size(455, 348);
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.usersDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsersManage";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Управление учетными записями";
             this.Load += new System.EventHandler(this.UsersManage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).EndInit();

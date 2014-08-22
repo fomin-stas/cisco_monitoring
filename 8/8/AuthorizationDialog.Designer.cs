@@ -89,10 +89,11 @@
             this.Controls.Add(this.LoginTextBox);
             this.Controls.Add(this.lPas);
             this.Controls.Add(this.lLogin);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AuthorizationDialog";
+            this.Resizable = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.ResumeLayout(false);
             this.PerformLayout();
 

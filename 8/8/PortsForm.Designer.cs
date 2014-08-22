@@ -48,6 +48,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.portsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.portsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.portsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.portsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.JDSUport,
@@ -55,9 +56,9 @@
             this.CiscoPort,
             this.buttonON});
             this.portsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.portsDataGridView.Location = new System.Drawing.Point(0, 24);
+            this.portsDataGridView.Location = new System.Drawing.Point(0, 63);
             this.portsDataGridView.Name = "portsDataGridView";
-            this.portsDataGridView.Size = new System.Drawing.Size(620, 527);
+            this.portsDataGridView.Size = new System.Drawing.Size(620, 477);
             this.portsDataGridView.TabIndex = 0;
             this.portsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellContentClick);
             this.portsDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellEndEdit);
@@ -92,7 +93,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SaveButton.Location = new System.Drawing.Point(12, 557);
+            this.SaveButton.Location = new System.Drawing.Point(12, 546);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(119, 31);
             this.SaveButton.TabIndex = 1;
@@ -103,7 +104,7 @@
             // AddButton
             // 
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddButton.Location = new System.Drawing.Point(395, 557);
+            this.AddButton.Location = new System.Drawing.Point(395, 546);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(104, 31);
             this.AddButton.TabIndex = 2;
@@ -114,7 +115,7 @@
             // RemoveButton
             // 
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveButton.Location = new System.Drawing.Point(505, 557);
+            this.RemoveButton.Location = new System.Drawing.Point(505, 546);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(103, 31);
             this.RemoveButton.TabIndex = 3;
@@ -133,7 +134,6 @@
             this.Controls.Add(this.portsDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PortsForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Назначить порты JDSU/Cisco";
             this.Load += new System.EventHandler(this.Ports_Load);
             ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).EndInit();

@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using MetroFramework.Forms;
 using StaticValuesDll;
 using WaterGate.Models;
 
@@ -17,7 +18,7 @@ using WaterGate.Models;
 namespace WaterGate
 {
     
-    public partial class JDSUForm : Form
+    public partial class JDSUForm : MetroForm
     {
         public JDSUForm()
         {

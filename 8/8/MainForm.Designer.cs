@@ -54,15 +54,20 @@
             this.CiscoIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CiscoPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.switchON = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.topMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // topMenuStrip
             // 
             this.topMenuStrip.AllowItemReorder = true;
+            this.topMenuStrip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.topMenuStrip.AutoSize = false;
             this.topMenuStrip.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.topMenuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.topMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.topMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.настройкаToolStripMenuItem,
             this.справкаToolStripMenuItem,
@@ -77,7 +82,7 @@
             this.toolStripMenuItem8,
             this.toolStripMenuItem9,
             this.jdsuIsActiveToolStripMenuItem1});
-            this.topMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.topMenuStrip.Location = new System.Drawing.Point(0, 60);
             this.topMenuStrip.Name = "topMenuStrip";
             this.topMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.topMenuStrip.Size = new System.Drawing.Size(783, 24);
@@ -224,16 +229,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.mainDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mainDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.JDSUport,
             this.CiscoIP,
             this.CiscoPort,
             this.switchON});
-            this.mainDataGridView.Location = new System.Drawing.Point(0, 27);
+            this.mainDataGridView.Location = new System.Drawing.Point(0, 99);
             this.mainDataGridView.Name = "mainDataGridView";
             this.mainDataGridView.ReadOnly = true;
-            this.mainDataGridView.Size = new System.Drawing.Size(783, 504);
+            this.mainDataGridView.Size = new System.Drawing.Size(783, 409);
             this.mainDataGridView.TabIndex = 1;
             this.mainDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
@@ -261,26 +267,34 @@
             this.switchON.Name = "switchON";
             this.switchON.ReadOnly = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WaterGate.Properties.Resources.voip_gateway_256;
+            this.pictureBox1.Location = new System.Drawing.Point(154, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 37);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(783, 531);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mainDataGridView);
             this.Controls.Add(this.topMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.topMenuStrip;
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Здесь может быть Ваша реклама";
+            this.Text = "Water Gate";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.topMenuStrip.ResumeLayout(false);
             this.topMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -315,6 +329,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CiscoIP;
         private System.Windows.Forms.DataGridViewTextBoxColumn CiscoPort;
         private System.Windows.Forms.DataGridViewButtonColumn switchON;
+        private System.Windows.Forms.PictureBox pictureBox1;
      
 
     }

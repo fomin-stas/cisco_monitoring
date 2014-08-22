@@ -7,16 +7,19 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 using StaticValuesDll;
 using WaterGate.Models;
 
 namespace WaterGate
 {
-    public partial class AuthorizationDialog : Form
+    public partial class AuthorizationDialog : MetroForm
     {
         public AuthorizationDialog()
         {
             InitializeComponent();
+
+            base.Select();
         }
 
         private bool IsInputDataValid()
