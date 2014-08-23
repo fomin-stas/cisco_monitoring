@@ -17,16 +17,16 @@ namespace StaticValuesDll
     public class AuthorizationToken
     {
         [DataMember]
-        public Permissions Permissions { get; set; }
+        public User User { get; set; }
 
         [DataMember]
         public ConfigContainer ConfigContainer { get; set; }
 
         public AuthorizationToken() { }
 
-        public AuthorizationToken(Permissions permissions, ConfigContainer configContainer)
+        public AuthorizationToken(User user, ConfigContainer configContainer)
         {
-            Permissions = permissions;
+            User = user;
             ConfigContainer = configContainer;
         }
     }

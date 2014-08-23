@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Xml.Serialization;
 using Service.Services;
@@ -18,6 +19,7 @@ namespace WaterGate.Models
     public class WaterGateServiceContext
     {
         private readonly string _address = Settings.WebServiceAddress + ":18285/WaterGateService/soap/";
+        private static MessageHeader _userHeader;
 
         private BasicHttpBinding CreateBinding()
         {
@@ -37,7 +39,11 @@ namespace WaterGate.Models
                     {
                         var channel = serviceChannel.CreateChannel();
 
-                        continueWith(channel.GetResponse(), null);
+                        using (var contextScope = new OperationContextScope((IContextChannel) channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            continueWith(channel.GetResponse(), null);
+                        }
                     }     
                 }
                 catch (Exception e)
@@ -60,7 +66,13 @@ namespace WaterGate.Models
                     {
                         var channel = serviceChannel.CreateChannel();
 
-                        continueWith(channel.SignIn(login, password), null);
+                        var authorizationToken = channel.SignIn(login, password);
+                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        {
+                            _userHeader = MessageHeader.CreateHeader("user", "WaterGate", authorizationToken.User);
+                        }
+
+                        continueWith(authorizationToken, null);
                     }          
                 }
                 catch (Exception e)
@@ -82,7 +94,12 @@ namespace WaterGate.Models
                     using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
                     {
                         var channel = serviceChannel.CreateChannel();
-                        channel.UpdatePorts(ports);
+
+                        using (var contextScope = new OperationContextScope((IContextChannel) channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            channel.UpdatePorts(ports);
+                        }
 
                         continueWith(null);
                     }
@@ -106,7 +123,12 @@ namespace WaterGate.Models
                     using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
                     {
                         var channel = serviceChannel.CreateChannel();
-                        channel.UpdateJDSUIP(jdsuIP);
+
+                        using (var contextScope = new OperationContextScope((IContextChannel) channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            channel.UpdateJDSUIP(jdsuIP);
+                        }
 
                         continueWith(null);
                     }
@@ -131,7 +153,12 @@ namespace WaterGate.Models
                     using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
                     {
                         var channel = serviceChannel.CreateChannel();
-                        channel.UpdateCiscoRouters(routers);
+
+                        using (var contextScope = new OperationContextScope((IContextChannel) channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            channel.UpdateCiscoRouters(routers);
+                        }
 
                         continueWith(null);
                     }
@@ -155,7 +182,13 @@ namespace WaterGate.Models
                     using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
                     {
                         var channel = serviceChannel.CreateChannel();
-                        var result = channel.AddUser(user);
+
+                        bool result;
+                        using (var contextScope = new OperationContextScope((IContextChannel) channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            result = channel.AddUser(user);
+                        }
 
                         continueWith(result, null);
                     }
@@ -179,7 +212,13 @@ namespace WaterGate.Models
                     using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
                     {
                         var channel = serviceChannel.CreateChannel();
-                        var result = channel.RemoveUser(login);
+
+                        bool result;
+                        using (var contextScope = new OperationContextScope((IContextChannel) channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            result = channel.RemoveUser(login);
+                        }
 
                         continueWith(result, null);
                     }
@@ -203,7 +242,13 @@ namespace WaterGate.Models
                     using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
                     {
                         var channel = serviceChannel.CreateChannel();
-                        var result = channel.GetUsers();
+
+                        User[] result;
+                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            result = channel.GetUsers();    
+                        }
 
                         continueWith(result, null);
                     }
@@ -217,5 +262,28 @@ namespace WaterGate.Models
 
             asyncAction.BeginInvoke(null, null);
         }
+
+        public void LogUnlockingPortAsync(JDSUCiscoClass jdsuCisco, UnlockingPortStatus unlockingPortStatus)
+        {
+            var asyncAction = new Action(() =>
+            {
+                try
+                {
+                    using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
+                    {
+                        var channel = serviceChannel.CreateChannel();
+
+                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            channel.LogUnlockingPort(jdsuCisco, unlockingPortStatus);
+                        }
+                    }
+                }
+                catch { }
+            });
+            asyncAction.BeginInvoke(null, null);
+        }
+
     }
 }

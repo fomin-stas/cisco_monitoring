@@ -26,15 +26,16 @@ namespace Service
     {
         private readonly Thread workerThread;
         private readonly Thread TCPlistenerthread;
-        private const string LogFilePath = "C:\\WaterGateService\\Temp.txt";
+        private static string LogFilePath = Path.GetPathRoot(Environment.SystemDirectory) + "WaterGateService\\Temp.txt";
 
         static WaterGate()
         {
             try
             {
-                if (!Directory.Exists("C:\\WaterGateService"))
+                var path = Path.GetPathRoot(Environment.SystemDirectory) + "WaterGateService";
+                if (!Directory.Exists(path))
                 {
-                    Directory.CreateDirectory("C:\\WaterGateService");
+                    Directory.CreateDirectory(path);
                 }
             }
             catch { }
@@ -65,6 +66,7 @@ namespace Service
 
 
             Repository.Repository.Initialize(CommandLineHelper.GetConfigFilePath(args) ?? Repository.Repository.DefaultDatabaseFilePath);
+            ClientLogService.Initialize(CommandLineHelper.GetLogFilePath(args) ?? ClientLogService.DefaultLogFilePath);
 
             AddLog("WaterGate Service started");
             using (StreamWriter stream = new StreamWriter(LogFilePath, true))

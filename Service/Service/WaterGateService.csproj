@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Service</RootNamespace>
-    <AssemblyName>Service</AssemblyName>
+    <AssemblyName>WaterGateService</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -70,6 +70,7 @@
     <Compile Include="Functions.cs" />
     <Compile Include="MD5Extension.cs" />
     <Compile Include="Models\CommandLineHelper.cs" />
+    <Compile Include="Models\ClientLogService.cs" />
     <Compile Include="Models\StartupOptions.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -90,10 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="EmptyRepository\Repository.db" />
     <None Include="packages.config" />
-    <None Include="Repository.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Repository.db" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">

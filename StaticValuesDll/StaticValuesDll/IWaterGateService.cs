@@ -35,6 +35,9 @@ namespace Service.Services
         bool RemoveUser(string login);
 
         [OperationContract]
+        void LogUnlockingPort(JDSUCiscoClass jdsuCisco, UnlockingPortStatus unlockingPortStatus);
+
+        [OperationContract]
         User[] GetUsers();
 
     }

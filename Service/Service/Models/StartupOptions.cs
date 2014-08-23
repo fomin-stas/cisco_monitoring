@@ -10,5 +10,8 @@ namespace Service.Models
     {
         [Option('d', "database", Required = false, HelpText = "Database file path.")]
         public string DatabaseFilePath { get; set; }
+
+        [Option('l', "log", Required = false, HelpText = "Log file path.")]
+        public string LogFilePath { get; set; }
     }
 }

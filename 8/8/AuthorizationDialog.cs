@@ -72,7 +72,7 @@ namespace WaterGate
                         return;
                     }
 
-                    if (result.Permissions == Permissions.None)
+                    if (result.User.Permissions == Permissions.None)
                     {
                         Invoke(new Action(() =>
                         {
@@ -103,7 +103,7 @@ namespace WaterGate
 
         public AuthorizationToken ShowAuthorizationDialog()
         {
-            return ShowDialog() == DialogResult.OK ? _authorizationToken : new AuthorizationToken(Permissions.None, null);
+            return ShowDialog() == DialogResult.OK ? _authorizationToken : new AuthorizationToken(new User(){Permissions = Permissions.None}, null);
         }
 
         private void AuthorizationDialog_KeyUp(object sender, KeyEventArgs e)

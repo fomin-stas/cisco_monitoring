@@ -1,4 +1,7 @@
-﻿namespace Service
+﻿using System.Configuration.Install;
+using System.ServiceProcess;
+
+namespace Service
 {
     partial class ProjectInstaller
     {
@@ -33,6 +36,7 @@
             // 
             // serviceProcessInstaller1
             // 
+
             this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
@@ -40,7 +44,7 @@
             // serviceInstaller1
             // 
             this.serviceInstaller1.DisplayName = "WaterGate Service";
-            this.serviceInstaller1.ServiceName = "Service1";
+            this.serviceInstaller1.ServiceName = "WaterGate Service";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
@@ -49,6 +53,13 @@
             this.serviceProcessInstaller1,
             this.serviceInstaller1});
 
+            serviceInstaller1.AfterInstall += ServiceInstaller_AfterInstall;  
+        }
+
+        private void ServiceInstaller_AfterInstall(object sender, InstallEventArgs e)
+        {
+            ServiceController sc = new ServiceController(serviceInstaller1.ServiceName);
+            sc.Start();
         }
 
         #endregion

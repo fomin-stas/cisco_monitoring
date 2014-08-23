@@ -144,7 +144,7 @@ namespace Service
 
         }
 
-        public static string pathLog = @"C:\WaterGateService\Servicelog.txt";
+        public static string pathLog = Path.GetPathRoot(Environment.SystemDirectory) + @"WaterGateService\Servicelog.txt";
 
     }
 }

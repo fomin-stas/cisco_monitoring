@@ -19,9 +19,10 @@ namespace WaterGate
         {
             try
             {
-                if (!Directory.Exists("C:\\WaterGateService"))
+                var path = SystemRootPath + "WaterGateService";
+                if (!Directory.Exists(path))
                 {
-                    Directory.CreateDirectory("C:\\WaterGateService");
+                    Directory.CreateDirectory(path);
                 }
             }catch{}
         }
@@ -108,11 +109,11 @@ namespace WaterGate
             }
            
         }
-     
-      
 
-        public static string pathConfig = @"C:\program1\Service\config.xml";
-        public static string pathLog = @"C:\WaterGateService\UsersApplog.txt";
+
+        public static string SystemRootPath = Path.GetPathRoot(Environment.SystemDirectory);
+        public static string pathConfig = SystemRootPath + @"program1\Service\config.xml";
+        public static string pathLog = SystemRootPath + @"WaterGateService\UsersApplog.txt";
        
         
 

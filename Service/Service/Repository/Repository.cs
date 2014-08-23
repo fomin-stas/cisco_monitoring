@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 using StaticValuesDll;
@@ -12,7 +14,7 @@ namespace Service.Repository
 {
     public class Repository
     {
-        public const string DefaultDatabaseFilePath = "C:\\Repository.db";
+        public static string DefaultDatabaseFilePath = Path.GetPathRoot(Environment.SystemDirectory) + "Repository.db";
         private static string _connectionString;
 
         private static readonly ReaderWriterLockSlim LockSlim = new ReaderWriterLockSlim();
@@ -166,6 +168,11 @@ namespace Service.Repository
                 using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
+
+                    using (var command = new SQLiteCommand("DELETE FROM CiscoRouters", connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                     using (var command = new SQLiteCommand("INSERT INTO CiscoRouters (IP,Com) values(@ip,@com)", connection))
                     {
                         command.Parameters.Add("@ip", DbType.String);
@@ -187,13 +194,13 @@ namespace Service.Repository
             }   
         }
 
-        public Permissions GetPermissions(string login, string password)
+        public User LogUserIn(string login, string password)
         {
             using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                using (var command = new SQLiteCommand("SELECT Permissions.Value FROM Users  INNER JOIN Permissions ON Permissions.UserId=Users.Id WHERE Users.Login=@login AND Users.Password=@password", connection))
+                using (var command = new SQLiteCommand("SELECT Users.Id,Users.Login,Permissions.Value FROM Users  INNER JOIN Permissions ON Permissions.UserId=Users.Id WHERE Users.Login=@login AND Users.Password=@password", connection))
                 {
                     command.Parameters.Add("@login", DbType.String).Value = login;
                     command.Parameters.Add("@password", DbType.String).Value = password.ToMD5();
@@ -202,10 +209,18 @@ namespace Service.Repository
                     {
                         if (reader.Read())
                         {
-                            return (Permissions)reader.GetInt32(0);
+                            return new User()
+                            {
+                                Id = reader.GetInt64(0),
+                                Login = reader.GetString(1),
+                                Permissions = (Permissions)reader.GetInt32(2)
+                            };
                         }
 
-                        return Permissions.None;
+                        return new User()
+                        {
+                            Permissions = Permissions.None
+                        };
                     }
                 }
             }

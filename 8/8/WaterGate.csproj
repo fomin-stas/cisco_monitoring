@@ -142,6 +142,11 @@
     </Compile>
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\WaterGateServiceContext.cs" />
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,8 +201,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -239,6 +244,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\voip-gateway-256.ico" />
+    <None Include="Resources\OffButton.png" />
+    <None Include="Resources\OnButton.png" />
+    <None Include="Resources\FailIcon.ico" />
+    <None Include="Resources\Icon.ico" />
     <Content Include="voip-gateway-256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

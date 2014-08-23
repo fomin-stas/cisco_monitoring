@@ -20,5 +20,32 @@ namespace Service.Models
 
             return null;
         }
+
+        public static string GetLogFilePath(string[] args)
+        {
+            var startupOptions = new StartupOptions();
+
+            if (CommandLine.Parser.Default.ParseArguments(args, startupOptions))
+            {
+                if (!string.IsNullOrEmpty(startupOptions.LogFilePath))
+                {
+                    try
+                    {
+                        if (!File.Exists(startupOptions.LogFilePath))
+                        {
+                            File.Create(startupOptions.LogFilePath);
+                        }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+
+                    return startupOptions.LogFilePath;
+                }
+            }
+
+            return null;
+        }
     }
 }
