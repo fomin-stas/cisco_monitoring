@@ -26,31 +26,23 @@ namespace Service.Services
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
                 ClientLogService.Write(CurrentUser, "Авторизация", "В доступе отказано. Пустой логин либо пароль");
-                return new AuthorizationToken(new User(){Permissions = Permissions.None}, null);
+                return new AuthorizationToken(new User() {Permissions = Permissions.None}, null);
             }
 
-            try
+
+            var user = _repository.LogUserIn(login, password);
+            if (user.Permissions == Permissions.None)
             {
-                var user = _repository.LogUserIn(login, password);
-                if (user.Permissions == Permissions.None)
-                {
-                    ClientLogService.Write(CurrentUser, "Авторизация",
-                        "В доступе отказано. Пользователь с данной комбинацией логина и пароля не существует. Логин: " +
-                        login);
-                    return new AuthorizationToken(user, null);
-                }
-
-
-                var result = new AuthorizationToken(user, _repository.GetConfigContainer());
-                ClientLogService.Write(CurrentUser, "Авторизация", "Доступ разрешен. Логин: " + login);
-                return result;
-
+                ClientLogService.Write(CurrentUser, "Авторизация",
+                    "В доступе отказано. Пользователь с данной комбинацией логина и пароля не существует. Логин: " +
+                    login);
+                return new AuthorizationToken(user, null);
             }
-            catch (Exception e)
-            {
-                ClientLogService.Write(CurrentUser, "ОШИБКА", e.Message + " " + Repository.Repository.DefaultDatabaseFilePath);
-                throw;
-            }
+
+
+            var result = new AuthorizationToken(user, _repository.GetConfigContainer());
+            ClientLogService.Write(CurrentUser, "Авторизация", "Доступ разрешен. Логин: " + login);
+            return result;
         }
 
         public void UpdateCiscoRouters(List<IPCom> routers)
