@@ -52,7 +52,7 @@ namespace WaterGate
             var authorizationToken = (new AuthorizationDialog()).ShowAuthorizationDialog();
             if (authorizationToken.User.Permissions == Permissions.None)
             {
-                this.Close();
+                Environment.Exit(0);
                 return;
             }
             else if (authorizationToken.User.Permissions != Permissions.Administrator)
