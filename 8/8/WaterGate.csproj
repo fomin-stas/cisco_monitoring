@@ -248,6 +248,7 @@
     <None Include="Resources\OnButton.png" />
     <None Include="Resources\FailIcon.ico" />
     <None Include="Resources\Icon.ico" />
+    <None Include="Resources\CheckPort.png" />
     <Content Include="voip-gateway-256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

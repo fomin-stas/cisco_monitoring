@@ -40,5 +40,10 @@ namespace Service.Services
         [OperationContract]
         User[] GetUsers();
 
+        [OperationContract]
+        void UpdateCheckDelay(double delay);
+
+        [OperationContract]
+        void UpdatePortDescription(JDSUCiscoClass jdsuCisco);
     }
 }

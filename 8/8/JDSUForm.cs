@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -30,6 +31,7 @@ namespace WaterGate
         {
             lIP.Text = StaticValues.JDSUIP.IP;
             lCommunity.Text = StaticValues.JDSUIP.Com;
+            CheckDelayLabel.Text = StaticValues.CheckDelay.ToString(CultureInfo.InvariantCulture);
         }
      
         private void buttonIP_Click(object sender, EventArgs e)
@@ -67,12 +69,9 @@ namespace WaterGate
 
         private void UpdateJDSUIP(IPCom jdsuIP, Action continueWith)
         {
-            buttonIP.Enabled = false;
-            buttonIP.Enabled = false;
-
+            ChangeButtonsEnabledState(false);
             Cursor = Cursors.AppStarting;
-
-            
+    
             var serviceContext = new WaterGateServiceContext();
             serviceContext.UpdateJDSUIP(jdsuIP, (error) =>
             {
@@ -81,22 +80,80 @@ namespace WaterGate
                     MessageBox.Show("Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
                         "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                    Invoke(new Action(() =>
+                    {
+                        MessageBox.Show("Запись успешно изменена.",
+                            "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        continueWith();
+                    }));
+
+
                 Invoke(new Action(() =>
                 {
-                    MessageBox.Show("Запись успешно изменена.",
-                        "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    continueWith();
-                }));
-
-
-                Invoke(new Action(() =>
-                {
-                    buttonIP.Enabled = true;
-                    buttonIP.Enabled = true;
+                    ChangeButtonsEnabledState(true);
                     Cursor = Cursors.Arrow;
                 }));
             });
+        }
+
+        private void CheckDelayButton_Click(object sender, EventArgs e)
+        {
+            var inputBox = new InputBox();
+
+            var dialogResult = inputBox.ShowDialog(this);
+
+            if (dialogResult == DialogResult.OK)
+            {
+                double value = 0;
+                try
+                {
+                    value = double.Parse(inputBox.InputBoxText.Trim(), CultureInfo.InvariantCulture);
+                    if(value < 0)
+                        throw new ArgumentException();
+                }
+                catch
+                {
+                    MessageBox.Show("Значение должно быть положительным числом.", "Некорректное значение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+               
+                ChangeButtonsEnabledState(false);
+                Cursor = Cursors.AppStarting;
+
+                var serviceContext = new WaterGateServiceContext();
+                serviceContext.UpdateCheckDelayAsync(value, (error) =>
+                {
+                    if (error != null)
+                    {
+                        MessageBox.Show("Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
+                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    Invoke(new Action(() =>
+                    {
+                        MessageBox.Show("Запись успешно изменена.",
+                            "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        CheckDelayLabel.Text = value.ToString(CultureInfo.InvariantCulture);
+                        StaticValues.CheckDelay = value;
+                    }));
+
+                    Invoke(new Action(() =>
+                    {
+                        ChangeButtonsEnabledState(true);
+                        Cursor = Cursors.Arrow;
+                    }));
+                });
+            }    
+        }
+
+        private void ChangeButtonsEnabledState(bool state)
+        {
+            buttonIP.Enabled = state;
+            buttonCom.Enabled = state;
+            CheckDelayButton.Enabled = state;
         }
        
         

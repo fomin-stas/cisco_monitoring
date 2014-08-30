@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -14,6 +15,8 @@ namespace Service.Repository
 {
     public class Repository
     {
+        private const double DefaultCheckDelay = 0.5;
+
         public static string DefaultDatabaseFilePath = Path.GetPathRoot(Environment.SystemDirectory) + "Repository.db";
         private static string _connectionString;
 
@@ -23,6 +26,49 @@ namespace Service.Repository
         public static void Initialize(string path)
         {
             _connectionString = "Data Source=" + path + ";Version=3;";
+        }
+
+        public void UpdateCheckDelay(double delay)
+        {
+            LockSlim.TryEnterWriteLock(-1);
+
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand("SELECT Value FROM Settings WHERE Key=@key", connection))
+                    {
+                        command.Parameters.Add("@key", DbType.String).Value = "CheckDelay";
+
+                        var shouldUpdate = false;
+                        using (var reader = command.ExecuteReader())
+                        {
+                            command.Parameters.Add("@value", DbType.String).Value = delay.ToString(CultureInfo.InvariantCulture);
+
+                            if (reader.Read())
+                            {
+                                shouldUpdate = true; 
+                            }
+                        }
+
+                        if (shouldUpdate)
+                        {
+                            command.CommandText = "UPDATE Settings SET Value=@value WHERE Key=@key";
+                            command.ExecuteNonQuery();
+                            return;
+                        }
+
+                        command.CommandText = "INSERT INTO Settings (Key,Value) values(@key,@value)";
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            finally
+            {
+                LockSlim.ExitWriteLock();
+            }
         }
 
         public ConfigContainer GetConfigContainer()
@@ -36,7 +82,7 @@ namespace Service.Repository
                     connection.Open();
 
                     var container = new ConfigContainer();
-                    using (var command = new SQLiteCommand("SELECT Id,JDSUPort,IP,Com,PortName,PortID FROM Ports", connection))
+                    using (var command = new SQLiteCommand("SELECT Id,JDSUPort,IP,Com,PortName,PortID,Description FROM Ports", connection))
                     {
                         using (var adapter = new SQLiteDataAdapter(command))
                         {
@@ -50,7 +96,8 @@ namespace Service.Repository
                                         Id = (Int64) item[0],
                                         JDSUPort = item[1] as string,
                                         CiscoIPCom = new IPCom(item[2] as string, item[3] as string),
-                                        CiscoPort = new CiscoPort(item[4] as string, item[5] as string)
+                                        CiscoPort = new CiscoPort(item[4] as string, item[5] as string),
+                                        Description = item[6] as string
                                     }).ToList();
                             }
                         }
@@ -89,6 +136,8 @@ namespace Service.Repository
                         }
                     }
 
+                    container.CheckDelay = GetCheckDelay(connection);
+
                     return container;
                 }
             }
@@ -118,6 +167,34 @@ namespace Service.Repository
             }
         }
 
+        public void UpdatePortDescription(JDSUCiscoClass jdsuCisco)
+        {
+            LockSlim.TryEnterWriteLock(-1);
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand( "UPDATE Ports SET Description=@description WHERE IP=@ip AND Com=@com AND PortName=@portName AND PortId=@portId", connection))
+                    {
+                        command.Parameters.Add("@description", DbType.String).Value = jdsuCisco.Description;
+                        command.Parameters.Add("@ip", DbType.String).Value = jdsuCisco.CiscoIPCom.IP;
+                        command.Parameters.Add("@com", DbType.String).Value = jdsuCisco.CiscoIPCom.Com;
+                        command.Parameters.Add("@portName", DbType.String).Value = jdsuCisco.CiscoPort.PortName;
+                        command.Parameters.Add("@portId", DbType.String).Value = jdsuCisco.CiscoPort.PortID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                }
+            }
+            finally
+            {
+                LockSlim.ExitWriteLock();
+            }
+        }
+
         public void UpdatePorts(List<JDSUCiscoClass> ports)
         {
             LockSlim.TryEnterWriteLock(-1);
@@ -132,13 +209,14 @@ namespace Service.Repository
                         command.ExecuteNonQuery();
                     }
 
-                    using (var command = new SQLiteCommand( "INSERT INTO Ports (JDSUPort,IP,Com,PortName,PortId) values(@port,@ip,@com,@portName,@portId)", connection))
+                    using (var command = new SQLiteCommand( "INSERT INTO Ports (JDSUPort,IP,Com,PortName,PortId,Description) values(@port,@ip,@com,@portName,@portId,@description)", connection))
                     {
                         command.Parameters.Add("@port", DbType.String);
                         command.Parameters.Add("@ip", DbType.String);
                         command.Parameters.Add("@com", DbType.String);
                         command.Parameters.Add("@portName", DbType.String);
                         command.Parameters.Add("@portId", DbType.String);
+                        command.Parameters.Add("@description", DbType.String);
 
                         foreach (var item in ports)
                         {
@@ -147,6 +225,7 @@ namespace Service.Repository
                             command.Parameters["@com"].Value = item.CiscoIPCom.Com;
                             command.Parameters["@portName"].Value = item.CiscoPort.PortName;
                             command.Parameters["@portId"].Value = item.CiscoPort.PortID;
+                            command.Parameters["@description"].Value = item.Description;
 
                             command.ExecuteNonQuery();
                         }
@@ -366,6 +445,32 @@ namespace Service.Repository
             finally
             {
                 UsersLockSlim.ExitReadLock();
+            }
+        }
+
+        private double GetCheckDelay(SQLiteConnection connection)
+        {
+            using (var command = new SQLiteCommand("SELECT Value FROM Settings WHERE Key=@key", connection))
+            {
+                command.Parameters.Add("@key", DbType.String).Value = "CheckDelay";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        try
+                        {
+                            return double.Parse(reader.GetString(0), CultureInfo.InvariantCulture);
+                        }
+                        catch
+                        {
+                            command.CommandText = "DELETE FROM Settings WHERE Key=@key";
+                            command.ExecuteNonQuery();
+                        }
+                    }
+
+                    return DefaultCheckDelay;
+                }
             }
         }
 

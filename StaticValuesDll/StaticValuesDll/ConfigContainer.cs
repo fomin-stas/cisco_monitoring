@@ -29,5 +29,8 @@ namespace StaticValuesDll
         [XmlArray("Cisco")]
         [DataMember]
         public List<IPCom> CiscoList { get; set; }
+
+        [DataMember]
+        public double CheckDelay { get; set; }
     }
 }

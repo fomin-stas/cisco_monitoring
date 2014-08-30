@@ -45,6 +45,19 @@ namespace Service.Services
             return result;
         }
 
+        public void UpdateCheckDelay(double delay)
+        {
+            _repository.UpdateCheckDelay(delay);
+            ClientLogService.Write(CurrentUser, "Изменение интервала проверки", "Интервал изменен на " + delay + " мин.");
+        }
+
+        public void UpdatePortDescription(JDSUCiscoClass jdsuCisco)
+        {
+            _repository.UpdatePortDescription(jdsuCisco);
+            ClientLogService.Write(CurrentUser, "Изменение описания порта", " Описание порта " + jdsuCisco.JDSUPort + " " + jdsuCisco.CiscoIPCom.IP + " " + jdsuCisco.CiscoIPCom.Com + " " +
+                jdsuCisco.CiscoPort.PortName + " " + jdsuCisco.CiscoPort.PortID + " изменено на: " + jdsuCisco.Description);
+        }
+
         public void UpdateCiscoRouters(List<IPCom> routers)
         {
             _repository.UpdateCiscoRouters(routers);

@@ -10,9 +10,30 @@ namespace StaticValuesDll
 {
   public static class StaticValues
   {
+      private static readonly object Lock = new object();
+      private static double _checkDelay;
+
       public static List<JDSUCiscoClass> JDSUCiscoArray { get; set; }
       public static List<IPCom> CiscoList { get; set; }
       public static List<CiscoPort> PortList { get; set; }
       public static IPCom JDSUIP { get; set; }
+
+      public static double CheckDelay
+      {
+          get
+          {
+              lock (Lock)
+              {
+                  return _checkDelay;
+              }
+          }
+          set
+          {
+              lock (Lock)
+              {
+                  _checkDelay = value;
+              }
+          }
+      }
   }
 }

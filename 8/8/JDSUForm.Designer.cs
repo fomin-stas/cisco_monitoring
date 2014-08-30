@@ -33,6 +33,8 @@
             this.lIP = new System.Windows.Forms.Label();
             this.lCommunity = new System.Windows.Forms.Label();
             this.buttonCom = new System.Windows.Forms.Button();
+            this.CheckDelayLabel = new System.Windows.Forms.Label();
+            this.CheckDelayButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonIP
@@ -77,11 +79,34 @@
             this.buttonCom.UseVisualStyleBackColor = true;
             this.buttonCom.Click += new System.EventHandler(this.buttonCom_Click);
             // 
+            // CheckDelayLabel
+            // 
+            this.CheckDelayLabel.BackColor = System.Drawing.Color.LavenderBlush;
+            this.CheckDelayLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.CheckDelayLabel.Location = new System.Drawing.Point(23, 133);
+            this.CheckDelayLabel.Name = "CheckDelayLabel";
+            this.CheckDelayLabel.Size = new System.Drawing.Size(118, 23);
+            this.CheckDelayLabel.TabIndex = 5;
+            this.CheckDelayLabel.Text = "CheckDelay";
+            this.CheckDelayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CheckDelayButton
+            // 
+            this.CheckDelayButton.Location = new System.Drawing.Point(176, 133);
+            this.CheckDelayButton.Name = "CheckDelayButton";
+            this.CheckDelayButton.Size = new System.Drawing.Size(173, 23);
+            this.CheckDelayButton.TabIndex = 6;
+            this.CheckDelayButton.Text = "Изменить интервал опроса";
+            this.CheckDelayButton.UseVisualStyleBackColor = true;
+            this.CheckDelayButton.Click += new System.EventHandler(this.CheckDelayButton_Click);
+            // 
             // JDSUForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 152);
+            this.ClientSize = new System.Drawing.Size(370, 179);
+            this.Controls.Add(this.CheckDelayButton);
+            this.Controls.Add(this.CheckDelayLabel);
             this.Controls.Add(this.buttonCom);
             this.Controls.Add(this.lCommunity);
             this.Controls.Add(this.lIP);
@@ -104,6 +129,8 @@
         private System.Windows.Forms.Label lIP;
         private System.Windows.Forms.Label lCommunity;
         private System.Windows.Forms.Button buttonCom;
+        private System.Windows.Forms.Label CheckDelayLabel;
+        private System.Windows.Forms.Button CheckDelayButton;
 
     }
 }

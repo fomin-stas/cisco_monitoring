@@ -85,6 +85,64 @@ namespace WaterGate.Models
             asyncAction.BeginInvoke(null, null);
         }
 
+        public void UpdatePortDescriptionAsync(JDSUCiscoClass jdsuCisco, Action<Exception> continueWith)
+        {
+            var asyncAction = new Action(() =>
+            {
+                try
+                {
+                    using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
+                    {
+                        var channel = serviceChannel.CreateChannel();
+
+                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            channel.UpdatePortDescription(jdsuCisco);
+                        }
+
+                        continueWith(null);
+                    }
+                }
+                catch (Exception e)
+                {
+                    continueWith(e);
+                }
+
+            });
+
+            asyncAction.BeginInvoke(null, null);
+        }
+
+        public void UpdateCheckDelayAsync(double delay, Action<Exception> continueWith)
+        {
+            var asyncAction = new Action(() =>
+            {
+                try
+                {
+                    using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
+                    {
+                        var channel = serviceChannel.CreateChannel();
+
+                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            channel.UpdateCheckDelay(delay);
+                        }
+
+                        continueWith(null);
+                    }
+                }
+                catch (Exception e)
+                {
+                    continueWith(e);
+                }
+
+            });
+
+            asyncAction.BeginInvoke(null, null);
+        }
+
         public void UpdatePorts(List<JDSUCiscoClass> ports, Action<Exception> continueWith)
         {
             var asyncAction = new Action(() =>

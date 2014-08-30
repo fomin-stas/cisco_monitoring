@@ -176,7 +176,18 @@ namespace WaterGate
                     }
                     else
                     {
-                        StaticValues.JDSUCiscoArray[row].CiscoPort = (CiscoPort)(this.portsDataGridView[2, row] as DataGridViewComboBoxCell).Items.Cast<CiscoPort>().First(item=>item.PortName.Equals(value));
+                        var ciscoPort = (this.portsDataGridView[2, row] as DataGridViewComboBoxCell).Items.Cast<CiscoPort>().First(item=>item.PortName.Equals(value));
+                        var ipCom = StaticValues.JDSUCiscoArray[row].CiscoIPCom;
+
+                        if (StaticValues.JDSUCiscoArray.Count(item => item.CiscoIPCom.IP.Equals(ipCom.IP) 
+                            && item.CiscoIPCom.Com.Equals(ipCom.Com) && item.CiscoPort.PortName.Equals(ciscoPort.PortName)) > 1)
+                        {
+                            portsDataGridView[2, row].Value = ((DataGridViewComboBoxCell) this.portsDataGridView[2, row]).Items[0];
+                            MessageBox.Show("Порт с данными параметрами уже отслеживается.", "Дубликат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            break;
+                        }
+
+                        StaticValues.JDSUCiscoArray[row].CiscoPort = ciscoPort;
                     }
 
                     if (_mainForm != null)
