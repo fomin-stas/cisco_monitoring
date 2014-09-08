@@ -145,6 +145,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.mainDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.mainDataGridView.ColumnHeadersHeight = 35;
             this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.mainDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.JDSUport,
@@ -209,11 +210,13 @@
             this.CiscoPort.HeaderText = "Cisco порт";
             this.CiscoPort.Name = "CiscoPort";
             this.CiscoPort.ReadOnly = true;
+            this.CiscoPort.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DescriptionColumn
             // 
             this.DescriptionColumn.HeaderText = "Описание";
             this.DescriptionColumn.Name = "DescriptionColumn";
+            this.DescriptionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CheckPortColumn
             // 

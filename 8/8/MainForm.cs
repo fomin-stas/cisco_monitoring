@@ -72,7 +72,7 @@ namespace WaterGate
             FillForm();
             base.Select();
 
-           
+            this.mainDataGridView.ClearSelection();
 
             Thread AlarmsThread = new Thread(TCPlistener);
             AlarmsThread.IsBackground = true;

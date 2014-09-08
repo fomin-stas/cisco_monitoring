@@ -116,9 +116,13 @@ namespace WaterGate
 
                             }));
                         }
-                        UpdateCell(e.RowIndex, e.ColumnIndex + 1);
+                        
 
-                        Invoke(new Action(() => portsDataGridView.Cursor = Cursors.Arrow));
+                        Invoke(new Action(() =>
+                        {
+                            UpdateCell(e.RowIndex, e.ColumnIndex + 1);
+                            portsDataGridView.Cursor = Cursors.Arrow;
+                        }));
                     });
 
                     asyncAction.BeginInvoke(null, null);
