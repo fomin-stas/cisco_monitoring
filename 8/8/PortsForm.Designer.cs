@@ -58,28 +58,29 @@
             this.portsDataGridView.Name = "portsDataGridView";
             this.portsDataGridView.Size = new System.Drawing.Size(425, 477);
             this.portsDataGridView.TabIndex = 0;
+            this.portsDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.portsDataGridView_CellBeginEdit);
             this.portsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellContentClick);
             this.portsDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellEndEdit);
+            this.portsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.portsDataGridView_CellValueChanged);
             this.portsDataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.formJDSUPort_CurrentCellDirtyStateChanged);
             // 
             // JDSUport
             // 
             this.JDSUport.HeaderText = "JDSU порт";
             this.JDSUport.Name = "JDSUport";
+            this.JDSUport.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CiscoIP
             // 
             this.CiscoIP.HeaderText = "Cisco IP";
             this.CiscoIP.Name = "CiscoIP";
             this.CiscoIP.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CiscoIP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // CiscoPort
             // 
             this.CiscoPort.HeaderText = "Cisco порт";
             this.CiscoPort.Name = "CiscoPort";
             this.CiscoPort.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CiscoPort.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // SaveButton
             // 

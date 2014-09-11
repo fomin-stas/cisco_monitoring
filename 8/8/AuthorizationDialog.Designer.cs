@@ -37,6 +37,8 @@
             this.ServerAddressLabel = new System.Windows.Forms.Label();
             this.ServerAddressTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PortTextBox = new System.Windows.Forms.TextBox();
+            this.portLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -84,6 +86,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.PortTextBox);
+            this.groupBox1.Controls.Add(this.portLabel);
             this.groupBox1.Controls.Add(this.ServerAddressLabel);
             this.groupBox1.Controls.Add(this.ServerAddressTextBox);
             this.groupBox1.Controls.Add(this.PasswordTextBox);
@@ -93,6 +97,18 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // PortTextBox
+            // 
+            resources.ApplyResources(this.PortTextBox, "PortTextBox");
+            this.PortTextBox.Name = "PortTextBox";
+            this.PortTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuthorizationDialog_KeyUp);
+            this.PortTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PortTextBox_KeyPress);
+            // 
+            // portLabel
+            // 
+            resources.ApplyResources(this.portLabel, "portLabel");
+            this.portLabel.Name = "portLabel";
             // 
             // pictureBox2
             // 
@@ -130,5 +146,7 @@
         private System.Windows.Forms.TextBox ServerAddressTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TextBox PortTextBox;
+        private System.Windows.Forms.Label portLabel;
     }
 }

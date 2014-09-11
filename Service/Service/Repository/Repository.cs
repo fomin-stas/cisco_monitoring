@@ -16,6 +16,7 @@ namespace Service.Repository
     public class Repository
     {
         private const double DefaultCheckDelay = 0.5;
+        private const int DefaultServicePortNumber = 18285;
 
         public static string DefaultDatabaseFilePath = Path.GetPathRoot(Environment.SystemDirectory) + "Repository.db";
         private static string _connectionString;
@@ -26,6 +27,22 @@ namespace Service.Repository
         public static void Initialize(string path)
         {
             _connectionString = "Data Source=" + path + ";Version=3;";
+        }
+
+        public int GetPortNumber()
+        {
+            using (var connection = new SQLiteConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (var command = new SQLiteCommand("SELECT ServicePort FROM ServicePorts", connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        return reader.Read() ? reader.GetInt32(0) : DefaultServicePortNumber;
+                    }
+                }
+            }
         }
 
         public void UpdateCheckDelay(double delay)
@@ -82,7 +99,7 @@ namespace Service.Repository
                     connection.Open();
 
                     var container = new ConfigContainer();
-                    using (var command = new SQLiteCommand("SELECT Id,JDSUPort,IP,Com,PortName,PortID,Description FROM Ports", connection))
+                    using (var command = new SQLiteCommand("SELECT Id,JDSUPort,IP,Com,PortName,PortID,Description,Note FROM Ports", connection))
                     {
                         using (var adapter = new SQLiteDataAdapter(command))
                         {
@@ -97,7 +114,8 @@ namespace Service.Repository
                                         JDSUPort = item[1] as string,
                                         CiscoIPCom = new IPCom(item[2] as string, item[3] as string),
                                         CiscoPort = new CiscoPort(item[4] as string, item[5] as string),
-                                        Description = item[6] as string
+                                        Description = item[6] as string,
+                                        Note = item[7] as string
                                     }).ToList();
                             }
                         }
@@ -179,6 +197,34 @@ namespace Service.Repository
                     using (var command = new SQLiteCommand( "UPDATE Ports SET Description=@description WHERE IP=@ip AND Com=@com AND PortName=@portName AND PortId=@portId", connection))
                     {
                         command.Parameters.Add("@description", DbType.String).Value = jdsuCisco.Description;
+                        command.Parameters.Add("@ip", DbType.String).Value = jdsuCisco.CiscoIPCom.IP;
+                        command.Parameters.Add("@com", DbType.String).Value = jdsuCisco.CiscoIPCom.Com;
+                        command.Parameters.Add("@portName", DbType.String).Value = jdsuCisco.CiscoPort.PortName;
+                        command.Parameters.Add("@portId", DbType.String).Value = jdsuCisco.CiscoPort.PortID;
+
+                        command.ExecuteNonQuery();
+                    }
+
+                }
+            }
+            finally
+            {
+                LockSlim.ExitWriteLock();
+            }
+        }
+
+        public void UpdatePortNote(JDSUCiscoClass jdsuCisco)
+        {
+            LockSlim.TryEnterWriteLock(-1);
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand("UPDATE Ports SET Note=@note WHERE IP=@ip AND Com=@com AND PortName=@portName AND PortId=@portId", connection))
+                    {
+                        command.Parameters.Add("@note", DbType.String).Value = jdsuCisco.Note;
                         command.Parameters.Add("@ip", DbType.String).Value = jdsuCisco.CiscoIPCom.IP;
                         command.Parameters.Add("@com", DbType.String).Value = jdsuCisco.CiscoIPCom.Com;
                         command.Parameters.Add("@portName", DbType.String).Value = jdsuCisco.CiscoPort.PortName;

@@ -78,7 +78,10 @@ namespace Service
             workerThread.Start();
             TCPlistenerthread.Start();
 
-            var host = new ServiceHost(typeof(WaterGateRemoteService), new Uri("http://localhost:18285/WaterGateService/soap"));
+            var repository = new Repository.Repository();
+
+            var port = repository.GetPortNumber();
+            var host = new ServiceHost(typeof(WaterGateRemoteService), new Uri("http://localhost:" + port + "/WaterGateService/soap"));
             var binding = new BasicHttpBinding(){ MaxReceivedMessageSize = int.MaxValue };
 
             host.AddServiceEndpoint(typeof(IWaterGateService), binding, string.Empty);

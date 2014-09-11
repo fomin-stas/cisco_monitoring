@@ -54,8 +54,15 @@ namespace Service.Services
         public void UpdatePortDescription(JDSUCiscoClass jdsuCisco)
         {
             _repository.UpdatePortDescription(jdsuCisco);
-            ClientLogService.Write(CurrentUser, "Изменение описания порта", " Описание порта " + jdsuCisco.JDSUPort + " " + jdsuCisco.CiscoIPCom.IP + " " + jdsuCisco.CiscoIPCom.Com + " " +
+            ClientLogService.Write(CurrentUser, "Изменение описания порта", "Описание порта " + jdsuCisco.JDSUPort + " " + jdsuCisco.CiscoIPCom.IP + " " + jdsuCisco.CiscoIPCom.Com + " " +
                 jdsuCisco.CiscoPort.PortName + " " + jdsuCisco.CiscoPort.PortID + " изменено на: " + jdsuCisco.Description);
+        }
+
+        public void UpdatePortNote(JDSUCiscoClass jdsuCisco)
+        {
+            _repository.UpdatePortNote(jdsuCisco);
+            ClientLogService.Write(CurrentUser, "Изменение примечания порта", "Примечание порта " + jdsuCisco.JDSUPort + " " + jdsuCisco.CiscoIPCom.IP + " " + jdsuCisco.CiscoIPCom.Com + " " +
+               jdsuCisco.CiscoPort.PortName + " " + jdsuCisco.CiscoPort.PortID + " изменено на: " + jdsuCisco.Note);
         }
 
         public void UpdateCiscoRouters(List<IPCom> routers)

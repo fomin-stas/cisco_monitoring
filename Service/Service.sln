@@ -10,6 +10,8 @@ Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "WaterGateServiceSetup", "Wa
 		{BE4A4F1B-9544-49CF-A486-9EE3E3AAC36E} = {BE4A4F1B-9544-49CF-A486-9EE3E3AAC36E}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetupConfiguration", "SetupConfiguration\SetupConfiguration.csproj", "{6042B3D7-B347-41B8-AC05-AD7F86CDC586}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -39,6 +41,16 @@ Global
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.Release|Any CPU.Build.0 = SingleImage
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.SingleImage|Any CPU.ActiveCfg = SingleImage
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.SingleImage|Any CPU.Build.0 = SingleImage
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

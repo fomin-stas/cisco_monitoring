@@ -45,5 +45,8 @@ namespace Service.Services
 
         [OperationContract]
         void UpdatePortDescription(JDSUCiscoClass jdsuCisco);
+
+        [OperationContract]
+        void UpdatePortNote(JDSUCiscoClass jdsuCisco);
     }
 }

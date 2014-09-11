@@ -33,6 +33,9 @@ namespace StaticValuesDll
         [DataMember]
         public string Description { get; set; }
 
+        [DataMember]
+        public string Note { get; set; }
+
         public void AddJDSUCisco(string jdsuPort, IPCom ciscoIP, CiscoPort ciscoPort)
         {
             this.JDSUPort = jdsuPort;

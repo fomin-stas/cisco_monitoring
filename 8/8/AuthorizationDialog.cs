@@ -20,6 +20,7 @@ namespace WaterGate
             InitializeComponent();
 
             base.Select();
+            LoadSettings();
         }
 
         private bool IsInputDataValid()
@@ -42,6 +43,13 @@ namespace WaterGate
                 return false;
             }
 
+
+            if (string.IsNullOrEmpty(PortTextBox.Text) || PortTextBox.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Порт не может быть пустым.", "Введите порт", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
             return true;
         }
 
@@ -52,7 +60,7 @@ namespace WaterGate
             LoginButton.Enabled = false;
             Cursor = Cursors.AppStarting;
 
-            Settings.Initialize(ServerAddressTextBox.Text.Trim());
+            Settings.Initialize(ServerAddressTextBox.Text.Trim(), PortTextBox.Text.Trim());
             var serviceContext = new WaterGateServiceContext();
 
             const string errorText = "Отсутствует соединение к серверу. Проверьте правильно адреса сервера.";
@@ -85,6 +93,8 @@ namespace WaterGate
 
                     _authorizationToken = result;
 
+                    SaveSettings();
+
                     Invoke(new Action(() =>
                     {
                         DialogResult = DialogResult.OK;
@@ -114,6 +124,31 @@ namespace WaterGate
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void PortTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar)
+        && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void LoadSettings()
+        {
+            LoginTextBox.Text = Properties.Settings.Default.Login;
+            ServerAddressTextBox.Text = Properties.Settings.Default.Server;
+            PortTextBox.Text = Properties.Settings.Default.Port;
+        }
+
+        private void SaveSettings()
+        {
+            Properties.Settings.Default.Login = LoginTextBox.Text.Trim();
+            Properties.Settings.Default.Server = ServerAddressTextBox.Text.Trim();
+            Properties.Settings.Default.Port = PortTextBox.Text.Trim();
+
+            Properties.Settings.Default.Save();
         }
 
         

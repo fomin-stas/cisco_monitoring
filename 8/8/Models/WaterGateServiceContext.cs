@@ -18,7 +18,7 @@ namespace WaterGate.Models
 {
     public class WaterGateServiceContext
     {
-        private readonly string _address = Settings.WebServiceAddress + ":18285/WaterGateService/soap/";
+        private readonly string _address = Settings.WebServiceAddress + "/WaterGateService/soap/";
         private static MessageHeader _userHeader;
 
         private BasicHttpBinding CreateBinding()
@@ -27,6 +27,11 @@ namespace WaterGate.Models
             {
                 MaxReceivedMessageSize = int.MaxValue
             };
+        }
+
+        protected void LogConnectionFailed()
+        {
+            Functions.AddTempLog("Соединение с сервером не установлено.");
         }
 
         public void GetResponseAsync(Action<bool, Exception> continueWith)
@@ -48,6 +53,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(false, e);
                 }
             });
@@ -77,6 +83,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(null, e);
                 }
 
@@ -106,6 +113,37 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
+                    continueWith(e);
+                }
+
+            });
+
+            asyncAction.BeginInvoke(null, null);
+        }
+
+        public void UpdatePortNoteAsync(JDSUCiscoClass jdsuCisco, Action<Exception> continueWith)
+        {
+            var asyncAction = new Action(() =>
+            {
+                try
+                {
+                    using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
+                    {
+                        var channel = serviceChannel.CreateChannel();
+
+                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            channel.UpdatePortNote(jdsuCisco);
+                        }
+
+                        continueWith(null);
+                    }
+                }
+                catch (Exception e)
+                {
+                    LogConnectionFailed();
                     continueWith(e);
                 }
 
@@ -135,6 +173,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(e);
                 }
 
@@ -164,6 +203,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(e);
                 }
 
@@ -193,6 +233,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(e);
                 }
 
@@ -223,6 +264,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(e);
                 }
 
@@ -253,6 +295,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(false, e);
                 }
 
@@ -283,6 +326,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(false, e);
                 }
 
@@ -313,6 +357,7 @@ namespace WaterGate.Models
                 }
                 catch (Exception e)
                 {
+                    LogConnectionFailed();
                     continueWith(null, e);
                 }
 
@@ -327,18 +372,23 @@ namespace WaterGate.Models
             {
                 try
                 {
-                    using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
+                    using (
+                        var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(),
+                            new EndpointAddress(_address)))
                     {
                         var channel = serviceChannel.CreateChannel();
 
-                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        using (var contextScope = new OperationContextScope((IContextChannel) channel))
                         {
                             OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
                             channel.LogUnlockingPort(jdsuCisco, unlockingPortStatus);
                         }
                     }
                 }
-                catch { }
+                catch
+                {
+                    LogConnectionFailed();
+                }
             });
             asyncAction.BeginInvoke(null, null);
         }

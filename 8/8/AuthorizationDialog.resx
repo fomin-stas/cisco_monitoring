@@ -144,7 +144,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lLogin.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="lPas.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -171,7 +171,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lPas.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="LoginTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>127, 19</value>
@@ -192,7 +192,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;LoginTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="PasswordTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>127, 57</value>
@@ -216,13 +216,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;PasswordTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="LoginButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="LoginButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 209</value>
+    <value>211, 228</value>
   </data>
   <data name="LoginButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 29</value>
@@ -253,7 +253,7 @@
     <value>NoControl</value>
   </data>
   <data name="ServerAddressLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 99</value>
+    <value>18, 95</value>
   </data>
   <data name="ServerAddressLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -274,7 +274,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;ServerAddressLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="ServerAddressTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>127, 92</value>
@@ -295,13 +295,64 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;ServerAddressTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="PortTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 124</value>
+  </data>
+  <data name="PortTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 20</value>
+  </data>
+  <data name="PortTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;PortTextBox.Name" xml:space="preserve">
+    <value>PortTextBox</value>
+  </data>
+  <data name="&gt;&gt;PortTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PortTextBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;PortTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="portLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="portLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="portLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 127</value>
+  </data>
+  <data name="portLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
+  </data>
+  <data name="portLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="portLabel.Text" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="&gt;&gt;portLabel.Name" xml:space="preserve">
+    <value>portLabel</value>
+  </data>
+  <data name="&gt;&gt;portLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;portLabel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;portLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 63</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 126</value>
+    <value>274, 159</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -386,7 +437,7 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 67</value>
+    <value>27, 82</value>
   </data>
   <data name="pictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>7, 7, 7, 7</value>
@@ -419,7 +470,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>411, 261</value>
+    <value>411, 280</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

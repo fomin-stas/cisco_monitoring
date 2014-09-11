@@ -61,6 +61,7 @@ namespace WaterGate
             }
             else if (authorizationToken.User.Permissions != Permissions.Administrator)
             {
+                DescriptionColumn.ReadOnly = true;
                 topMenuStrip.Visible = false;
             }
 
@@ -174,7 +175,7 @@ namespace WaterGate
                                         ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
                                     paintCiscoIP(label, System.Drawing.Color.Red);
                                     Invoke(
-                                        new Action(() => MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[5])));
+                                        new Action(() => MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6])));
                                 }
                             }
                             Functions.AddTempLog(cisco.IP, ex.Message);
@@ -235,7 +236,7 @@ namespace WaterGate
                         {
                             if (!IsPortDisabled(label))
                                 ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
-                            MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[5]);
+                            MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6]);
                         }));
                         paintCiscoPort(label, System.Drawing.Color.Red);
                         return false;
@@ -253,7 +254,7 @@ namespace WaterGate
 
                             Invoke(
                                 new Action(
-                                    () => MarkPortCellAsEnabled((DataGridViewImageCell) label.Cells[5])));
+                                    () => MarkPortCellAsEnabled((DataGridViewImageCell) label.Cells[6])));
                         }
                         else
                         {
@@ -264,7 +265,7 @@ namespace WaterGate
                             {
                                 if (!IsPortDisabled(label))
                                     ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
-                                MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[5]);
+                                MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6]);
                             }));
 
                             paintCiscoIP(label, System.Drawing.Color.Green);
@@ -322,7 +323,7 @@ namespace WaterGate
 
             for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
             {
-                mainDataGridView.Rows.Insert(i, StaticValues.JDSUCiscoArray[i].JDSUPort, StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP, StaticValues.JDSUCiscoArray[i].CiscoPort.PortName, StaticValues.JDSUCiscoArray[i].Description);
+                mainDataGridView.Rows.Insert(i, StaticValues.JDSUCiscoArray[i].JDSUPort, StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP, StaticValues.JDSUCiscoArray[i].CiscoPort.PortName, StaticValues.JDSUCiscoArray[i].Description, StaticValues.JDSUCiscoArray[i].Note);
               
             }
 
@@ -475,10 +476,18 @@ namespace WaterGate
 
        }
 
-
-        public void UpdateCell(int row, int column, object value)
+        private JDSUCiscoClass GetJdsuCiscoClass(string jdsuPortName)
         {
-            mainDataGridView.Rows[row].Cells[column].Value = value;
+            return StaticValues.JDSUCiscoArray.FirstOrDefault(item => item.JDSUPort == jdsuPortName);
+        }
+
+        public void UpdateCell(string jdsuPortName, int columnIndex, object value)
+        {
+            var row = mainDataGridView.Rows.Cast<DataGridViewRow>().FirstOrDefault(item=>item.Cells[0].Value.ToString() == jdsuPortName);
+            if (row == null)
+                return;
+
+            row.Cells[columnIndex].Value = value;
         }
 
         public void AddRow(JDSUCiscoClass jdsuCisco)
@@ -496,7 +505,7 @@ namespace WaterGate
 
             switch (e.ColumnIndex)
             {
-                case 5:
+                case 6:
                 {
                     if (e.RowIndex == -1)
                         break;
@@ -505,17 +514,17 @@ namespace WaterGate
                     if (imageCell.Description == "OnButton")
                         return;
 
-                    int u = (int)(e.RowIndex);
-                    var jdsuCisco = StaticValues.JDSUCiscoArray[u];
+                    
+                    var jdsuCisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString());
 
                     var serviceContext = new WaterGateServiceContext();
                     serviceContext.LogUnlockingPortAsync(jdsuCisco, UnlockingPortStatus.Starting);
 
-                    string host = StaticValues.JDSUCiscoArray[u].CiscoIPCom.IP;
-                    string community = StaticValues.JDSUCiscoArray[u].CiscoIPCom.Com;
-                    var port = StaticValues.JDSUCiscoArray[u].CiscoPort;
-                    var portCell = this.mainDataGridView.Rows[u].Cells[2];
-                    var ipCell = this.mainDataGridView.Rows[u].Cells[1];
+                    string host = jdsuCisco.CiscoIPCom.IP;
+                    string community = jdsuCisco.CiscoIPCom.Com;
+                    var port = jdsuCisco.CiscoPort;
+                    var portCell = this.mainDataGridView.Rows[e.RowIndex].Cells[2];
+                    var ipCell = this.mainDataGridView.Rows[e.RowIndex].Cells[1];
 
                     mainDataGridView.Cursor = Cursors.AppStarting;
                     var asyncAction = new Action(() =>
@@ -578,12 +587,12 @@ namespace WaterGate
                     break;
                 }
 
-                case 4:
+                case 5:
                 {
                     if (e.RowIndex == -1)
                         break;
 
-                    var cisco = StaticValues.JDSUCiscoArray[e.RowIndex].CiscoIPCom;
+                    var cisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString()).CiscoIPCom;
                     if (cisco == null)
                         return;
 
@@ -607,7 +616,7 @@ namespace WaterGate
                                         ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
                                     paintCiscoIP(label, System.Drawing.Color.Red);
                                     Invoke(
-                                        new Action(() => MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[5])));
+                                        new Action(() => MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6])));
                                 }
                             }
                             Functions.AddTempLog(cisco.IP, ex.Message);
@@ -659,31 +668,69 @@ namespace WaterGate
 
         private void mainDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 3 || e.RowIndex == -1)
+            if (e.RowIndex == -1)
                 return;
 
-            var value = mainDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-            var jdsuCisco = StaticValues.JDSUCiscoArray[e.RowIndex];
-            jdsuCisco.Description = value;
-
-            mainDataGridView.Cursor = Cursors.AppStarting;
-
-            var serviceContext = new WaterGateServiceContext();
-            serviceContext.UpdatePortDescriptionAsync(jdsuCisco, (error) =>
+            switch (e.ColumnIndex)
             {
-                if (error != null)
+                case 3:
                 {
-                    Invoke(new Action(() =>
+                    var objectValue = mainDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    var value = objectValue == null ? null : objectValue.ToString();
+                    var jdsuCisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString());
+                    jdsuCisco.Description = value;
+
+                    mainDataGridView.Cursor = Cursors.AppStarting;
+
+                    var serviceContext = new WaterGateServiceContext();
+                    serviceContext.UpdatePortDescriptionAsync(jdsuCisco, (error) =>
                     {
-                        MessageBox.Show("Ошибка при соединении с сервисом. Проверьте подключение к сети.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }));
+                        if (error != null)
+                        {
+                            Invoke(new Action(() =>
+                            {
+                                MessageBox.Show("Ошибка при соединении с сервисом. Проверьте подключение к сети.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }));
+                        }
+
+                        Invoke(new Action(() =>
+                        {
+                            mainDataGridView.Cursor = Cursors.Arrow;
+                        }));
+                    });
+
+                    break;
                 }
 
-                Invoke(new Action(() =>
+                case 4:
                 {
-                    mainDataGridView.Cursor = Cursors.Arrow;
-                }));
-            });
+                    var objectValue = mainDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    var value = objectValue == null ? null : objectValue.ToString();
+                    var jdsuCisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString());
+                    jdsuCisco.Note = value;
+
+                    mainDataGridView.Cursor = Cursors.AppStarting;
+
+                    var serviceContext = new WaterGateServiceContext();
+                    serviceContext.UpdatePortNoteAsync(jdsuCisco, (error) =>
+                    {
+                        if (error != null)
+                        {
+                            Invoke(new Action(() =>
+                            {
+                                MessageBox.Show("Ошибка при соединении с сервисом. Проверьте подключение к сети.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }));
+                        }
+
+                        Invoke(new Action(() =>
+                        {
+                            mainDataGridView.Cursor = Cursors.Arrow;
+                        }));
+                    });
+                    break;
+                }
+            }
+           
 
         }
 

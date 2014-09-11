@@ -47,6 +47,7 @@
             this.CiscoIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CiscoPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CheckPortColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.SwitchColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.topMenuStrip.SuspendLayout();
@@ -152,6 +153,7 @@
             this.CiscoIP,
             this.CiscoPort,
             this.DescriptionColumn,
+            this.NoteColumn,
             this.CheckPortColumn,
             this.SwitchColumn});
             this.mainDataGridView.Location = new System.Drawing.Point(0, 99);
@@ -218,6 +220,11 @@
             this.DescriptionColumn.Name = "DescriptionColumn";
             this.DescriptionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // NoteColumn
+            // 
+            this.NoteColumn.HeaderText = "Примечание";
+            this.NoteColumn.Name = "NoteColumn";
+            // 
             // CheckPortColumn
             // 
             this.CheckPortColumn.HeaderText = "Проверить работоспособность";
@@ -276,6 +283,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CiscoIP;
         private System.Windows.Forms.DataGridViewTextBoxColumn CiscoPort;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoteColumn;
         private System.Windows.Forms.DataGridViewImageColumn CheckPortColumn;
         private System.Windows.Forms.DataGridViewImageColumn SwitchColumn;
      

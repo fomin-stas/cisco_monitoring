@@ -264,6 +264,7 @@
 		<row><td>NewBinary16</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallFirstUse.ico</td></row>
 		<row><td>NewBinary17</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallPartial.ico</td></row>
 		<row><td>NewBinary18</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallStateMenu.ico</td></row>
+		<row><td>NewBinary19</td><td/><td>F:\Работы\WaterGateConfiguration\WaterGateConfiguration\bin\Debug\WaterGateConfiguration.exe</td></row>
 		<row><td>NewBinary2</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\New.ibd</td></row>
 		<row><td>NewBinary3</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\Up.ibd</td></row>
 		<row><td>NewBinary4</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\WarningIcon.ibd</td></row>
@@ -345,6 +346,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{6CA290A4-5D31-4CB4-9DA2-DA1AD7699B32}</td><td>PrimaryVolumePath</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{7ABACF16-060F-4B38-A91F-1994CA53EA13}</td><td>WindowsVolume</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{6FA0BB1F-4C93-4889-B931-23DBB5661027}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>SetupConfiguration.exe</td><td>{47E724F0-374F-4B90-A84E-7E5094C771AB}</td><td>INSTALLDIR</td><td>2</td><td/><td>setupconfiguration.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>System.Data.SQLite.Linq.dll</td><td>{C5804978-039C-4203-976F-54006930F9E2}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlite.linq.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>System.Data.SQLite.dll</td><td>{4ACDB44F-B5A6-4F0B-9A56-9339AC0F4784}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlite.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WaterGateService.Content_Files</td><td>{D3CCA04D-EDF2-4207-B915-89A398FDE087}</td><td>INSTALLDIR</td><td>2</td><td/><td>watergateservice.content_fil</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1073,6 +1075,7 @@
 		<col def="S0">Target</col>
 		<col def="I4">ExtendedType</col>
 		<col def="S255">ISComments</col>
+		<row><td>ConfigurationAction</td><td>3090</td><td>setupconfiguration.exe</td><td/><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
 		<row><td>ISRunSetupTypeAddLocalEvent</td><td>1</td><td>ISExpHlp.dll</td><td>RunSetupTypeAddLocalEvent</td><td/><td>Run the AddLocal events associated with the Next button on the Setup Type dialog.</td></row>
@@ -1880,6 +1883,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
+		<row><td>AlwaysInstall</td><td>SetupConfiguration.exe</td></row>
 		<row><td>AlwaysInstall</td><td>System.Data.SQLite.Linq.dll</td></row>
 		<row><td>AlwaysInstall</td><td>System.Data.SQLite.dll</td></row>
 		<row><td>AlwaysInstall</td><td>WaterGateService.Content_Files</td></row>
@@ -1899,6 +1903,7 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>repository.db</td><td>ISX_DEFAULTCOMPONENT2</td><td>REPOSI~1.DB|Repository.db</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Работы\WaterGate\Service\Service\EmptyRepository\Repository.db</td><td>1</td><td/></row>
+		<row><td>setupconfiguration.exe</td><td>SetupConfiguration.exe</td><td>SETUPC~1.EXE|SetupConfiguration.exe</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Работы\WaterGate\Service\SetupConfiguration\bin\Release\SetupConfiguration.exe</td><td>1</td><td/></row>
 		<row><td>system.data.sqlite.dll</td><td>System.Data.SQLite.dll</td><td>SYSTEM~1.DLL|System.Data.SQLite.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Работы\WaterGate\Service\Service\bin\Release\System.Data.SQLite.dll</td><td>1</td><td/></row>
 		<row><td>system.data.sqlite.linq.dll</td><td>System.Data.SQLite.Linq.dll</td><td>SYSTEM~1.DLL|System.Data.SQLite.Linq.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Работы\WaterGate\Service\Service\bin\Release\System.Data.SQLite.Linq.dll</td><td>1</td><td/></row>
 		<row><td>watergateservice.content_fil</td><td>WaterGateService.Content_Files</td><td>WaterGateService.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WaterGateService&gt;|ContentFiles</td><td>3</td><td/></row>
@@ -2050,6 +2055,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_27894806_243C_496A_B2E8_A06DF7F8C083_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_7CB5F49D_E4D8_4648_B3B5_A4FE1C96D9B4_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_65AB21EC_D4E7_4DD1_8E7D_46E4119DEDE0_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>SetupConfiguration.exe</td><td/><td/><td>_FE55C821_D67D_4CD6_AB31_B22B0234FC9F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>System.Data.SQLite.Linq.dll</td><td/><td/><td>_B34BE3E5_9F32_4A02_B84D_CF6C7C7EC34A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>System.Data.SQLite.dll</td><td/><td/><td>_3D78E2C1_AD3A_4F1E_84BA_C5A25B40FE21_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WaterGateService.Content_Files</td><td/><td/><td>_2AE8181C_2452_4397_BE9B_D17549001B60_FILTER</td><td/><td/><td/><td/></row>
@@ -3919,6 +3925,7 @@
 		<row><td>AppSearch</td><td/><td>400</td><td>AppSearch</td><td/></row>
 		<row><td>BindImage</td><td/><td>4300</td><td>BindImage</td><td/></row>
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
+		<row><td>ConfigurationAction</td><td>Not Installed</td><td>6405</td><td/><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
 		<row><td>CreateFolders</td><td/><td>3700</td><td>CreateFolders</td><td/></row>

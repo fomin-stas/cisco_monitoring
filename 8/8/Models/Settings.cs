@@ -10,16 +10,16 @@ namespace WaterGate.Models
         public static string ServiceAddress { get; private set; }
         public static string WebServiceAddress { get; private set; }
 
-        public static void Initialize(string serviceAddress)
+        public static void Initialize(string serviceAddress,string port)
         {
             ServiceAddress = serviceAddress;
             if (serviceAddress.StartsWith("http://"))
             {
-                WebServiceAddress = serviceAddress;
+                WebServiceAddress = serviceAddress + ":" + port;
             }
             else
             {
-                WebServiceAddress = "http://" + serviceAddress;
+                WebServiceAddress = "http://" + serviceAddress + ":" + port;
             }
         }
 
