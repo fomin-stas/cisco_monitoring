@@ -173,7 +173,7 @@ namespace WaterGate
                                     crashCount++;
                                     if (!IsPortDisabled(label))
                                         ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
-                                    paintCiscoIP(label, System.Drawing.Color.Red);
+                                 //   paintCiscoIP(label, System.Drawing.Color.Red);
                                     Invoke(
                                         new Action(() => MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6])));
                                 }
@@ -505,16 +505,11 @@ namespace WaterGate
 
             switch (e.ColumnIndex)
             {
+                    //включить порт
                 case 6:
                 {
                     if (e.RowIndex == -1)
                         break;
-
-                    var imageCell = (DataGridViewImageCell)mainDataGridView[e.ColumnIndex, e.RowIndex];
-                    if (imageCell.Description == "OnButton")
-                        return;
-
-                    
                     var jdsuCisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString());
 
                     var serviceContext = new WaterGateServiceContext();
@@ -525,6 +520,16 @@ namespace WaterGate
                     var port = jdsuCisco.CiscoPort;
                     var portCell = this.mainDataGridView.Rows[e.RowIndex].Cells[2];
                     var ipCell = this.mainDataGridView.Rows[e.RowIndex].Cells[1];
+
+
+                    var imageCell = (DataGridViewImageCell)mainDataGridView[e.ColumnIndex, e.RowIndex];
+                    if (imageCell.Description == "OnButton")
+                    {
+                        ShowToolTrayTooltipActive(port + " " + host);
+                        return;
+                    }
+                    
+                    
 
                     mainDataGridView.Cursor = Cursors.AppStarting;
                     var asyncAction = new Action(() =>
@@ -543,7 +548,7 @@ namespace WaterGate
                         pdu.VbList.Add(new Oid(".1.3.6.1.2.1.2.2.1.7" + port.PortID), new Integer32(1));
                         snmp.Set(SnmpVersion.Ver2, pdu);
 
-                        Dictionary<Oid, AsnType> result = snmp.Get(SnmpVersion.Ver1, new[]
+                        Dictionary<Oid, AsnType> result = snmp.Get(SnmpVersion.Ver2, new[]
                    {
                        ".1.3.6.1.2.1.2.2.1.7" + port.PortID
                    });
@@ -569,14 +574,14 @@ namespace WaterGate
                                     serviceContext.LogUnlockingPortAsync(jdsuCisco, UnlockingPortStatus.Active);
 
                                     MarkPortCellAsEnabled(imageCell);
-                                    MessageBox.Show("Порт " + portCell.Value + " на Cisco c IP адресом " + ipCell.Value + " активен");
+                                    ShowToolTrayTooltipActive(portCell.Value + " " + ipCell.Value);
                                 }
                                 else
                                 {
                                     serviceContext.LogUnlockingPortAsync(jdsuCisco, UnlockingPortStatus.NotActive);
 
                                     MarkPortCellAsDisabled(imageCell);
-                                    MessageBox.Show("Порт " + portCell.Value + " на Cisco c IP адресом " + ipCell.Value + " не активен");
+                                    ShowToolTrayTooltip(portCell.Value + " " + ipCell.Value);
                                 }
                             }
                         }));
@@ -586,15 +591,19 @@ namespace WaterGate
 
                     break;
                 }
-
+                    //проверить порт
                 case 5:
                 {
                     if (e.RowIndex == -1)
                         break;
+                    var jdsuCisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString());
+                    var cisco = jdsuCisco.CiscoIPCom;
 
-                    var cisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString()).CiscoIPCom;
+                    //var cisco = GetJdsuCiscoClass(mainDataGridView[0, e.RowIndex].Value.ToString()).CiscoIPCom;
                     if (cisco == null)
                         return;
+
+                  
 
                     mainDataGridView.Cursor = Cursors.AppStarting;
 
@@ -602,7 +611,7 @@ namespace WaterGate
                     {
                         try
                         {
-                            IsCiscoActive(cisco);
+                            if(IsCiscoActive(cisco)) ShowToolTrayTooltipActive(jdsuCisco.CiscoPort.PortName + "" + jdsuCisco.CiscoIPCom.IP);
                         }
 
                         catch (Exception ex)
@@ -645,6 +654,13 @@ namespace WaterGate
         {
             NotifyIcon.Icon = Resources.FailIcon;
             NotifyIcon.ShowBalloonTip(10000, "Порт заблокирован", "Порт " + portName + " заблокирован.", ToolTipIcon.Warning);
+            System.Media.SystemSounds.Asterisk.Play();
+        }
+
+        private void ShowToolTrayTooltipActive(string portName)
+        {
+            NotifyIcon.Icon = Resources.FailIcon;
+            NotifyIcon.ShowBalloonTip(10000, "Порт активен", "Порт " + portName + " активен.", ToolTipIcon.Warning);
             System.Media.SystemSounds.Asterisk.Play();
         }
 
@@ -731,6 +747,11 @@ namespace WaterGate
                 }
             }
            
+
+        }
+
+        private void JDSUStatusLabel_Click(object sender, EventArgs e)
+        {
 
         }
 

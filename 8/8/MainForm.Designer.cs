@@ -40,9 +40,6 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.JDSUStatusLabel = new System.Windows.Forms.Label();
-            this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.JDSUport = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CiscoIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CiscoPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +47,9 @@
             this.NoteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CheckPortColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.SwitchColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.JDSUStatusLabel = new System.Windows.Forms.Label();
+            this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.topMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -165,35 +165,6 @@
             this.mainDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.mainDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainDataGridView_CellEndEdit);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::WaterGate.Properties.Resources.voip_gateway_256;
-            this.pictureBox1.Location = new System.Drawing.Point(154, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 37);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // JDSUStatusLabel
-            // 
-            this.JDSUStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.JDSUStatusLabel.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.JDSUStatusLabel.ForeColor = System.Drawing.Color.White;
-            this.JDSUStatusLabel.Location = new System.Drawing.Point(659, 60);
-            this.JDSUStatusLabel.Name = "JDSUStatusLabel";
-            this.JDSUStatusLabel.Size = new System.Drawing.Size(78, 24);
-            this.JDSUStatusLabel.TabIndex = 3;
-            this.JDSUStatusLabel.Text = "JDSU Active";
-            this.JDSUStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // NotifyIcon
-            // 
-            this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
-            this.NotifyIcon.Text = "WaterGate";
-            this.NotifyIcon.Visible = true;
-            this.NotifyIcon.BalloonTipClicked += new System.EventHandler(this.NotifyIcon_BalloonTipClicked);
-            this.NotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
-            // 
             // JDSUport
             // 
             this.JDSUport.HeaderText = "JDSU порт";
@@ -235,6 +206,36 @@
             this.SwitchColumn.HeaderText = "Принудительно включить порт";
             this.SwitchColumn.Name = "SwitchColumn";
             this.SwitchColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WaterGate.Properties.Resources.voip_gateway_256;
+            this.pictureBox1.Location = new System.Drawing.Point(154, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 37);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // JDSUStatusLabel
+            // 
+            this.JDSUStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.JDSUStatusLabel.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.JDSUStatusLabel.ForeColor = System.Drawing.Color.White;
+            this.JDSUStatusLabel.Location = new System.Drawing.Point(659, 60);
+            this.JDSUStatusLabel.Name = "JDSUStatusLabel";
+            this.JDSUStatusLabel.Size = new System.Drawing.Size(78, 24);
+            this.JDSUStatusLabel.TabIndex = 3;
+            this.JDSUStatusLabel.Text = "JDSU Active";
+            this.JDSUStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.JDSUStatusLabel.Click += new System.EventHandler(this.JDSUStatusLabel_Click);
+            // 
+            // NotifyIcon
+            // 
+            this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
+            this.NotifyIcon.Text = "WaterGate";
+            this.NotifyIcon.Visible = true;
+            this.NotifyIcon.BalloonTipClicked += new System.EventHandler(this.NotifyIcon_BalloonTipClicked);
+            this.NotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
             // 
             // MainForm
             // 

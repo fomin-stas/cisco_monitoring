@@ -71,7 +71,7 @@ namespace WaterGate
         private void IP_verify(object sender, EventArgs e)
         {
             String ValidIpAddressRegex = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
-            if (!Regex.IsMatch(ComboBoxIpAddressCisco.Text, ValidIpAddressRegex))
+            if (this.ComboBoxIpAddressCisco.SelectedValue != null & !Regex.IsMatch(ComboBoxIpAddressCisco.Text, ValidIpAddressRegex))
             {
                 MessageBox.Show("Введите корректно IP адрес");
                 return;
