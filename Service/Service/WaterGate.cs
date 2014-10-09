@@ -18,6 +18,9 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.IO.Compression;
+using StaticValuesDll;
+using System.Data.SQLite;
+using System.Data.Common;
 
 namespace Service
 {
@@ -160,10 +163,10 @@ namespace Service
         
         }
 
-       
+
         private static void DoWork()
         {
-           
+
 
             // Construct a socket and bind it to the trap manager port 162 
 
@@ -187,7 +190,7 @@ namespace Service
                 }
                 catch (Exception ex)
                 {
-                  Functions.AddTempLog(new List <string>  {ex.Message, ex.ToString()});
+                    Functions.AddTempLog(new List<string> { ex.Message, ex.ToString() });
                     inlen = -1;
                 }
                 if (inlen > 0)
@@ -197,41 +200,99 @@ namespace Service
                     if (ver == (int)SnmpVersion.Ver2)
                     {
 
+
                         // Parse SNMP Version 2 TRAP packet 
                         SnmpV2Packet pkt = new SnmpV2Packet();
                         pkt.decode(indata, inlen);
-                        List<string> trap = new List<string> { "*** SNMP Version 2 TRAP received from ", inep.ToString(), "*** Community", pkt.Community.ToString(), "*** VarBind content:" };
+                        List<string> alarm = new List<string> { inep.ToString(), pkt.Community.ToString() };
+                        List<string> trap = new List<string>();
                         foreach (Vb v in pkt.Pdu.VbList)
                         {
-                            trap.Add(v.Oid.ToString());
-                            trap.Add(SnmpConstants.GetTypeName(v.Value.Type));
                             trap.Add(v.Value.ToString());
                         }
-                        trap.Add("*** End of SNMP Version 2 TRAP data.");
-                        Functions.AddTempLog(trap);
 
-                        StaticValuesDll.AlarmClass alarm = new StaticValuesDll.AlarmClass();
-                        alarm.ClearStatus = 0;
-                        alarm.DateTime = DateTime.Now;
-                        alarm.inep = new StaticValuesDll.IPCom(inep.ToString(), pkt.Community.ToString());
-                        alarm.link = "not set";
-                        //Functions.SendAlarm(alarm);
-                        
+
+                        if (trap.Count == 42)
+                        {
+                            IPCom _ipcom = new IPCom();
+                            CiscoPort _ciscoPort = new CiscoPort();
+
+                            string path = "C:\\Repository.db";
+                            string _connectionString;
+                            _connectionString = "Data Source=" + path + ";Version=3;";
+                            using (var connection = new SQLiteConnection(_connectionString))
+                            {
+                                connection.Open();
+
+                                using (var command = new SQLiteCommand("SELECT IP,Com,PortId FROM Ports WHERE JDSUPort = @_JDSUPort", connection))
+                                {
+                                    command.Parameters.Add("@_JDSUPort", DbType.String).Value = trap[27];
+
+                                    try
+                                    {
+                                        using (var reader = command.ExecuteReader())
+                                        {
+
+                                            foreach (DbDataRecord record in reader)
+                                            {
+                                                SimpleSnmp snmp = new SimpleSnmp(record["IP"].ToString(), record["Com"].ToString());
+                                               
+                                                
+                                                //надеюсь, если что упадет в exception
+                                                /*if (!snmp.Valid)
+                                                {
+                                                   
+                                                    return;
+                                                }*/
+
+                                                Pdu pdu = new Pdu(PduType.Set);
+                                                pdu.VbList.Add(new Oid(".1.3.6.1.2.1.2.2.1.7" + record["PortId"].ToString()), new Integer32(0));
+                                                snmp.Set(SnmpVersion.Ver2, pdu);
+
+
+
+                                                alarm.Add(record["IP"].ToString());
+                                                alarm.Add(record["Com"].ToString());
+                                                alarm.Add(record["PortId"].ToString());
+                                            }
+
+                                        }
+
+                                       
+
+
+                                    }
+
+                                    catch (Exception ex)
+                                    {
+                                        alarm.Add(ex.ToString());
+                                        alarm.Add("в базе данных нет такой записи");
+                                    }
+
+
+                                }
+
+                            }
+
+                        }
+                        else
+                        {
+                            if (inlen == 0)
+                            {
+                                Functions.AddTempLog(new List<string> { "Zero length packet received." });
+                            }
+
+
+                        }
+
                     }
-                    
                 }
-                else
-                {
-                    if (inlen == 0)
-                    { 
-                        Functions.AddTempLog(new List <string> {"Zero length packet received."});
-                    }
-                    
-                    
-                }
-          
             }
         }
+
+        
+            
+
 
         public void AddLog(string log)
         {
