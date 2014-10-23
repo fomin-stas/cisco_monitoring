@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.topMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.конфигурацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьКонфигурациюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьXmlФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьCiscoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.назначитьПортыJDSUCiscoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +67,7 @@
             this.topMenuStrip.BackColor = System.Drawing.SystemColors.ControlLight;
             this.topMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.topMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.конфигурацияToolStripMenuItem,
             this.настройкаToolStripMenuItem,
             this.справкаToolStripMenuItem});
             this.topMenuStrip.Location = new System.Drawing.Point(0, 60);
@@ -72,6 +76,29 @@
             this.topMenuStrip.Size = new System.Drawing.Size(737, 24);
             this.topMenuStrip.TabIndex = 0;
             this.topMenuStrip.Text = "menuStrip1";
+            // 
+            // конфигурацияToolStripMenuItem
+            // 
+            this.конфигурацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьКонфигурациюToolStripMenuItem,
+            this.загрузитьXmlФайлToolStripMenuItem});
+            this.конфигурацияToolStripMenuItem.Name = "конфигурацияToolStripMenuItem";
+            this.конфигурацияToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.конфигурацияToolStripMenuItem.Text = "Конфигурация";
+            // 
+            // сохранитьКонфигурациюToolStripMenuItem
+            // 
+            this.сохранитьКонфигурациюToolStripMenuItem.Name = "сохранитьКонфигурациюToolStripMenuItem";
+            this.сохранитьКонфигурациюToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.сохранитьКонфигурациюToolStripMenuItem.Text = "Сохранить xml файл";
+            this.сохранитьКонфигурациюToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКонфигурациюToolStripMenuItem_Click_1);
+            // 
+            // загрузитьXmlФайлToolStripMenuItem
+            // 
+            this.загрузитьXmlФайлToolStripMenuItem.Name = "загрузитьXmlФайлToolStripMenuItem";
+            this.загрузитьXmlФайлToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.загрузитьXmlФайлToolStripMenuItem.Text = "Загрузить xml файл";
+            this.загрузитьXmlФайлToolStripMenuItem.Click += new System.EventHandler(this.загрузитьXmlФайлToolStripMenuItem_Click);
             // 
             // настройкаToolStripMenuItem
             // 
@@ -162,7 +189,7 @@
             this.mainDataGridView.Size = new System.Drawing.Size(737, 410);
             this.mainDataGridView.TabIndex = 1;
             this.mainDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainDataGridView_CellClick);
-            this.mainDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+
             this.mainDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainDataGridView_CellEndEdit);
             // 
             // JDSUport
@@ -227,7 +254,6 @@
             this.JDSUStatusLabel.TabIndex = 3;
             this.JDSUStatusLabel.Text = "JDSU Active";
             this.JDSUStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.JDSUStatusLabel.Click += new System.EventHandler(this.JDSUStatusLabel_Click);
             // 
             // NotifyIcon
             // 
@@ -287,6 +313,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NoteColumn;
         private System.Windows.Forms.DataGridViewImageColumn CheckPortColumn;
         private System.Windows.Forms.DataGridViewImageColumn SwitchColumn;
+        private System.Windows.Forms.ToolStripMenuItem конфигурацияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьКонфигурациюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьXmlФайлToolStripMenuItem;
      
 
     }

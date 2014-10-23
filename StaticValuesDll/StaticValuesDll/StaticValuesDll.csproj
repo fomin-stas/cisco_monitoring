@@ -46,6 +46,7 @@
     <Compile Include="AuthorizationToken.cs" />
     <Compile Include="CiscoPort.cs" />
     <Compile Include="ConfigContainer.cs" />
+    <Compile Include="forSerialize.cs" />
     <Compile Include="IPCom.cs" />
     <Compile Include="IWaterGateService.cs" />
     <Compile Include="JDSUCiscoClass.cs" />

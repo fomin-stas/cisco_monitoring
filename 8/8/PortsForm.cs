@@ -32,36 +32,31 @@ namespace WaterGate
             CiscoPort.DisplayMember = "PortName";
             CiscoIP.DisplayMember = "IP";
 
-            this.CiscoIP.Items.Add(new IPCom("not set", "not set"));
+            this.CiscoIP.Items.Add("not set");
 
             foreach (IPCom key in StaticValues.CiscoList)
             {
                 if (!string.IsNullOrEmpty(key.IP))
                 {
-                    this.CiscoIP.Items.Add(key);
+                    
+                    this.CiscoIP.Items.Add(key.IP);
                 }
             }
 
             for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
             {
                 portsDataGridView.Rows.Add(StaticValues.JDSUCiscoArray[i].JDSUPort);
-
-
-                portsDataGridView.Rows[i].Cells[1].Value = (portsDataGridView[1, i] as DataGridViewComboBoxCell).Items[(portsDataGridView[1, i] as DataGridViewComboBoxCell).Items.IndexOf(StaticValues.JDSUCiscoArray[i].CiscoIPCom)]/*Contains(Convert.ToString(StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP))*/;
-
-
-
+                int f = (portsDataGridView[1, i] as DataGridViewComboBoxCell).Items.IndexOf(StaticValues.JDSUCiscoArray[i].CiscoIPCom.IP);
+               
+                (portsDataGridView[1, i] as DataGridViewComboBoxCell).Value = (portsDataGridView[1, i] as DataGridViewComboBoxCell).Items[f];
+               
                 (portsDataGridView[2, i] as DataGridViewComboBoxCell).Items.Add(StaticValues.JDSUCiscoArray[i].CiscoPort);
                 portsDataGridView.Rows[i].Cells[2].Value = (portsDataGridView[2, i] as DataGridViewComboBoxCell).Items[0];
 
             }
         }
 
-        void formJDSUPort_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
+       
         void formJDSUPort_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             switch (e.ColumnIndex)

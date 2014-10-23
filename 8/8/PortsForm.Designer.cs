@@ -59,7 +59,6 @@
             this.portsDataGridView.Size = new System.Drawing.Size(425, 477);
             this.portsDataGridView.TabIndex = 0;
             this.portsDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.portsDataGridView_CellBeginEdit);
-            this.portsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellContentClick);
             this.portsDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellEndEdit);
             this.portsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.portsDataGridView_CellValueChanged);
             this.portsDataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.formJDSUPort_CurrentCellDirtyStateChanged);

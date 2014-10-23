@@ -173,9 +173,9 @@ namespace WaterGate
                                     crashCount++;
                                     if (!IsPortDisabled(label))
                                         ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
-                                 //   paintCiscoIP(label, System.Drawing.Color.Red);
+                                    
                                     Invoke(
-                                        new Action(() => MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6])));
+                                        new Action(() => MarkPortCellAsDisabled((DataGridViewImageCell)label.Cells[6])));
                                 }
                             }
                             Functions.AddTempLog(cisco.IP, ex.Message);
@@ -187,25 +187,36 @@ namespace WaterGate
                         Invoke(new Action(() => NotifyIcon.Icon = Resources.Icon));
                     }
 
-                    
+
 
                 }
-                catch { }
-
+                catch (Exception ex)
+                { Functions.AddTempLog(ex.ToString()); }
                 Thread.Sleep((int)(StaticValues.CheckDelay * 60000));
             }
         }
 
         private bool IsCiscoActive(IPCom cisco)
         {
+            /*
             UdpTarget target = new UdpTarget((IPAddress) new IpAddress(cisco.IP), 161, 500, 0);
             Pdu pdu = new Pdu(PduType.Get);
             pdu.VbList.Add(".1.3.6.1.2.1.1.6.0");
-            AgentParameters aparam = new AgentParameters(SnmpVersion.Ver2, new OctetString(cisco.Com));
-            SnmpV2Packet response;
+            
+            try
+            {
+                AgentParameters aparam = new AgentParameters(SnmpVersion.Ver2, new OctetString(cisco.Com));
+                SnmpV2Packet response;
+                response = target.Request(pdu, aparam) as SnmpV2Packet;
+                target.Close();
+            }
+            catch (Exception ex) 
+            {
+            Functions.AddTempLog(ex.ToString());
 
-            response = target.Request(pdu, aparam) as SnmpV2Packet;
-            target.Close();
+            return false;
+            }
+            */
 
             foreach (DataGridViewRow label in this.mainDataGridView.Rows)
             {
@@ -299,12 +310,12 @@ namespace WaterGate
             }
 
         }
-
+        
         private bool IsPortDisabled(DataGridViewRow row)
         {
             return row.Cells[1].Style.BackColor == Color.Red || row.Cells[2].Style.BackColor == Color.Red;
         }
-
+        
         private void MarkPortCellAsEnabled(DataGridViewImageCell cell)
         {
             cell.Value = Properties.Resources.OnButton;
@@ -330,37 +341,7 @@ namespace WaterGate
         }
 
 
-        [Obsolete]
-       private void загрузитьКонфигурациюToolStripMenuItem_Click(object sender, EventArgs e)
-       {
-         
-           OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-           openFileDialog1.InitialDirectory = Environment.CurrentDirectory;
-           openFileDialog1.Filter = "xml files (*.xml)|*.xml";
-           openFileDialog1.FilterIndex = 2;
-           openFileDialog1.RestoreDirectory = true;
-
-           if (openFileDialog1.ShowDialog() == DialogResult.OK)
-           {
-               try
-               {
-                
-                   Functions.SerializeConfig(openFileDialog1.FileName);
-                   File.Copy(openFileDialog1.FileName, Functions.pathConfig, true);
-                   for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
-                   {
-                       FillForm();
-                   }
-                       MessageBox.Show("конфигурация загружена");
-               }
-               catch (Exception ex)
-               {
-                   MessageBox.Show(ex.Message);
-               }
-           }
-       }
-
+     
        private void добавитьCiscoToolStripMenuItem_Click(object sender, EventArgs e)
        {
            CiscoForm f = new CiscoForm();
@@ -389,23 +370,7 @@ namespace WaterGate
            f.ShowDialog();
        }
 
-        [Obsolete]
-       private void сохранитьКонфигурациюToolStripMenuItem_Click(object sender, EventArgs e)
-       {
-           SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-           saveFileDialog1.Filter = "xml files (*.xml)|*.xml";
-           saveFileDialog1.Title = "Сохранить конфигурацию";
-           saveFileDialog1.InitialDirectory = Environment.CurrentDirectory;
-   
-           if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFileDialog1.FileName != "")
-           {
-
-               File.Copy(Functions.pathConfig, saveFileDialog1.FileName, true);
-               MessageBox.Show("Конфигурация сохранена");
-
-           
-           }
-       }
+      
 
        private void списокАварийToolStripMenuItem_Click(object sender, EventArgs e)
        {
@@ -424,57 +389,6 @@ namespace WaterGate
        }
 
 
-        //Can be removed
-        [Obsolete]
-       private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-       {
-           //switchON
-           //if (e.ColumnIndex == 4)
-           //{
-             
-
-           //    int u = (int)(e.RowIndex);
-
-           //    string host = StaticValues.JDSUCiscoArray[u].CiscoIPCom.IP;
-           //    string community = StaticValues.JDSUCiscoArray[u].CiscoIPCom.Com;
-           //    var snmp = new SimpleSnmp(host, community);
-           //    if (!snmp.Valid)
-           //    {
-           //        MessageBox.Show("net soedinenia");
-           //        return;
-           //    }
-
-
-           //    Dictionary<Oid, AsnType> result = snmp.Get(SnmpVersion.Ver1, new[]
-           //     {
-           //         ".1.3.6.1.2.1.2.2.1.7" + StaticValues.JDSUCiscoArray[u].CiscoPort.PortID 
-           //     });
-
-           //    if (result == null)
-           //    {
-           //        MessageBox.Show("net otveta / возможно указанный IP адрес не является IP адресом коммутационного оборудования Cisco");
-           //        return;
-           //    }
-
-
-           //    foreach (var kvp in result)
-           //    {
-           //        if (kvp.Value.ToString() == "1")
-           //        {
-
-           //            MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[2].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[1].Value + " активен");
-           //        }
-           //        else
-           //        {
-           //            MessageBox.Show("Порт " + this.mainDataGridView.Rows[u].Cells[2].Value + " на Cisco c IP адресом " + this.mainDataGridView.Rows[u].Cells[1].Value + " не активен");
-           //        }
-
-           //    }
-
-           
-           //}
-
-       }
 
         private JDSUCiscoClass GetJdsuCiscoClass(string jdsuPortName)
         {
@@ -750,10 +664,69 @@ namespace WaterGate
 
         }
 
-        private void JDSUStatusLabel_Click(object sender, EventArgs e)
+        private void загрузитьXmlФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
+            openFileDialog1.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog1.Filter = "xml files (*.xml)|*.xml";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+
+                    Functions.SerializeConfig(openFileDialog1.FileName);
+                    File.Copy(openFileDialog1.FileName, Functions.pathConfig, true);
+                    for (int i = 0; i < StaticValues.JDSUCiscoArray.Count; i++)
+                    {
+                        FillForm();
+                    }
+                    MessageBox.Show("конфигурация загружена");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
+        private void сохранитьКонфигурациюToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "xml files (*.xml)|*.xml";
+            saveFileDialog1.Title = "Сохранить конфигурацию";
+            saveFileDialog1.InitialDirectory = Environment.CurrentDirectory;
+
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFileDialog1.FileName != "")
+            {
+
+               // File.Copy(Functions.pathConfig, saveFileDialog1.FileName, true);
+
+               
+                forSerialize ser = new forSerialize();
+
+                ser.n = StaticValues.JDSUCiscoArray.Count();
+                ser.JDSUIP = StaticValues.JDSUIP;
+                ser.JDSUCiscoArray = StaticValues.JDSUCiscoArray.ToArray();
+
+                FileStream myFileStream = new FileStream(saveFileDialog1.FileName, FileMode.OpenOrCreate);
+                XmlSerializer serializer = new XmlSerializer(typeof(forSerialize));
+
+                serializer.Serialize(myFileStream, ser);
+            
+                
+                
+                MessageBox.Show("Конфигурация сохранена");
+
+
+            }
+        }
+
+       
+
+   
     }
 }
