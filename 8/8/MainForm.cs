@@ -198,26 +198,7 @@ namespace WaterGate
 
         private bool IsCiscoActive(IPCom cisco)
         {
-            /*
-            UdpTarget target = new UdpTarget((IPAddress) new IpAddress(cisco.IP), 161, 500, 0);
-            Pdu pdu = new Pdu(PduType.Get);
-            pdu.VbList.Add(".1.3.6.1.2.1.1.6.0");
-            
-            try
-            {
-                AgentParameters aparam = new AgentParameters(SnmpVersion.Ver2, new OctetString(cisco.Com));
-                SnmpV2Packet response;
-                response = target.Request(pdu, aparam) as SnmpV2Packet;
-                target.Close();
-            }
-            catch (Exception ex) 
-            {
-            Functions.AddTempLog(ex.ToString());
-
-            return false;
-            }
-            */
-
+           
             foreach (DataGridViewRow label in this.mainDataGridView.Rows)
             {
                 if (label.Cells[1].Value.ToString() == cisco.IP)
@@ -230,7 +211,7 @@ namespace WaterGate
                     {
 
                         paintCiscoIP(label, System.Drawing.Color.Yellow);
-                        return false;
+                       
                     }
 
 
@@ -247,44 +228,46 @@ namespace WaterGate
                         {
                             if (!IsPortDisabled(label))
                                 ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
-                            MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6]);
+                            MarkPortCellAsDisabled((DataGridViewImageCell)label.Cells[6]);
                         }));
                         paintCiscoPort(label, System.Drawing.Color.Red);
-                        return false;
+
                     }
 
-
-                    foreach (var kvp in result)
+                    else
                     {
-                        if (kvp.Value.ToString() == "1")
+                        foreach (var kvp in result)
                         {
-
-                            // MessageBox.Show("Порт " + lCiscoPort[u].Text + " на Cisco c IP адресом " + lCisco[u].Text + " активен");
-                            paintCiscoIP(label, System.Drawing.Color.Green);
-                            paintCiscoPort(label, System.Drawing.Color.Green);
-
-                            Invoke(
-                                new Action(
-                                    () => MarkPortCellAsEnabled((DataGridViewImageCell) label.Cells[6])));
-                        }
-                        else
-                        {
-                            //   MessageBox.Show("Порт " + lCiscoPort[u].Text + " на Cisco c IP адресом " + lCisco[u].Text + " не активен");
-
-
-                            Invoke(new Action(() =>
+                            if (kvp.Value.ToString() == "1")
                             {
-                                if (!IsPortDisabled(label))
-                                    ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
-                                MarkPortCellAsDisabled((DataGridViewImageCell) label.Cells[6]);
-                            }));
 
-                            paintCiscoIP(label, System.Drawing.Color.Green);
-                            paintCiscoPort(label, System.Drawing.Color.Red);
+                                // MessageBox.Show("Порт " + lCiscoPort[u].Text + " на Cisco c IP адресом " + lCisco[u].Text + " активен");
+                                paintCiscoIP(label, System.Drawing.Color.Green);
+                                paintCiscoPort(label, System.Drawing.Color.Green);
 
-                            return false;
+                                Invoke(
+                                    new Action(
+                                        () => MarkPortCellAsEnabled((DataGridViewImageCell)label.Cells[6])));
+                            }
+                            else
+                            {
+                                //   MessageBox.Show("Порт " + lCiscoPort[u].Text + " на Cisco c IP адресом " + lCisco[u].Text + " не активен");
+
+
+                                Invoke(new Action(() =>
+                                {
+                                    if (!IsPortDisabled(label))
+                                        ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
+                                    MarkPortCellAsDisabled((DataGridViewImageCell)label.Cells[6]);
+                                }));
+
+                                paintCiscoIP(label, System.Drawing.Color.Green);
+                                paintCiscoPort(label, System.Drawing.Color.Red);
+
+
+                            }
+
                         }
-
                     }
 
 
@@ -416,7 +399,8 @@ namespace WaterGate
 
         private void mainDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            this.mainDataGridView.Rows[e.RowIndex].Selected = false;
+            
             switch (e.ColumnIndex)
             {
                     //включить порт

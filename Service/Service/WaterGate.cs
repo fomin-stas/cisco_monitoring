@@ -210,10 +210,11 @@ namespace Service
                         {
                             trap.Add(v.Value.ToString());
                         }
-
+                        Functions.AddTempLog(trap);
 
                         if (trap.Count == 42)
                         {
+                           
                             IPCom _ipcom = new IPCom();
                             CiscoPort _ciscoPort = new CiscoPort();
 
@@ -228,52 +229,57 @@ namespace Service
                                 {
                                     command.Parameters.Add("@_JDSUPort", DbType.String).Value = trap[27];
 
-                                    try
-                                    {
-                                        using (var reader = command.ExecuteReader())
+                                   
+
+                                        try
                                         {
-
-                                            foreach (DbDataRecord record in reader)
+                                            using (var reader = command.ExecuteReader())
                                             {
-                                                SimpleSnmp snmp = new SimpleSnmp(record["IP"].ToString(), record["Com"].ToString());
-                                               
-                                                
-                                                //надеюсь, если что упадет в exception
-                                                /*if (!snmp.Valid)
+                                               // int k = (int)command.ExecuteScalar();
+
+                                                foreach (DbDataRecord record in reader)
                                                 {
-                                                   
-                                                    return;
-                                                }*/
-
-                                                Pdu pdu = new Pdu(PduType.Set);
-                                                pdu.VbList.Add(new Oid(".1.3.6.1.2.1.2.2.1.7" + record["PortId"].ToString()), new Integer32(0));
-                                                snmp.Set(SnmpVersion.Ver2, pdu);
+                                                    try
+                                                    {
+                                                        SimpleSnmp snmp = new SimpleSnmp(record["IP"].ToString(), record["Com"].ToString());
 
 
 
-                                                alarm.Add(record["IP"].ToString());
-                                                alarm.Add(record["Com"].ToString());
-                                                alarm.Add(record["PortId"].ToString());
+                                                        Pdu pdu = new Pdu(PduType.Set);
+                                                        pdu.VbList.Add(new Oid(".1.3.6.1.2.1.2.2.1.7" + record["PortId"].ToString()), new Integer32(2));
+                                                        snmp.Set(SnmpVersion.Ver2, pdu);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        alarm.Add(ex.ToString());
+                                                    }
+
+
+                                                    alarm.Add(record["IP"].ToString());
+                                                    alarm.Add(record["Com"].ToString());
+                                                    alarm.Add(record["PortId"].ToString());
+                                                    alarm.Add(trap[27].ToString());
+
+                                                }
+
                                             }
+
+
+
 
                                         }
 
-                                       
-
-
-                                    }
-
-                                    catch (Exception ex)
-                                    {
-                                        alarm.Add(ex.ToString());
-                                        alarm.Add("в базе данных нет такой записи");
-                                    }
-
+                                        catch (Exception ex)
+                                        {
+                                            alarm.Add(ex.ToString());
+                                            alarm.Add("в базе данных нет такой записи");
+                                        }
+                                  
 
                                 }
 
                             }
-
+                          //  Functions.AddTempLog(alarm);
                         }
                         else
                         {

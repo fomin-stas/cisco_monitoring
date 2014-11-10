@@ -115,7 +115,8 @@ namespace WaterGate
                     else
                     {
                         var name = Convert.ToString((this.portsDataGridView[1, row] as DataGridViewComboBoxCell).FormattedValue);
-                        StaticValues.JDSUCiscoArray[row].CiscoIPCom = (IPCom)(this.portsDataGridView[1, row] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item => item.IP.Equals(name));
+                        StaticValues.JDSUCiscoArray[row].CiscoIPCom = StaticValues.CiscoList.First(item => item.IP.Equals(name));
+                            //(IPCom)(this.portsDataGridView[1, row] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item => item.IP.Equals(name));
                     }
 
                     if (_mainForm != null)
@@ -244,9 +245,8 @@ namespace WaterGate
             var rowNumber = portsDataGridView.Rows.Count - 1;
 
 
-            portsDataGridView.Rows[rowNumber].Cells[1].Value =
-                (portsDataGridView[1, rowNumber] as DataGridViewComboBoxCell).Items.Cast<IPCom>()
-                    .First(item => item.IP.Equals("not set"));
+            portsDataGridView.Rows[rowNumber].Cells[1].Value = (portsDataGridView[1, rowNumber] as DataGridViewComboBoxCell).Items[0];
+                // (portsDataGridView[1, rowNumber] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item => item.IP.Equals("not set"));
 
 
 
@@ -334,7 +334,8 @@ namespace WaterGate
             }
 
             var stringValue = portsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].FormattedValue;
-            var value = (portsDataGridView[e.ColumnIndex, e.RowIndex] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item => item.IP.Equals(stringValue));
+            var value = StaticValues.CiscoList.First(item=>item.IP.Equals(stringValue));
+                //(portsDataGridView[e.ColumnIndex, e.RowIndex] as DataGridViewComboBoxCell).Items.Cast<IPCom>().First(item => item.IP.Equals(stringValue));
 
             portsDataGridView.Cursor = Cursors.AppStarting;
             var asyncAction = new Action(() =>
