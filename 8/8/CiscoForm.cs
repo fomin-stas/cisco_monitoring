@@ -293,6 +293,30 @@ namespace WaterGate
             Delete.Enabled = false;
             Change.Enabled = false;
             Cursor = Cursors.AppStarting;
+
+
+
+            foreach (var item in StaticValues.JDSUCiscoArray)
+            {
+                if (item.CiscoIPCom.IP == ComboBoxIpAddressCisco.Text)
+                    item.CiscoIPCom.Com = TextBoxCommunity.Text;
+            }
+
+            //   var serviceContext = new WaterGateServiceContext();
+            serviceContext.UpdatePorts(StaticValues.JDSUCiscoArray, (error) =>
+            {
+                if (error != null)
+                {
+                    Invoke(new Action(() =>
+                        MessageBox.Show(
+                            "Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
+                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error)));
+                }
+              
+            });
+
+
+
             serviceContext.UpdateCiscoRouters(list, (error) =>
             {
                 if (error != null)
@@ -317,7 +341,6 @@ namespace WaterGate
                     TextBoxCommunity.Clear();
                 }));
 
-
                 Invoke(new Action(() =>
                 {
                     Save.Enabled = true;
@@ -325,7 +348,11 @@ namespace WaterGate
                     Change.Enabled = true;
                     Cursor = Cursors.Arrow;
                 }));
+                
             });
+
+
+
         }
 
         

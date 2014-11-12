@@ -203,17 +203,11 @@ namespace WaterGate
             {
                 if (label.Cells[1].Value.ToString() == cisco.IP)
                 {
-                    paintCiscoIP(label, System.Drawing.Color.Green);
+                    
                     string host = cisco.IP;
                     string community = cisco.Com;
                     var snmp = new SimpleSnmp(host, community);
-                    if (!snmp.Valid)
-                    {
-
-                        paintCiscoIP(label, System.Drawing.Color.Yellow);
-                       
-                    }
-
+                    
 
                     Dictionary<Oid, AsnType> result = snmp.Get(SnmpVersion.Ver1, new[]
                     {
@@ -230,6 +224,7 @@ namespace WaterGate
                                 ShowToolTrayTooltip(cisco.IP + " " + cisco.Com);
                             MarkPortCellAsDisabled((DataGridViewImageCell)label.Cells[6]);
                         }));
+                        paintCiscoIP(label, System.Drawing.Color.Yellow);
                         paintCiscoPort(label, System.Drawing.Color.Red);
 
                     }

@@ -61,7 +61,7 @@
             this.portsDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.portsDataGridView_CellBeginEdit);
             this.portsDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.formJDSUPort_CellEndEdit);
             this.portsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.portsDataGridView_CellValueChanged);
-            this.portsDataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.formJDSUPort_CurrentCellDirtyStateChanged);
+          //  this.portsDataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.formJDSUPort_CurrentCellDirtyStateChanged);
             // 
             // JDSUport
             // 
@@ -126,7 +126,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PortsForm";
             this.Text = "Назначить порты JDSU/Cisco";
-            this.Load += new System.EventHandler(this.Ports_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).EndInit();
             this.ResumeLayout(false);
 
