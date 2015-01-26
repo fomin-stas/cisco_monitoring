@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="EmptyRepository\Repository.db" />
+    <Content Include="EmptyRepository\Repository.db" />
     <None Include="packages.config" />
     <None Include="Repository.db" />
   </ItemGroup>

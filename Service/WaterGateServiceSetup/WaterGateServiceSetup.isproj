@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<!-- Select a Product Configuration -->
 		<InstallShieldProductConfiguration>Express</InstallShieldProductConfiguration>
@@ -28,7 +28,12 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2013Limited\InstallShield.targets"/>
+	<ItemGroup/>
 	<ItemGroup>
+		<ProjectReference Include="..\SetupConfiguration\SetupConfiguration.csproj">
+			<Name>SetupConfiguration</Name>
+			<Project>{6042B3D7-B347-41B8-AC05-AD7F86CDC586}</Project>
+		</ProjectReference>
 		<ProjectReference Include="..\Service\WaterGateService.csproj">
 			<Name>WaterGateService</Name>
 			<Project>{BE4A4F1B-9544-49CF-A486-9EE3E3AAC36E}</Project>

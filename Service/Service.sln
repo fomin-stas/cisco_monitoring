@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterGateService", "Service\WaterGateService.csproj", "{BE4A4F1B-9544-49CF-A486-9EE3E3AAC36E}"
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "WaterGateServiceSetup", "WaterGateServiceSetup\WaterGateServiceSetup.isproj", "{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}"
 	ProjectSection(ProjectDependencies) = postProject
-		{BE4A4F1B-9544-49CF-A486-9EE3E3AAC36E} = {BE4A4F1B-9544-49CF-A486-9EE3E3AAC36E}
+		{6042B3D7-B347-41B8-AC05-AD7F86CDC586} = {6042B3D7-B347-41B8-AC05-AD7F86CDC586}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetupConfiguration", "SetupConfiguration\SetupConfiguration.csproj", "{6042B3D7-B347-41B8-AC05-AD7F86CDC586}"
@@ -33,8 +33,7 @@ Global
 		{BE4A4F1B-9544-49CF-A486-9EE3E3AAC36E}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.CD_ROM|Any CPU.Build.0 = CD_ROM
-		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.Debug|Any CPU.ActiveCfg = DVD-5
-		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.Debug|Any CPU.Build.0 = DVD-5
+		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.Debug|Any CPU.ActiveCfg = SingleImage
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.DVD-5|Any CPU.ActiveCfg = DVD-5
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.DVD-5|Any CPU.Build.0 = DVD-5
 		{BD898E1D-6E5C-48B5-8330-A6DCB6090BCB}.Release|Any CPU.ActiveCfg = SingleImage
