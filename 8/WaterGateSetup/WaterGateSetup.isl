@@ -225,7 +225,7 @@
 	<table name="AppSearch">
 		<col key="yes" def="s72">Property</col>
 		<col key="yes" def="s72">Signature_</col>
-		<row><td>DOTNETVERSION35</td><td>DotNet35</td></row>
+		<row><td>DOTNETVERSION35SP1</td><td>DotNet35SP1</td></row>
 	</table>
 
 	<table name="BBControl">
@@ -1141,11 +1141,12 @@
 		<row><td>CommonFiles64Folder</td><td>TARGETDIR</td><td>.:Common64</td><td/><td>0</td><td/></row>
 		<row><td>CommonFilesFolder</td><td>TARGETDIR</td><td>.:Common</td><td/><td>0</td><td/></row>
 		<row><td>DATABASEDIR</td><td>ISYourDataBaseDir</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>DIRECTORY</td><td>ProgramFilesFolder</td><td>НАЗВАН~1|Название организации</td><td/><td>0</td><td/></row>
 		<row><td>DesktopFolder</td><td>TARGETDIR</td><td>.:Desktop</td><td/><td>3</td><td/></row>
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>WATERGATE1</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>WATERGATE3</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
@@ -1172,10 +1173,14 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WATERGATE</td><td>ISMyCompanyDir</td><td>WATERG~1|WaterGate</td><td/><td>0</td><td/></row>
 		<row><td>WATERGATE1</td><td>YOUR_COMPANY_NAME</td><td>WATERG~1|WaterGate</td><td/><td>0</td><td/></row>
+		<row><td>WATERGATE2</td><td>DIRECTORY</td><td>WATERG~1|WaterGate</td><td/><td>0</td><td/></row>
+		<row><td>WATERGATE3</td><td>ProgramFilesFolder</td><td>WATERG~1|WaterGate</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>YOUR_COMPANY_NAME</td><td>ProgramFilesFolder</td><td>YOURCO~1|Your Company Name</td><td/><td>0</td><td/></row>
+		<row><td>company</td><td>ProgramMenuFolder</td><td>Company</td><td/><td>1</td><td/></row>
 		<row><td>waterg_1_watergate</td><td>yourco_1_your_company_name</td><td>WATERG~1|WaterGate</td><td/><td>1</td><td/></row>
+		<row><td>waterg_1_watergate1</td><td>company</td><td>WATERG~1|WaterGate</td><td/><td>1</td><td/></row>
 		<row><td>yourco_1_your_company_name</td><td>ProgramMenuFolder</td><td>YOURCO~1|Your Company Name</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -2617,7 +2622,7 @@
 		<col def="I2">Order</col>
 		<col def="I2">ISSetupLocation</col>
 		<col def="S255">ISReleaseFlags</col>
-		<row><td>_8AF416BA_E218_47B3_B320_DF08CEABD7A5_</td><td>Microsoft .NET Framework 3.5 (Web Download).prq</td><td/><td>1</td><td/></row>
+		<row><td>_52FE6E40_0361_492A_AC27_BEFC7796AE81_</td><td>Microsoft .NET Framework 3.5 SP1 (Web Download).prq</td><td/><td/><td/></row>
 	</table>
 
 	<table name="ISSetupType">
@@ -2651,10 +2656,11 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1049</td><td>Название организации</td><td>0</td><td/><td>-1138600558</td></row>
+		<row><td>COMPANY_NAME</td><td>1049</td><td>Company</td><td>0</td><td/><td>-1868343727</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1049</td><td>Всегда устанавливать</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1049</td><td>Настройки цвета системы не подходят для работы [ProductName].</td><td>0</td><td/><td>-1138600558</td></row>
-		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35</td><td>1049</td><td>Microsoft .NET Framework 3.5 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1138600558</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35SP1</td><td>1033</td><td>Microsoft .NET Framework 3.5 SP1 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1868363695</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35SP1</td><td>1049</td><td>Прежде чем устанавливать данное приложение, установите .NET Framework 3.5 SP1.</td><td>0</td><td/><td>-1868348745</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1049</td><td>Операционная система не подходит для работы [ProductName].</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_PROCESSOR</td><td>1049</td><td>Процессор не подходит для работы [ProductName].</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_RAM</td><td>1049</td><td>Объем памяти ОЗУ не достаточен для работы [ProductName].</td><td>0</td><td/><td>-1138600558</td></row>
@@ -3465,6 +3471,8 @@
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1049</td><td>Эта программа установки может работать до %s. Программа установки будет закрыта.</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1049</td><td>Эта программа установки создана на базе пробной версии InstallShield и может быть запущена только из setup.exe.</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1049</td><td>LAUNCH~1.EXE|Launch 8.exe</td><td>0</td><td/><td>-1138600558</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td/><td>0</td><td/><td>-1868349999</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1049</td><td>WATERG~1|WaterGate</td><td>0</td><td/><td>-1868315183</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1049</td><td>В следующем списке серверов выберите сервер базы данных, который необходимо использовать.</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1049</td><td>Из приведенного ниже списка имен каталогов выберите каталог базы данных, которую нужно выбрать.</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1049</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-1138600558</td></row>
@@ -3754,9 +3762,13 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1049</td><td>Объем памяти ОЗУ не достаточен для работы [ProductName].</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1049</td><td>Разрешение экрана не подходит для работы [ProductName].</td><td>0</td><td/><td>-1138600558</td></row>
 		<row><td>ID_STRING1</td><td>1049</td><td/><td>0</td><td/><td>-1138600558</td></row>
-		<row><td>ID_STRING2</td><td>1049</td><td>http://www.YourCompanyName.com</td><td>0</td><td/><td>-1138600558</td></row>
+		<row><td>ID_STRING2</td><td>1049</td><td>http://www.Company.com</td><td>0</td><td/><td>-1868343727</td></row>
 		<row><td>ID_STRING3</td><td>1049</td><td>LAUNCH~1.EXE|Launch 8.exe</td><td>0</td><td/><td>-1138600558</td></row>
-		<row><td>ID_STRING4</td><td>1049</td><td>Your Company Name</td><td>0</td><td/><td>-1138600558</td></row>
+		<row><td>ID_STRING4</td><td>1049</td><td>Company</td><td>0</td><td/><td>-1868343727</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>NEWSHO~1|NewShortcut1</td><td>0</td><td/><td>-1868329871</td></row>
+		<row><td>ID_STRING5</td><td>1049</td><td>WATERG~1|WaterGate</td><td>0</td><td/><td>-1868305295</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-1868341807</td></row>
+		<row><td>ID_STRING6</td><td>1049</td><td>Launch |Built</td><td>0</td><td/><td>-1868341807</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1049</td><td>Данный компонент не будет удален.</td><td>0</td><td/><td>-1138600558</td></row>
 	</table>
 
@@ -3864,7 +3876,7 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Users\Vladimir\Desktop\Icon.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;VSSolutionFolder&gt;\ico.ico</td><td>0</td></row>
 		<row><td>_.exe1_14B6282A123D4DDE92A951DCF5142DE0.exe</td><td/><td>F:\Работы\WaterGate\8\8\bin\Release\8.exe</td><td>0</td></row>
 		<row><td>_.exe_12B2AF24A3AD4F42ABE5171E3BCA4F3F.exe</td><td/><td>F:\Работы\WaterGate\8\8\bin\Release\8.exe</td><td>0</td></row>
 	</table>
@@ -3999,7 +4011,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{7537C944-AD51-47EB-A68B-274A63F3BA21}</td></row>
 		<row><td>ISUSSignature</td><td>{DC367F2F-D164-4771-83C0-E598F90B07F0}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewFeatureFiles,viewObjects,viewSystemSearch,viewSupportFiles,viewInstallScriptStd,viewDependencies,viewISToday,viewRealSetupDesign,viewComponentServices,viewShortcuts,viewRegistry,viewUI,viewTextMessages,viewCustomActions,viewRelease,viewDesignPatches,viewAppV,viewProject</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewFeatureFiles,viewObjects,viewSystemSearch,viewSupportFiles,viewInstallScriptStd,viewDependencies,viewISToday,viewRealSetupDesign,viewComponentServices,viewShortcuts,viewRegistry,viewUI,viewTextMessages,viewCustomActions,viewRelease,viewDesignPatches,viewAppV,viewProject,viewSetupDesign,viewSetupTypes</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4057,7 +4069,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 	<table name="LaunchCondition">
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
-		<row><td>DOTNETVERSION35&lt;&gt;""</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35##</td></row>
+		<row><td>DOTNETVERSION35SP1&gt;="#1"</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35SP1##</td></row>
 	</table>
 
 	<table name="ListBox">
@@ -4390,7 +4402,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>SERIALNUMBER</td><td/><td/></row>
 		<row><td>SERIALNUMVALSUCCESSRETVAL</td><td>1</td><td/></row>
 		<row><td>SHOWLAUNCHPROGRAM</td><td>-1</td><td/></row>
-		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION35</td><td/></row>
+		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION35SP1</td><td/></row>
 		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
 		<row><td>UpgradeCode</td><td>{E9F541E0-79D4-4760-A13D-BCE480CB65A6}</td><td/></row>
@@ -4435,7 +4447,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s255">Key</col>
 		<col def="S255">Name</col>
 		<col def="I2">Type</col>
-		<row><td>DotNet35</td><td>2</td><td>SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5</td><td>Version</td><td>2</td></row>
+		<row><td>DotNet35SP1</td><td>2</td><td>SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5</td><td>SP</td><td>2</td></row>
 	</table>
 
 	<table name="Registry">
@@ -4454,6 +4466,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
+		<row><td>FileKey1</td><td>WaterGate.Primary_output</td><td/><td>company</td><td>2</td></row>
+		<row><td>FileKey2</td><td>WaterGate.Primary_output</td><td/><td>waterg_1_watergate1</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4539,6 +4553,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>WaterGate.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

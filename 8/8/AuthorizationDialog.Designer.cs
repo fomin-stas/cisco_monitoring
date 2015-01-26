@@ -40,8 +40,19 @@
             this.PortTextBox = new System.Windows.Forms.TextBox();
             this.portLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ProxyPortUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ProxyAddressTextBox = new System.Windows.Forms.TextBox();
+            this.ProxyPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ProxyLoginTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProxyPortUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // lLogin
@@ -116,10 +127,80 @@
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ProxyPortUpDown);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.ProxyAddressTextBox);
+            this.groupBox2.Controls.Add(this.ProxyPasswordTextBox);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.ProxyLoginTextBox);
+            this.groupBox2.Controls.Add(this.label4);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // ProxyPortUpDown
+            // 
+            resources.ApplyResources(this.ProxyPortUpDown, "ProxyPortUpDown");
+            this.ProxyPortUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.ProxyPortUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ProxyPortUpDown.Name = "ProxyPortUpDown";
+            this.ProxyPortUpDown.Value = new decimal(new int[] {
+            8080,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // ProxyAddressTextBox
+            // 
+            resources.ApplyResources(this.ProxyAddressTextBox, "ProxyAddressTextBox");
+            this.ProxyAddressTextBox.Name = "ProxyAddressTextBox";
+            // 
+            // ProxyPasswordTextBox
+            // 
+            resources.ApplyResources(this.ProxyPasswordTextBox, "ProxyPasswordTextBox");
+            this.ProxyPasswordTextBox.Name = "ProxyPasswordTextBox";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // ProxyLoginTextBox
+            // 
+            resources.ApplyResources(this.ProxyLoginTextBox, "ProxyLoginTextBox");
+            this.ProxyLoginTextBox.Name = "ProxyLoginTextBox";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
             // AuthorizationDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LoginButton);
@@ -131,6 +212,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProxyPortUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -148,5 +232,14 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox PortTextBox;
         private System.Windows.Forms.Label portLabel;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.NumericUpDown ProxyPortUpDown;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox ProxyAddressTextBox;
+        private System.Windows.Forms.TextBox ProxyPasswordTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox ProxyLoginTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }

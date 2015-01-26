@@ -50,6 +50,12 @@ namespace WaterGate
                 return false;
             }
 
+            if (!Uri.IsWellFormedUriString(ProxyAddressTextBox.Text.Trim(), UriKind.RelativeOrAbsolute))
+            {
+                MessageBox.Show("Прокси-сервер неверно задан.", "Введите корректный прокси-сервер", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
             return true;
         }
 
@@ -59,6 +65,11 @@ namespace WaterGate
                 return;
             LoginButton.Enabled = false;
             Cursor = Cursors.AppStarting;
+
+            if (!string.IsNullOrEmpty(ProxyAddressTextBox.Text.Trim()))
+                SetManualSettingProxyServer();
+            else
+                DisableProxyServer();
 
             Settings.Initialize(ServerAddressTextBox.Text.Trim(), PortTextBox.Text.Trim());
             var serviceContext = new WaterGateServiceContext();
@@ -140,6 +151,11 @@ namespace WaterGate
             LoginTextBox.Text = Properties.Settings.Default.Login;
             ServerAddressTextBox.Text = Properties.Settings.Default.Server;
             PortTextBox.Text = Properties.Settings.Default.Port;
+
+            ProxyAddressTextBox.Text = Properties.Settings.Default.ProxyServer;
+            ProxyPortUpDown.Value = Properties.Settings.Default.ProxyPort;
+            ProxyLoginTextBox.Text = Properties.Settings.Default.ProxyLogin;
+            ProxyPasswordTextBox.Text = Properties.Settings.Default.ProxyPassword;
         }
 
         private void SaveSettings()
@@ -148,7 +164,49 @@ namespace WaterGate
             Properties.Settings.Default.Server = ServerAddressTextBox.Text.Trim();
             Properties.Settings.Default.Port = PortTextBox.Text.Trim();
 
+            Properties.Settings.Default.ProxyServer = ProxyAddressTextBox.Text.Trim();
+            Properties.Settings.Default.ProxyPort = (ushort)ProxyPortUpDown.Value;
+            Properties.Settings.Default.ProxyLogin = ProxyLoginTextBox.Text.Trim();
+            Properties.Settings.Default.ProxyPassword = ProxyPasswordTextBox.Text.Trim();
+
             Properties.Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Устанавливает ручные настройки прокси-сервера
+        /// </summary>
+        private void SetManualSettingProxyServer()
+        {
+            try
+            {
+                //ServicePointManager.Expect100Continue = false;
+                var proxyServer = string.Format("{0}:{1}", ProxyAddressTextBox.Text.Trim(), ProxyPortUpDown.Value);
+
+                var wproxy = new WebProxy(proxyServer, false)
+                {
+                    Credentials = new NetworkCredential(ProxyLoginTextBox.Text.Trim(), ProxyPasswordTextBox.Text.Trim())
+                };
+                WebRequest.DefaultWebProxy = wproxy;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Не удалось установить ручные настройки прокси-сервера.\n\n" + err.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Устанавливает системные настройки прокси-сервера
+        /// </summary>
+        private static void DisableProxyServer()
+        {
+            try
+            {
+                WebRequest.DefaultWebProxy = null;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Не удалось отключить прокси-сервер.\n\n" + err.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         
