@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using StaticValuesDll;
 using WaterGate.Models;
+using System.IO;
 
 namespace WaterGate
 {
@@ -19,8 +21,32 @@ namespace WaterGate
         {
             InitializeComponent();
 
+            CheckIntegrity();
             base.Select();
             LoadSettings();
+        }
+
+        private void CheckIntegrity()
+        {
+            var path = string.Format("{0}.exe", Application.ProductName);
+
+            var checkSum = string.Empty;
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] checkBytes = md5.ComputeHash(File.ReadAllBytes(path));
+                checkSum = BitConverter.ToString(checkBytes).Replace("-", String.Empty);
+            }
+
+            string integrity = File.ReadAllText("integrity.txt");
+            if (Equals(checkSum, integrity))
+            {
+                MessageBox.Show("Проверка на целостность прошла успешно.", "Проверка целостности", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Проверка на целостность не пройдена. Приложение будет закрыто.", "Проверка целостности", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Environment.Exit(0);
+            }
         }
 
         private bool IsInputDataValid()
