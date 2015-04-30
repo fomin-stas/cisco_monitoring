@@ -21,7 +21,7 @@ namespace WaterGate
         {
             InitializeComponent();
 
-            CheckIntegrity();
+        //    CheckIntegrity();
             base.Select();
             LoadSettings();
         }
@@ -232,6 +232,23 @@ namespace WaterGate
             catch (Exception err)
             {
                 MessageBox.Show("Не удалось отключить прокси-сервер.\n\n" + err.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DopButton_Click(object sender, EventArgs e)
+        {
+
+            if (this.DopButton.Tag.Equals(0))
+            //действия для второго клика
+            {
+                this.Size = new Size(411, 510);
+                this.DopButton.Tag = 1;
+            }
+            else
+            //действия для первого клика
+            {
+                this.Size = new Size(411, 247);
+                this.DopButton.Tag = 0;
             }
         }
 

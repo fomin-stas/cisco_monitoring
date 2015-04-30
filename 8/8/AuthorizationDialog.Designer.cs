@@ -49,10 +49,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ProxyLoginTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.DopButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProxyPortUpDown)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lLogin
@@ -97,8 +100,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.PortTextBox);
-            this.groupBox1.Controls.Add(this.portLabel);
             this.groupBox1.Controls.Add(this.ServerAddressLabel);
             this.groupBox1.Controls.Add(this.ServerAddressTextBox);
             this.groupBox1.Controls.Add(this.PasswordTextBox);
@@ -196,10 +197,28 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.PortTextBox);
+            this.groupBox3.Controls.Add(this.portLabel);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // DopButton
+            // 
+            resources.ApplyResources(this.DopButton, "DopButton");
+            this.DopButton.Name = "DopButton";
+            this.DopButton.Tag = 0;
+            this.DopButton.UseVisualStyleBackColor = true;
+            this.DopButton.Click += new System.EventHandler(this.DopButton_Click);
+            // 
             // AuthorizationDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DopButton);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox1);
@@ -215,6 +234,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProxyPortUpDown)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -241,5 +262,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox ProxyLoginTextBox;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button DopButton;
     }
 }

@@ -60,7 +60,7 @@ namespace WaterGate.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("18285")]
         public string Port {
             get {
                 return ((string)(this["Port"]));
