@@ -344,6 +344,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{6CA290A4-5D31-4CB4-9DA2-DA1AD7699B32}</td><td>PrimaryVolumePath</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{7ABACF16-060F-4B38-A91F-1994CA53EA13}</td><td>WindowsVolume</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{6FA0BB1F-4C93-4889-B931-23DBB5661027}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT4</td><td>{B0A1C83C-4D33-4892-BD25-1EC9E980A884}</td><td>DATABASEDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SetupConfiguration.Primary_output</td><td>{9FE614F9-8EBF-4B26-A852-8D18CC3278B7}</td><td>INSTALLDIR</td><td>2</td><td/><td>setupconfiguration.primary_o</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WaterGateService.Content_Files</td><td>{DCE7863E-89DB-4BE6-B6DC-8F3CC6CB350A}</td><td>INSTALLDIR</td><td>2</td><td/><td>watergateservice.content_fil</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WaterGateService.Primary_output</td><td>{F2D5ECAC-19E2-415A-970E-F6566938D5E7}</td><td>INSTALLDIR</td><td>2</td><td/><td>watergateservice.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1058,6 +1059,7 @@
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>PrimaryVolumePath</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>SystemFolder</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>WindowsVolume</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1876,6 +1878,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT4</td></row>
 		<row><td>AlwaysInstall</td><td>SetupConfiguration.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>WaterGateService.Content_Files</td></row>
 		<row><td>AlwaysInstall</td><td>WaterGateService.Primary_output</td></row>
@@ -1893,7 +1896,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>repository.db</td><td>ISX_DEFAULTCOMPONENT2</td><td>REPOSI~1.DB|Repository.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\работа\ВНИПИЭТ\GitHub\cisco_monitoring\cisco_monitoring\Service\Service\EmptyRepository\Repository.db</td><td>1</td><td/></row>
+		<row><td>repository.db2</td><td>ISX_DEFAULTCOMPONENT4</td><td>REPOSI~1.DB|Repository.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\работа\ВНИПИЭТ\GitHub\cisco_monitoring\cisco_monitoring\Service\Service\EmptyRepository\Repository.db</td><td>1</td><td/></row>
 		<row><td>setupconfiguration.primary_o</td><td>SetupConfiguration.Primary_output</td><td>SetupConfiguration.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SetupConfiguration&gt;|Built</td><td>3</td><td/></row>
 		<row><td>watergateservice.content_fil</td><td>WaterGateService.Content_Files</td><td>WaterGateService.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WaterGateService&gt;|ContentFiles</td><td>3</td><td/></row>
 		<row><td>watergateservice.primary_out</td><td>WaterGateService.Primary_output</td><td>WaterGateService.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WaterGateService&gt;|Built</td><td>3</td><td/></row>
@@ -2044,6 +2047,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_27894806_243C_496A_B2E8_A06DF7F8C083_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_7CB5F49D_E4D8_4648_B3B5_A4FE1C96D9B4_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_65AB21EC_D4E7_4DD1_8E7D_46E4119DEDE0_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT4</td><td/><td/><td>_FBB019B7_407E_4A88_A8F6_63E03A015AEB_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SetupConfiguration.Primary_output</td><td/><td/><td>_C56C6F37_0C4A_4242_A60C_F726EB8F59A9_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WaterGateService.Content_Files</td><td/><td/><td>_25E26D16_0BB6_4171_B98A_CDC9945C6C1D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WaterGateService.Primary_output</td><td/><td/><td>_822E1CD1_0845_4F79_B022_451DCB4E47F5_FILTER</td><td/><td/><td/><td/></row>
