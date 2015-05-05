@@ -29,141 +29,106 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(alarms));
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.AlarmDataGridView = new System.Windows.Forms.DataGridView();
+            this.NameOfAlarm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Execute = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.leveldataGridView = new System.Windows.Forms.DataGridView();
+            this.levelAlarm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExecuteLevel = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.AlarmDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leveldataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // AlarmDataGridView
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(23, 63);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(185, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Затухание сигнала (Attenuation)";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.AlarmDataGridView.AllowUserToAddRows = false;
+            this.AlarmDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.AlarmDataGridView.ColumnHeadersHeight = 50;
+            this.AlarmDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.AlarmDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameOfAlarm,
+            this.Execute});
+            this.AlarmDataGridView.Location = new System.Drawing.Point(12, 63);
+            this.AlarmDataGridView.Name = "AlarmDataGridView";
+            this.AlarmDataGridView.RowHeadersVisible = false;
+            this.AlarmDataGridView.Size = new System.Drawing.Size(341, 254);
+            this.AlarmDataGridView.TabIndex = 2;
             // 
-            // checkBox2
+            // NameOfAlarm
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(23, 86);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(162, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "ATTENUATION INJECTION";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.NameOfAlarm.Frozen = true;
+            this.NameOfAlarm.HeaderText = "Name Of Alarm";
+            this.NameOfAlarm.Name = "NameOfAlarm";
+            this.NameOfAlarm.ReadOnly = true;
+            this.NameOfAlarm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NameOfAlarm.Width = 270;
             // 
-            // checkBox3
+            // Execute
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(23, 109);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(234, 17);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Уменьшение длины кабеля (FIBER_CUT)";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.Execute.Frozen = true;
+            this.Execute.HeaderText = "Execute";
+            this.Execute.Name = "Execute";
+            this.Execute.ReadOnly = true;
+            this.Execute.Width = 70;
             // 
-            // checkBox4
+            // leveldataGridView
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(23, 136);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(275, 17);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "Увеличение пика рефлектограммы (PEAK_RISE)";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.leveldataGridView.AllowUserToAddRows = false;
+            this.leveldataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.leveldataGridView.ColumnHeadersHeight = 50;
+            this.leveldataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.leveldataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.levelAlarm,
+            this.ExecuteLevel});
+            this.leveldataGridView.Location = new System.Drawing.Point(381, 63);
+            this.leveldataGridView.Name = "leveldataGridView";
+            this.leveldataGridView.RowHeadersVisible = false;
+            this.leveldataGridView.Size = new System.Drawing.Size(169, 254);
+            this.leveldataGridView.TabIndex = 3;
             // 
-            // checkBox5
+            // levelAlarm
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(23, 159);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(318, 17);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "Затухание пика рефлектограммы (PEAK_ATTENUATION)";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.levelAlarm.Frozen = true;
+            this.levelAlarm.HeaderText = "Уровень аварии";
+            this.levelAlarm.Name = "levelAlarm";
+            this.levelAlarm.ReadOnly = true;
+            this.levelAlarm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // checkBox6
+            // ExecuteLevel
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(23, 182);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(108, 17);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "MISSING_PEAK ";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(23, 205);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(86, 17);
-            this.checkBox7.TabIndex = 6;
-            this.checkBox7.Text = "NEW_PEAK";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(23, 228);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(48, 17);
-            this.checkBox8.TabIndex = 7;
-            this.checkBox8.Text = "ORL";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(23, 254);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(319, 17);
-            this.checkBox9.TabIndex = 8;
-            this.checkBox9.Text = "Увеличение длины кабеля (FIBER_LENGTH_EXTENSION)";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.ExecuteLevel.Frozen = true;
+            this.ExecuteLevel.HeaderText = "Execute";
+            this.ExecuteLevel.Name = "ExecuteLevel";
+            this.ExecuteLevel.ReadOnly = true;
+            this.ExecuteLevel.Width = 70;
             // 
             // alarms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 285);
-            this.Controls.Add(this.checkBox9);
-            this.Controls.Add(this.checkBox8);
-            this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(564, 317);
+            this.Controls.Add(this.leveldataGridView);
+            this.Controls.Add(this.AlarmDataGridView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "alarms";
             this.Resizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "alarms";
+            this.Load += new System.EventHandler(this.alarms_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.AlarmDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leveldataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.DataGridView AlarmDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameOfAlarm;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Execute;
+        private System.Windows.Forms.DataGridView leveldataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn levelAlarm;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ExecuteLevel;
+
     }
 }

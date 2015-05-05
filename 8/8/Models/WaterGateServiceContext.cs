@@ -366,6 +366,40 @@ namespace WaterGate.Models
             asyncAction.BeginInvoke(null, null);
         }
 
+
+        public void GetAlarmAsync(Action<StaticValuesDll.AlarmList[], Exception> continueWith)
+        {
+            var asyncAction = new Action(() =>
+            {
+                try
+                {
+                    using (var serviceChannel = new ChannelFactory<IWaterGateService>(CreateBinding(), new EndpointAddress(_address)))
+                    {
+                        var channel = serviceChannel.CreateChannel();
+
+                        AlarmList[] result;
+                        using (var contextScope = new OperationContextScope((IContextChannel)channel))
+                        {
+                            OperationContext.Current.OutgoingMessageHeaders.Add(_userHeader);
+                            result = channel.GetAlarmList();
+                        }
+
+                        continueWith(result, null);
+                    }
+                }
+                catch (Exception e)
+                {
+                    LogConnectionFailed();
+                    continueWith(null, e);
+                }
+
+            });
+
+            asyncAction.BeginInvoke(null, null);
+
+        }
+
+
         public void LogUnlockingPortAsync(JDSUCiscoClass jdsuCisco, UnlockingPortStatus unlockingPortStatus)
         {
             var asyncAction = new Action(() =>
