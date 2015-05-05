@@ -138,6 +138,19 @@ namespace Service.Services
             return result;
         }
 
+        public AlarmList[] GetAlarmList()
+        {
+            var result = _repository.GetAlarmList();
+            ClientLogService.Write(CurrentUser, "Получение списка аварий", "Выполнено");
+            return result;
+        }
+
+        public AlarmLevelList[] GetAlarmLevelList()
+        {
+            var result = _repository.GetAlarmLevelList();
+            ClientLogService.Write(CurrentUser, "Получение списка уровней аварий", "Выполнено");
+            return result;
+        }
         public User CurrentUser
         {
             get

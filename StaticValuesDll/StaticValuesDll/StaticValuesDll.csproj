@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlarmClass.cs" />
+    <Compile Include="AlarmLevelList.cs" />
+    <Compile Include="AlarmList.cs" />
     <Compile Include="AuthorizationToken.cs" />
     <Compile Include="CiscoPort.cs" />
     <Compile Include="ConfigContainer.cs" />

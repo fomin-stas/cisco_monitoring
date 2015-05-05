@@ -124,7 +124,7 @@ namespace SetupConfiguration.ViewModels
         private string _firstPassword;
         private string _secondPassword;
 
-        private string _port;
+        private string _port = Convert.ToString(18285);
 
         private string _jdsuPort;
         private string _community;

@@ -41,6 +41,12 @@ namespace Service.Services
         User[] GetUsers();
 
         [OperationContract]
+        AlarmLevelList[] GetAlarmLevelList();
+
+        [OperationContract]
+        AlarmList[] GetAlarmList();
+
+        [OperationContract]
         void UpdateCheckDelay(double delay);
 
         [OperationContract]

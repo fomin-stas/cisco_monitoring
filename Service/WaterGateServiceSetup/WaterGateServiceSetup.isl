@@ -1893,7 +1893,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>repository.db</td><td>ISX_DEFAULTCOMPONENT2</td><td>REPOSI~1.DB|Repository.db</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\Мурад\Source\Repos\cisco_monitoring\Service\Service\EmptyRepository\Repository.db</td><td>1</td><td/></row>
+		<row><td>repository.db</td><td>ISX_DEFAULTCOMPONENT2</td><td>REPOSI~1.DB|Repository.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\работа\ВНИПИЭТ\GitHub\cisco_monitoring\cisco_monitoring\Service\Service\EmptyRepository\Repository.db</td><td>1</td><td/></row>
 		<row><td>setupconfiguration.primary_o</td><td>SetupConfiguration.Primary_output</td><td>SetupConfiguration.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SetupConfiguration&gt;|Built</td><td>3</td><td/></row>
 		<row><td>watergateservice.content_fil</td><td>WaterGateService.Content_Files</td><td>WaterGateService.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WaterGateService&gt;|ContentFiles</td><td>3</td><td/></row>
 		<row><td>watergateservice.primary_out</td><td>WaterGateService.Primary_output</td><td>WaterGateService.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;WaterGateService&gt;|Built</td><td>3</td><td/></row>

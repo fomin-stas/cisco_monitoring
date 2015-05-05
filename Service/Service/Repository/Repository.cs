@@ -520,6 +520,94 @@ namespace Service.Repository
             }
         }
 
+        public AlarmList[] GetAlarmList()
+        {
+            LockSlim.TryEnterReadLock(-1);
+
+
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand("SELECT AlarmList.Id,AlarmList.Name,AlarmList.Execute FROM AlarmList", connection))
+                    {
+                        using (var adapter = new SQLiteDataAdapter(command))
+                        {
+                            using (var table = new DataTable())
+                            {
+                                adapter.Fill(table);
+
+
+
+
+                                return table.Rows.Cast<DataRow>().Select(item => new AlarmList()
+                                {
+                                    Id = (Int64)item[0],
+                                    Name = item[1] as string,
+                                    Execute = (int)item[2]
+
+
+                                }).ToArray();
+
+
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                LockSlim.ExitReadLock();
+            }
+        }
+
+
+        public AlarmLevelList[] GetAlarmLevelList()
+        {
+            LockSlim.TryEnterReadLock(-1);
+
+
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SQLiteCommand("SELECT AlarmLevelList.Id,AlarmLevelList.Level,AlarmLevelList.Execute FROM AlarmLevelList", connection))
+                    {
+                        using (var adapter = new SQLiteDataAdapter(command))
+                        {
+                            using (var table = new DataTable())
+                            {
+                                adapter.Fill(table);
+
+
+
+
+                                return table.Rows.Cast<DataRow>().Select(item => new AlarmLevelList()
+                                {
+                                    Id = (Int64)item[0],
+                                    Level = (Int64)item[1],
+                                    Execute = (int)item[2]
+
+
+                                }).ToArray();
+
+
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                LockSlim.ExitReadLock();
+            }
+        }
+
+
         private Int64 GetUserId(SQLiteConnection connection, string login)
         {
             using (var command = new SQLiteCommand("SELECT Id FROM Users WHERE Login=@login", connection))
