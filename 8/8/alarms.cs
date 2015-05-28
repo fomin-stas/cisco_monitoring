@@ -52,13 +52,58 @@ namespace WaterGate
                     }
 
                     Cursor = Cursors.Arrow;
-
-                    this.AlarmDataGridView.Columns[1].ReadOnly = false;
+                    this.AlarmDataGridView.ReadOnly = false;
+                  
 
                 }));
             });
         }
 
+      
+        private void leveldataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        
+        }
+
+        private void AlarmDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.ColumnIndex == 1 & this.AlarmDataGridView.Columns[1].ReadOnly == false)
+            {      var alarm = new StaticValuesDll.AlarmList();
+                    alarm.Name = this.AlarmDataGridView.Rows[e.RowIndex].Cells[0].ToString();
+                    alarm.Execute = Convert.ToInt32(this.AlarmDataGridView.Rows[e.RowIndex].Cells[1].Value);
+                
+                   var serviceContext = new WaterGateServiceContext();
+                serviceContext.ChangeAlarmAsync(alarm, (result, error) =>
+                {
+                    if (error != null)
+                    {
+                        Invoke(new Action(() => MessageBox.Show("Произошла ошибка при соединении с сервером, проверьте наличие соединения.",
+                                          "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error)));
+                    }
+                    else if (result)
+                    {
+                        //Invoke(new Action(() => this.AlarmDataGridView.Rows[e.RowIndex].Cells[1].Value = result));
+                    }
+                    else
+                    {
+                        Invoke(new Action(() => MessageBox.Show("Что-то пошло не так.", "Что-то пошло не так.", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+                    }
+
+                    Invoke(new Action(() =>
+                    {
+                        Cursor = Cursors.Arrow;
+
+                       
+                    }));
+                });
+               
+                
+                MessageBox.Show(alarm.Execute.ToString());
+               
+
+            }
+        }
        
     }
 }

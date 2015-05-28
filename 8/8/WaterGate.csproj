@@ -58,20 +58,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework">
-      <HintPath>..\..\..\MetroFramework.dll</HintPath>
+      <HintPath>..\..\..\..\cisco_monitoring\cisco_monitoring\MetroFramework.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Design">
-      <HintPath>..\..\..\MetroFramework.Design.dll</HintPath>
+      <HintPath>..\..\..\..\cisco_monitoring\cisco_monitoring\MetroFramework.Design.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Fonts">
-      <HintPath>..\..\..\MetroFramework.Fonts.dll</HintPath>
+      <HintPath>..\..\..\..\cisco_monitoring\cisco_monitoring\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="SnmpSharpNet">
       <HintPath>..\SnmpSharpNet.dll</HintPath>
     </Reference>
-    <Reference Include="StaticValuesDll">
-      <HintPath>..\..\..\StaticValuesDll\StaticValuesDll\bin\Release\StaticValuesDll.dll</HintPath>
+    <Reference Include="StaticValuesDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\StaticValuesDll\StaticValuesDll\bin\Release\StaticValuesDll.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

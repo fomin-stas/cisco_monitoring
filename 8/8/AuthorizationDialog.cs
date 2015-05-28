@@ -21,7 +21,7 @@ namespace WaterGate
         {
             InitializeComponent();
 
-        //    CheckIntegrity();
+           // CheckIntegrity();
             base.Select();
             LoadSettings();
         }

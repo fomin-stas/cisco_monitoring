@@ -151,6 +151,15 @@ namespace Service.Services
             ClientLogService.Write(CurrentUser, "Получение списка уровней аварий", "Выполнено");
             return result;
         }
+
+        public bool ChangeAlarm(StaticValuesDll.AlarmList alarm)
+        {
+           var result =  _repository.ChangeAlarm(alarm);
+           
+            ClientLogService.Write(CurrentUser, "Обновление списка аварий", "Авария" + alarm.Name + "добавлена в список на блокировку канала");
+
+            return result;
+        }
         public User CurrentUser
         {
             get

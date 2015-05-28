@@ -607,7 +607,41 @@ namespace Service.Repository
             }
         }
 
+        public bool ChangeAlarm(StaticValuesDll.AlarmList alarm)
+        {
+            LockSlim.TryEnterWriteLock(-1);
 
+            try
+            {
+                using (var connection = new SQLiteConnection(_connectionString))
+                {
+                    connection.Open();
+
+
+
+                    using (var command = new SQLiteCommand("UPDATE AlarmList SET Execute=@Execute WHERE Id=@id AND Name=@name", connection))
+                    {
+                        command.Parameters.Add("@Execute", DbType.Int32).Value = alarm.Execute;
+                        command.Parameters.Add("@id", DbType.Int32).Value = alarm.Id;
+                        command.Parameters.Add("@name", DbType.String).Value = alarm.Name;
+
+                        command.ExecuteNonQuery();
+                    }
+
+
+                    return true;
+                }
+            }
+            catch
+            
+            {
+                return false;
+            }
+            finally
+            {
+                LockSlim.ExitWriteLock();
+            }
+        }
         private Int64 GetUserId(SQLiteConnection connection, string login)
         {
             using (var command = new SQLiteCommand("SELECT Id FROM Users WHERE Login=@login", connection))
@@ -625,6 +659,9 @@ namespace Service.Repository
                 }
             }
         }
+
+      
+
 
         private IPCom GetJDSUIp(SQLiteConnection connection)
         {

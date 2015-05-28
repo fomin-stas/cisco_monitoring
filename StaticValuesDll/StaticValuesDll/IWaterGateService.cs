@@ -47,6 +47,9 @@ namespace Service.Services
         AlarmList[] GetAlarmList();
 
         [OperationContract]
+        bool ChangeAlarm(AlarmList alarm);
+
+        [OperationContract]
         void UpdateCheckDelay(double delay);
 
         [OperationContract]
