@@ -35,17 +35,17 @@ namespace WaterGate
         {
             InitializeComponent();
 
-            NotifyIcon.ContextMenu = new ContextMenu(new []
-            {  
-                new MenuItem("Развернуть", (s,e)=> ExpandForm()), 
-                new MenuItem("Выход", (s,e)=>this.Close())
-            });
+
 
             SwitchColumn.ImageLayout = DataGridViewImageCellLayout.Zoom;
             SwitchColumn.Image = Properties.Resources.OnButton;
             SwitchColumn.Description = "OnButton";
-
-
+            NotifyIcon.Visible=false;
+            NotifyIcon.ContextMenu = new ContextMenu(new[]
+{
+                new MenuItem("Развернуть", (s,e1)=> ExpandForm()),
+                new MenuItem("Выход", (s,e1)=>this.Close())
+            });
             CheckPortColumn.ImageLayout = DataGridViewImageCellLayout.Zoom;
             CheckPortColumn.Image = Properties.Resources.CheckPort;
         }
@@ -64,7 +64,7 @@ namespace WaterGate
                 DescriptionColumn.ReadOnly = true;
                 topMenuStrip.Visible = false;
             }
-
+            NotifyIcon.Visible = true;
             StaticValues.CiscoList = authorizationToken.ConfigContainer.CiscoList;
             StaticValues.JDSUCiscoArray = authorizationToken.ConfigContainer.JDSUCiscoArray;
             StaticValues.JDSUIP = authorizationToken.ConfigContainer.JDSUIP;

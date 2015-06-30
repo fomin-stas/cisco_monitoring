@@ -189,7 +189,6 @@
             this.mainDataGridView.Size = new System.Drawing.Size(737, 410);
             this.mainDataGridView.TabIndex = 1;
             this.mainDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainDataGridView_CellClick);
-
             this.mainDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.mainDataGridView_CellEndEdit);
             // 
             // JDSUport

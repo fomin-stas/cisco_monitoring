@@ -58,13 +58,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework">
-      <HintPath>..\..\..\..\cisco_monitoring\cisco_monitoring\MetroFramework.dll</HintPath>
+      <HintPath>..\..\MetroFramework.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Design">
-      <HintPath>..\..\..\..\cisco_monitoring\cisco_monitoring\MetroFramework.Design.dll</HintPath>
+      <HintPath>..\..\MetroFramework.Design.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Fonts">
-      <HintPath>..\..\..\..\cisco_monitoring\cisco_monitoring\MetroFramework.Fonts.dll</HintPath>
+      <HintPath>..\..\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="SnmpSharpNet">
