@@ -91,14 +91,14 @@ namespace Service
                 try
                 {
                     var formatter = new BinaryFormatter();
-                    using (var ms = new MemoryStream())
+                    using (var ms1 = new MemoryStream())
                     {
-                        using (var ds = new DeflateStream(ms, CompressionMode.Compress, true))
+                        using (var ds = new DeflateStream(ms1, CompressionMode.Compress, true))
                         {
                             formatter.Serialize(ds, alarm);
                         }
-                        ms.Position = 0;
-                        data = ms.GetBuffer();
+                        ms1.Position = 0;
+                        data = ms1.GetBuffer();
 
                     }
                 }

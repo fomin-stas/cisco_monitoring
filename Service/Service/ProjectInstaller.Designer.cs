@@ -36,7 +36,6 @@ namespace Service
             // 
             // serviceProcessInstaller1
             // 
-
             this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
@@ -53,7 +52,6 @@ namespace Service
             this.serviceProcessInstaller1,
             this.serviceInstaller1});
 
-            serviceInstaller1.AfterInstall += ServiceInstaller_AfterInstall;  
         }
 
         private void ServiceInstaller_AfterInstall(object sender, InstallEventArgs e)

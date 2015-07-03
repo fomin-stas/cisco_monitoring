@@ -918,11 +918,11 @@
 		<row><td>CustomerInformation</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>(Not SERIALNUMVALRETURN) OR (SERIALNUMVALRETURN=SERIALNUMVALSUCCESSRETVAL)</td><td>3</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>[ALLUSERS]</td><td>1</td><td>ApplicationUsers = "AllUsers" And Privileged</td><td>1</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>[ALLUSERS]</td><td>{}</td><td>ApplicationUsers = "OnlyCurrentUser" And Privileged</td><td>2</td></row>
-		<row><td>DatabaseFolder</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>1</td></row>
+		<row><td>DatabaseFolder</td><td>Back</td><td>NewDialog</td><td>DestinationFolder</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>[_BrowseProperty]</td><td>DATABASEDIR</td><td>1</td><td>2</td></row>
-		<row><td>DatabaseFolder</td><td>Next</td><td>NewDialog</td><td>SetupType</td><td>1</td><td>1</td></row>
+		<row><td>DatabaseFolder</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>DestinationFolder</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
@@ -2622,7 +2622,7 @@
 		<col def="I2">Order</col>
 		<col def="I2">ISSetupLocation</col>
 		<col def="S255">ISReleaseFlags</col>
-		<row><td>_52FE6E40_0361_492A_AC27_BEFC7796AE81_</td><td>Microsoft .NET Framework 3.5 SP1 (Web Download).prq</td><td/><td/><td/></row>
+		<row><td>_A91E219B_9A93_439D_A010_90D8A220A640_</td><td>Microsoft .NET Framework 3.5 SP1.prq</td><td/><td/><td/></row>
 	</table>
 
 	<table name="ISSetupType">
@@ -3775,6 +3775,7 @@
 	<table name="ISSwidtagProperty">
 		<col key="yes" def="s72">Name</col>
 		<col def="s0">Value</col>
+		<row><td>SfwCreatorName</td><td>ТехЦентр</td></row>
 		<row><td>UniqueId</td><td>1204FF4C-114B-406C-97C2-87DD4D9C71AD</td></row>
 	</table>
 
@@ -3955,7 +3956,7 @@
 		<row><td>RegisterUser</td><td/><td>6000</td><td>RegisterUser</td><td/></row>
 		<row><td>RemoveDuplicateFiles</td><td/><td>3400</td><td>RemoveDuplicateFiles</td><td/></row>
 		<row><td>RemoveEnvironmentStrings</td><td/><td>3300</td><td>RemoveEnvironmentStrings</td><td/></row>
-		<row><td>RemoveExistingProducts</td><td/><td>1410</td><td>RemoveExistingProducts</td><td/></row>
+		<row><td>RemoveExistingProducts</td><td/><td>6601</td><td>RemoveExistingProducts</td><td/></row>
 		<row><td>RemoveFiles</td><td/><td>3500</td><td>RemoveFiles</td><td/></row>
 		<row><td>RemoveFolders</td><td/><td>3600</td><td>RemoveFolders</td><td/></row>
 		<row><td>RemoveIniValues</td><td/><td>3100</td><td>RemoveIniValues</td><td/></row>
@@ -4011,7 +4012,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{7537C944-AD51-47EB-A68B-274A63F3BA21}</td></row>
 		<row><td>ISUSSignature</td><td>{DC367F2F-D164-4771-83C0-E598F90B07F0}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewFeatureFiles,viewObjects,viewSystemSearch,viewSupportFiles,viewInstallScriptStd,viewDependencies,viewISToday,viewRealSetupDesign,viewComponentServices,viewShortcuts,viewRegistry,viewUI,viewTextMessages,viewCustomActions,viewRelease,viewDesignPatches,viewAppV,viewProject,viewSetupDesign,viewSetupTypes</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewFeatureFiles,viewObjects,viewSystemSearch,viewSupportFiles,viewInstallScriptStd,viewDependencies,viewISToday,viewRealSetupDesign,viewComponentServices,viewShortcuts,viewRegistry,viewUI,viewTextMessages,viewCustomActions,viewRelease,viewDesignPatches,viewAppV,viewProject,viewSetupDesign,viewSetupTypes,viewUpgradePaths,viewUpdateService,viewSQLServer,viewServices,viewBillboards,viewIniFiles</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>

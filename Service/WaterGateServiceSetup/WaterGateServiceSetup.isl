@@ -1019,10 +1019,12 @@
 		<row><td>SetupCompleteError</td><td>Finish</td><td>DoAction</td><td>ISSetupFilesCleanup</td><td>1</td><td>200</td></row>
 		<row><td>SetupCompleteError</td><td>Finish</td><td>DoAction</td><td>ShowMsiLog</td><td>MsiLogFileLocation And (ISSHOWMSILOG="1")</td><td>3</td></row>
 		<row><td>SetupCompleteError</td><td>Finish</td><td>EndDialog</td><td>Exit</td><td>1</td><td>2</td></row>
-		<row><td>SetupCompleteSuccess</td><td>OK</td><td>DoAction</td><td>CleanUp</td><td>ISSCRIPTRUNNING="1"</td><td>1</td></row>
-		<row><td>SetupCompleteSuccess</td><td>OK</td><td>DoAction</td><td>ISSetupFilesCleanup</td><td>1</td><td>200</td></row>
-		<row><td>SetupCompleteSuccess</td><td>OK</td><td>DoAction</td><td>ShowMsiLog</td><td>MsiLogFileLocation And (ISSHOWMSILOG="1") And NOT ISENABLEDWUSFINISHDIALOG</td><td>6</td></row>
-		<row><td>SetupCompleteSuccess</td><td>OK</td><td>EndDialog</td><td>Exit</td><td>1</td><td>2</td></row>
+		<row><td>SetupCompleteSuccess</td><td>OK</td><td>DoAction</td><td>CleanUp</td><td>ISSCRIPTRUNNING="1"</td><td>3</td></row>
+		<row><td>SetupCompleteSuccess</td><td>OK</td><td>DoAction</td><td>ISSetupFilesCleanup</td><td>1</td><td>202</td></row>
+		<row><td>SetupCompleteSuccess</td><td>OK</td><td>DoAction</td><td>NewCustomAction1</td><td>Not Installed</td><td>1</td></row>
+		<row><td>SetupCompleteSuccess</td><td>OK</td><td>DoAction</td><td>ShowMsiLog</td><td>MsiLogFileLocation And (ISSHOWMSILOG="1") And NOT ISENABLEDWUSFINISHDIALOG</td><td>8</td></row>
+		<row><td>SetupCompleteSuccess</td><td>OK</td><td>EndDialog</td><td>Exit</td><td>1</td><td>4</td></row>
+		<row><td>SetupCompleteSuccess</td><td>OK</td><td>[NewCustomAction1]</td><td>NewCustomAction1</td><td>Not Installed</td><td>2</td></row>
 		<row><td>SetupError</td><td>A</td><td>EndDialog</td><td>ErrorAbort</td><td>1</td><td>0</td></row>
 		<row><td>SetupError</td><td>C</td><td>EndDialog</td><td>ErrorCancel</td><td>1</td><td>0</td></row>
 		<row><td>SetupError</td><td>I</td><td>EndDialog</td><td>ErrorIgnore</td><td>1</td><td>0</td></row>
@@ -1083,6 +1085,7 @@
 		<row><td>ISSetupFilesCleanup</td><td>257</td><td>ISSetupFilesHelper</td><td>SFCleanupEx</td><td/><td/></row>
 		<row><td>ISSetupFilesExtract</td><td>257</td><td>ISSetupFilesHelper</td><td>SFStartupEx</td><td/><td/></row>
 		<row><td>ISUnSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISUnSelfRegisterFiles</td><td/><td/></row>
+		<row><td>NewCustomAction1</td><td>18</td><td>setupconfiguration.primary_o</td><td/><td/><td/></row>
 		<row><td>SetARPINSTALLLOCATION</td><td>51</td><td>ARPINSTALLLOCATION</td><td>[INSTALLDIR]</td><td/><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%SystemRoot]\Profiles\All Users</td><td/><td/></row>
 		<row><td>ShowMsiLog</td><td>226</td><td>SystemFolder</td><td>[SystemFolder]notepad.exe "[MsiLogFileLocation]"</td><td/><td>Shows Property-driven MSI Log</td></row>
@@ -1903,7 +1906,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>repository.db2</td><td>ISX_DEFAULTCOMPONENT4</td><td>REPOSI~1.DB|Repository.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\работа\ВНИПИЭТ\GitHub\cisco_monitoring\cisco_monitoring\Service\Service\EmptyRepository\Repository.db</td><td>1</td><td/></row>
+		<row><td>repository.db</td><td>ISX_DEFAULTCOMPONENT4</td><td>REPOSI~1.DB|Repository.db</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\FSI\Documents\GitHub\cisco_monitoring\Service\Service\EmptyRepository\Repository.db</td><td>1</td><td/></row>
 		<row><td>setupconfiguration.primary_o</td><td>SetupConfiguration.Primary_output</td><td>SetupConfiguration.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SetupConfiguration&gt;|Built</td><td>3</td><td/></row>
 		<row><td>watergateservice.content_fil</td><td>WaterGateService.Content_Files</td><td>WaterGateService.Content Files</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WaterGateService&gt;|ContentFiles</td><td>3</td><td/></row>
 		<row><td>watergateservice.primary_out</td><td>WaterGateService.Primary_output</td><td>WaterGateService.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;WaterGateService&gt;|Built</td><td>3</td><td/></row>
@@ -2647,7 +2650,7 @@
 		<col def="I2">Order</col>
 		<col def="I2">ISSetupLocation</col>
 		<col def="S255">ISReleaseFlags</col>
-		<row><td>_5CF1A72C_102F_428B_805B_EF8EFC395535_</td><td>Microsoft .NET Framework 3.5 SP1 (Web Download).prq</td><td/><td/><td/></row>
+		<row><td>_29D82A38_3A9E_431A_A9E0_B2EADD0BE3B7_</td><td>Microsoft .NET Framework 3.5 SP1.prq</td><td/><td/><td/></row>
 	</table>
 
 	<table name="ISSetupType">
